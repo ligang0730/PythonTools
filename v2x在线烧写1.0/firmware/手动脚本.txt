@@ -1,0 +1,13 @@
+setenv serverip 172.16.11.166;setenv ipaddr 172.16.11.121
+tftp ${fdt_addr} 6q-qfvob.dtb;tftp ${loadaddr} ${image};tftp ${initrd_addr} ${ramdisk_file};
+run ramargs;bootz ${loadaddr} ${initrd_addr} ${fdt_addr}
+
+
+dd if=/dev/zero of=/dev/mmcblk1 bs=1k seek=768 conv=fsync count=129
+echo 0 > /sys/block/mmcblk1boot0/force_ro
+dd if=u-boot.bin of=/dev/mmcblk1boot0 bs=512 seek=2
+echo 1 > /sys/block/mmcblk1boot0/force_ro
+
+rm u-boot.bin
+
+#mmc bootpart enable 1 1 /dev/mmcblk1

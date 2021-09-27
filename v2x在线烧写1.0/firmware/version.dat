@@ -1,0 +1,10 @@
+curl :
+{
+VersionString = "V0.00.00";
+VersionNum = 0;
+FileName = "VX2000DH_FIRMWARE_V0.00.00.bin";
+FileSize = 0;
+Crc = 0;
+HasUse = 0;
+CanUse = 1;
+}
