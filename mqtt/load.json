@@ -1,0 +1,49 @@
+{
+	"timeStamp":	"20211129170502",
+	"deviceSN":	"40201220FFFFFFFFFFFFFFFF",
+	"seqNum":	"8609",
+	"ack":	false,
+	"msgType":	"DeviceStateReport",
+	"tag":	10004,
+	"msgData":	{
+		"deviceID":	"R-QF0001",
+		"temperatureStatus":	38.200001,
+		"humidityStatus":	23,
+		"deviceStatus":	"0",
+		"v2xWorkingStatus":	"0",
+		"gnssWorkingStatus":	"0",
+		"gnssStarsNumber":	7,
+		"cpuOperationInfor":	[{
+				"cpuLoad":	224.951172,
+				"cpuRate":	"28.800000%"
+			}, {
+				"cpuLoad":	224.951172,
+				"cpuRate":	"28.800000%"
+			}, {
+				"cpuLoad":	224.951172,
+				"cpuRate":	"28.800000%"
+			}, {
+				"cpuLoad":	224.951172,
+				"cpuRate":	"28.800000%"
+			}],
+		"memoryOperationInfor":	{
+			"totalMemory":	492,
+			"usedMemory":	237,
+			"availableMemory":	255
+		},
+		"diskOperationInfor":	{
+			"totalDisk":	2473,
+			"usedDisk":	463,
+			"freeDisk":	2009,
+			"ioRequests":	1,
+			"diskDataWrite":	1751,
+			"DiskDataRead":	71
+		},
+		"networkOperationInfor":	{
+			"packetsReceived":	0,
+			"packetsSent":	8609,
+			"bytesReceived":	0,
+			"bytesSent":	3859136
+		}
+	}
+}
