@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['ssh.py'],
-             pathex=['E:\\work\\upgrade'],
+             pathex=['E:\\work\\mqtt'],
              binaries=[],
              datas=[],
              hiddenimports=[],

@@ -307,6 +307,9 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         super(MyPyQT_Form, self).__init__()
         self.setupUi(self)
         self.pushBrokerDis.setEnabled(False)
+        self.pushPublish.setEnabled(False)
+        self.pushQuery.setEnabled(False)
+        self.pushStartRecv.setEnabled(False)
 
         self.treeView_Register.setStyleSheet("background:#ffffff")
         self.treeView_BaseInfo.setStyleSheet("background:#ffffff")
@@ -357,6 +360,9 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         self.pushBroker.setEnabled(False)
         self.pushBrokerDis.setEnabled(True)
+        self.pushPublish.setEnabled(True)
+        self.pushQuery.setEnabled(True)
+        self.pushStartRecv.setEnabled(True)
 
         self.t1 = threading.Thread(target=self.startShowJsontreeView_Register, args=())
         self.t1.setDaemon(True)
@@ -540,6 +546,9 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.client.disconnect()
         self.pushBroker.setEnabled(True)
         self.pushBrokerDis.setEnabled(False)
+        self.pushPublish.setEnabled(False)
+        self.pushQuery.setEnabled(False)
+        self.pushStartRecv.setEnabled(False)
 
     def is_number(self, s):
         try:
@@ -557,7 +566,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                           "locationDesc":"", "locationType":0, "owner":"", "transEncryption":""}
         dict_ServiceSet = {"deviceId": "",
                            "mapConfig":{"upLimit":0, "downLimit":0, "upFilters":[]},
-                           "bsmConfig": {"sampleMode":"", "sampleRate":"", "upLimit":0, "downLimit":0,"upFilters":[]},
+                           "bsmConfig": {"sampleMode":"", "sampleRate":0, "upLimit":0, "downLimit":0, "upFilters":[]},
                            "rsiConfig": {"upLimit":0, "downLimit":0,"upFilters":[]},
                            "spatConfig": {"upLimit":0, "downLimit":0,"upFilters":[]},
                            "rsmConfig": {"upLimit":0, "downLimit":0,"upFilters":[]}}
@@ -613,23 +622,23 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_ServiceSet['bsmConfig']['sampleRate'] = self.is_number(self.lineEdit_sampleRate.text())
             dict_ServiceSet['bsmConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_2.text())
             dict_ServiceSet['bsmConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_2.text())
-            dict_ServiceSet['bsmConfig']['upFilters'].append({self.lineEdit_upFilterskey3.text(), self.lineEdit_upFiltersval3.text()})
-            dict_ServiceSet['bsmConfig']['upFilters'].append({self.lineEdit_upFilterskey4.text(), self.lineEdit_upFiltersval4.text()})
+            dict_ServiceSet['bsmConfig']['upFilters'].append({self.lineEdit_upFilterskey3.text(): self.lineEdit_upFiltersval3.text()})
+            dict_ServiceSet['bsmConfig']['upFilters'].append({self.lineEdit_upFilterskey4.text(): self.lineEdit_upFiltersval4.text()})
 
             dict_ServiceSet['rsiConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_3.text())
             dict_ServiceSet['rsiConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_3.text())
-            dict_ServiceSet['rsiConfig']['upFilters'].append({self.lineEdit_upFilterskey5.text(), self.lineEdit_upFiltersval5.text()})
-            dict_ServiceSet['rsiConfig']['upFilters'].append({self.lineEdit_upFilterskey6.text(), self.lineEdit_upFiltersval6.text()})
+            dict_ServiceSet['rsiConfig']['upFilters'].append({self.lineEdit_upFilterskey5.text(): self.lineEdit_upFiltersval5.text()})
+            dict_ServiceSet['rsiConfig']['upFilters'].append({self.lineEdit_upFilterskey6.text(): self.lineEdit_upFiltersval6.text()})
 
             dict_ServiceSet['spatConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_4.text())
             dict_ServiceSet['spatConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_4.text())
-            dict_ServiceSet['spatConfig']['upFilters'].append({self.lineEdit_upFilterskey7.text(), self.lineEdit_upFiltersval7.text()})
-            dict_ServiceSet['spatConfig']['upFilters'].append({self.lineEdit_upFilterskey8.text(), self.lineEdit_upFiltersval8.text()})
+            dict_ServiceSet['spatConfig']['upFilters'].append({self.lineEdit_upFilterskey7.text(): self.lineEdit_upFiltersval7.text()})
+            dict_ServiceSet['spatConfig']['upFilters'].append({self.lineEdit_upFilterskey8.text(): self.lineEdit_upFiltersval8.text()})
 
             dict_ServiceSet['rsmConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_5.text())
             dict_ServiceSet['rsmConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_5.text())
-            dict_ServiceSet['rsmConfig']['upFilters'].append({self.lineEdit_upFilterskey9.text(), self.lineEdit_upFiltersval9.text()})
-            dict_ServiceSet['rsmConfig']['upFilters'].append({self.lineEdit_upFilterskey10.text(), self.lineEdit_upFiltersval10.text()})
+            dict_ServiceSet['rsmConfig']['upFilters'].append({self.lineEdit_upFilterskey9.text(): self.lineEdit_upFiltersval9.text()})
+            dict_ServiceSet['rsmConfig']['upFilters'].append({self.lineEdit_upFilterskey10.text(): self.lineEdit_upFiltersval10.text()})
 
             dict['msgData'] = dict_ServiceSet
             sendmsgjson = json.dumps(dict)
@@ -690,8 +699,9 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             sendmsgjson = bytes.decode(fileData)
             ptopic = self.lineEdit_ptopic_2.text() + "rsm"
 
-
-        print(sendmsgjson)
+        if tab_index > 7:
+            return
+        #print(sendmsgjson)
         self.client.on_publish(ptopic, sendmsgjson, 1)
 
     def push_query(self):
@@ -721,6 +731,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict['msgType'] = 'ServiceConfQuery'
             dict['tag'] = codeType2Tag(dict['msgType'])
 
+        if tab_index > 6:
+            return
         sendmsgjson = json.dumps(dict)
         ptopic = self.lineEdit_ptopic.text()
         self.client.on_publish(ptopic, sendmsgjson, 1)
