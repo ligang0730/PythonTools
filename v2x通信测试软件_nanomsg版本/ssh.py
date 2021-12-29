@@ -43,8 +43,6 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         super(MyPyQT_Form, self).__init__()
         self.setupUi(self)
 
-        os.environ['path'] += ';C:\\Users\\ctfo\\AppData\\Local\\Programs\\nanomsg\\bin'  # 添加dll依赖库目录到系统环境
-
         sys.stdout = EmittingStr(textWritten=self.outputWritten)
         sys.stderr = EmittingStr(textWritten=self.outputWritten)
         #self.rootpath = os.getcwd()
