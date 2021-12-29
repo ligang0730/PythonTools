@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1107</width>
-    <height>867</height>
+    <height>871</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -38,176 +38,6 @@
    <property name="verticalSpacing">
     <number>60</number>
    </property>
-   <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_10" rowstretch="0,0,0,0,0,0" columnstretch="0,0,0,0,0">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
-     <property name="rightMargin">
-      <number>5</number>
-     </property>
-     <property name="horizontalSpacing">
-      <number>20</number>
-     </property>
-     <property name="verticalSpacing">
-      <number>25</number>
-     </property>
-     <item row="5" column="1" colspan="4">
-      <widget class="QLineEdit" name="lineEdit_ptopic_2">
-       <property name="text">
-        <string>/v2x/v1/rsu/event/</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>broker IP</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1" colspan="4">
-      <widget class="QLineEdit" name="lineEdit_stopic">
-       <property name="text">
-        <string>/china/ctfo/rsu/+/up</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_12">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>业务 sub topic</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit_user">
-       <property name="text">
-        <string>test</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_4">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>运维 sub topic</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>broker用户名</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1" colspan="4">
-      <widget class="QLineEdit" name="lineEdit_stopic_2">
-       <property name="text">
-        <string>/ctfo/sys/+/+/model/event/+/report</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_serverip">
-       <property name="text">
-        <string>172.16.11.244</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1" colspan="4">
-      <widget class="QLineEdit" name="lineEdit_ptopic">
-       <property name="text">
-        <string>/china/ctfo/rsu/402012/down</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_8">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>业务 pub topic</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_3">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>broker密码</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3" colspan="2">
-      <widget class="QLineEdit" name="lineEdit_pswd">
-       <property name="text">
-        <string>test</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_5">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>运维 pub topic</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QPushButton" name="pushBroker">
-       <property name="text">
-        <string>Connect</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QPushButton" name="pushBrokerDis">
-       <property name="text">
-        <string>Disconnect</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout_9">
      <property name="leftMargin">
@@ -229,17 +59,17 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="pushQuery">
-       <property name="text">
-        <string>查询配置</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QPushButton" name="pushPublish">
        <property name="text">
         <string>发送配置</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushQuery">
+       <property name="text">
+        <string>查询配置</string>
        </property>
       </widget>
      </item>
@@ -257,170 +87,172 @@
       <attribute name="title">
        <string>DeviceSet</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_12">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_3">
+        <layout class="QFormLayout" name="formLayout">
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
          <item row="0" column="0">
-          <layout class="QFormLayout" name="formLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>deviceId</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_deviceId"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>deviceName</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="lineEdit_deviceName"/>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_13">
-             <property name="text">
-              <string>regionCode</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="lineEdit_regionCode"/>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_14">
-             <property name="text">
-              <string>curCommType</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLineEdit" name="lineEdit_curCommType">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_ip">
-             <property name="text">
-              <string>ip</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QLineEdit" name="lineEdit_ip"/>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_11">
-             <property name="text">
-              <string>port</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QLineEdit" name="lineEdit_port"/>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="label_10">
-             <property name="text">
-              <string>gatewayIP</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QLineEdit" name="lineEdit_gatewayIP"/>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="label_9">
-             <property name="text">
-              <string>mask</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="QLineEdit" name="lineEdit_mask"/>
-           </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="label_deviceGroupType">
-             <property name="text">
-              <string>deviceGroupType</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1">
-            <widget class="QLineEdit" name="lineEdit_deviceGroupType"/>
-           </item>
-           <item row="9" column="0">
-            <widget class="QLabel" name="label_deviceGroupCode">
-             <property name="text">
-              <string>deviceGroupCode</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="1">
-            <widget class="QLineEdit" name="lineEdit_deviceGroupCode"/>
-           </item>
-          </layout>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>deviceId</string>
+           </property>
+          </widget>
          </item>
          <item row="0" column="1">
-          <layout class="QFormLayout" name="formLayout_2">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_22">
-             <property name="text">
-              <string>montantId</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_montantId"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_locationDesc_2">
-             <property name="text">
-              <string>locationDesc</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="lineEdit_locationDesc"/>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_locationType_2">
-             <property name="text">
-              <string>locationType</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="lineEdit_locationType"/>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_owner_2">
-             <property name="text">
-              <string>owner</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLineEdit" name="lineEdit_owner"/>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_23">
-             <property name="text">
-              <string>transEncryption</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QLineEdit" name="lineEdit_transEncryption"/>
-           </item>
-          </layout>
+          <widget class="QLineEdit" name="lineEdit_deviceId"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>deviceName</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_deviceName"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>regionCode</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_regionCode"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>curCommType</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEdit_curCommType">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_ip">
+           <property name="text">
+            <string>ip</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="lineEdit_ip"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>port</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="lineEdit_port"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>gatewayIP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="lineEdit_gatewayIP"/>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>mask</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLineEdit" name="lineEdit_mask"/>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_deviceGroupType">
+           <property name="text">
+            <string>deviceGroupType</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="lineEdit_deviceGroupType"/>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="label_deviceGroupCode">
+           <property name="text">
+            <string>deviceGroupCode</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLineEdit" name="lineEdit_deviceGroupCode"/>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QFormLayout" name="formLayout_2">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>montantId</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_montantId"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_locationDesc_2">
+           <property name="text">
+            <string>locationDesc</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_locationDesc"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_locationType_2">
+           <property name="text">
+            <string>locationType</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_locationType"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_owner_2">
+           <property name="text">
+            <string>owner</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEdit_owner"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>transEncryption</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="lineEdit_transEncryption"/>
          </item>
         </layout>
        </item>
@@ -430,408 +262,398 @@
       <attribute name="title">
        <string>OperationSet</string>
       </attribute>
-      <widget class="QWidget" name="formLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>471</width>
-         <height>212</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="formLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_35">
-          <property name="text">
-           <string>deviceId</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_deviceId2">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_36">
-          <property name="text">
-           <string>heartbeatRate</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_heartbeatRate">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_37">
-          <property name="text">
-           <string>deviceRunningInfoRate</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_deviceRunningInfoRate">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_38">
-          <property name="text">
-           <string>appRunningInfoRate</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEdit_appRunningInfoRate">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_39">
-          <property name="text">
-           <string>logInfoRate</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="lineEdit_logInfoRate">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_40">
-          <property name="text">
-           <string>logFTP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="lineEdit_logFTP">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_41">
-          <property name="text">
-           <string>alarmInfoRate</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="lineEdit_alarmInfoRate">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_32">
+       <item row="0" column="0">
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>deviceId</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_deviceId2">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>heartbeatRate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_heartbeatRate">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>deviceRunningInfoRate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_deviceRunningInfoRate">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>appRunningInfoRate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEdit_appRunningInfoRate">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>logInfoRate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="lineEdit_logInfoRate">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>logFTP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="lineEdit_logFTP">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_41">
+           <property name="text">
+            <string>alarmInfoRate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="lineEdit_alarmInfoRate">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabOperationSet">
       <attribute name="title">
        <string>ServiceSet</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_14">
-       <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_2">
-         <property name="horizontalSpacing">
-          <number>10</number>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>rsiConfig</string>
          </property>
-         <item row="0" column="2" rowspan="2">
-          <widget class="QGroupBox" name="groupBox_2">
-           <property name="title">
-            <string>bsmConfig</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_31">
+         <layout class="QGridLayout" name="gridLayout_27">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_17">
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_51">
+              <property name="text">
+               <string>downLimit</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_19">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_45">
-                <property name="text">
-                 <string>sampleMode</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_sampleMode"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_46">
-                <property name="text">
-                 <string>sampleRate</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_sampleRate"/>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_47">
-                <property name="text">
-                 <string>upLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="lineEdit_upLimit_2"/>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_48">
-                <property name="text">
-                 <string>downLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_downLimit_2"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_49">
-                <property name="text">
-                 <string>upFilters</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey3"/>
-              </item>
-              <item row="5" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval3"/>
-              </item>
-              <item row="6" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey4"/>
-              </item>
-              <item row="6" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval4"/>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_50">
+              <property name="text">
+               <string>upLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEdit_upLimit_3"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_52">
+              <property name="text">
+               <string>upFilters</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_downLimit_3"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey6"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey5"/>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval6"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval5"/>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QGroupBox" name="groupBox_5">
-           <property name="title">
-            <string>rsmConfig</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_29">
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>spatConfig</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_30">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_18">
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_downLimit_5"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEdit_upLimit_5"/>
+            </item>
             <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_16">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_53">
-                <property name="text">
-                 <string>upLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_upLimit_4"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_54">
-                <property name="text">
-                 <string>downLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_downLimit_4"/>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_55">
-                <property name="text">
-                 <string>upFilters</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey7"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval7"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey8"/>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval8"/>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_62">
+              <property name="text">
+               <string>upLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_64">
+              <property name="text">
+               <string>upFilters</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_63">
+              <property name="text">
+               <string>downLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey10"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey9"/>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval10"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval9"/>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QGroupBox" name="groupBox">
-           <property name="title">
-            <string>mapConfig</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_28">
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>rsmConfig</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_29">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_16">
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_downLimit_4"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_54">
+              <property name="text">
+               <string>downLimit</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_15">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_42">
-                <property name="text">
-                 <string>upLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_upLimit"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_43">
-                <property name="text">
-                 <string>downLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_downLimit"/>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_44">
-                <property name="text">
-                 <string>upFilters</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey1"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval1"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey2"/>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval2"/>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_53">
+              <property name="text">
+               <string>upLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEdit_upLimit_4"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_55">
+              <property name="text">
+               <string>upFilters</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey8"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey7"/>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval8"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval7"/>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QGroupBox" name="groupBox_3">
-           <property name="title">
-            <string>rsiConfig</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_27">
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>mapConfig</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_28">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_15">
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_43">
+              <property name="text">
+               <string>downLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_44">
+              <property name="text">
+               <string>upFilters</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEdit_upLimit"/>
+            </item>
             <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_17">
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval6"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval5"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_51">
-                <property name="text">
-                 <string>downLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_52">
-                <property name="text">
-                 <string>upFilters</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey5"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey6"/>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_upLimit_3"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_downLimit_3"/>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_50">
-                <property name="text">
-                 <string>upLimit</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_42">
+              <property name="text">
+               <string>upLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_downLimit"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey2"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey1"/>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval2"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval1"/>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QGroupBox" name="groupBox_4">
-           <property name="title">
-            <string>spatConfig</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_30">
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2" rowspan="2">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>bsmConfig</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_31">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_19">
+            <item row="5" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey3"/>
+            </item>
+            <item row="5" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval3"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_47">
+              <property name="text">
+               <string>upLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_upLimit_2"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_downLimit_2"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_46">
+              <property name="text">
+               <string>sampleRate</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_sampleRate"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_49">
+              <property name="text">
+               <string>upFilters</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLineEdit" name="lineEdit_upFiltersval4"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="lineEdit_sampleMode"/>
+            </item>
             <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_18">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_62">
-                <property name="text">
-                 <string>upLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_upLimit_5"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_63">
-                <property name="text">
-                 <string>downLimit</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_downLimit_5"/>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_64">
-                <property name="text">
-                 <string>upFilters</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey9"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval9"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLineEdit" name="lineEdit_upFilterskey10"/>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="lineEdit_upFiltersval10"/>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_45">
+              <property name="text">
+               <string>sampleMode</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_48">
+              <property name="text">
+               <string>downLimit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLineEdit" name="lineEdit_upFilterskey4"/>
             </item>
            </layout>
-          </widget>
-         </item>
-        </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QTextEdit" name="textEdit"/>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -839,115 +661,103 @@
       <attribute name="title">
        <string>Restart</string>
       </attribute>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>268</width>
-         <height>26</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="formLayout_8">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_restartTime">
-          <property name="text">
-           <string>restartTime</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_76"/>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_33">
+       <item row="0" column="0">
+        <layout class="QFormLayout" name="formLayout_8">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_restartTime">
+           <property name="text">
+            <string>restartTime</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_76"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabUpdate">
       <attribute name="title">
        <string>Update</string>
       </attribute>
-      <widget class="QWidget" name="formLayoutWidget_10">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>381</width>
-         <height>212</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="formLayout_11">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_66">
-          <property name="text">
-           <string>deviceID</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_deviceID2"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_67">
-          <property name="text">
-           <string>oldVersion</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_oldVersion"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_73">
-          <property name="text">
-           <string>newVersion</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_newVersion"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_72">
-          <property name="text">
-           <string>downloadAddr</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEdit_downloadAddr"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_71">
-          <property name="text">
-           <string>ftpAccount</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="lineEdit_ftpAccount"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_70">
-          <property name="text">
-           <string>ftpPWD</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="lineEdit_ftpPWD"/>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_69">
-          <property name="text">
-           <string>time</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="lineEdit_time"/>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_34">
+       <item row="0" column="0">
+        <layout class="QFormLayout" name="formLayout_11">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_66">
+           <property name="text">
+            <string>deviceID</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_deviceID2"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_67">
+           <property name="text">
+            <string>oldVersion</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_oldVersion"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_73">
+           <property name="text">
+            <string>newVersion</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_newVersion"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_72">
+           <property name="text">
+            <string>downloadAddr</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEdit_downloadAddr"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_71">
+           <property name="text">
+            <string>ftpAccount</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="lineEdit_ftpAccount"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_70">
+           <property name="text">
+            <string>ftpPWD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="lineEdit_ftpPWD"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_69">
+           <property name="text">
+            <string>time</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="lineEdit_time"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabMap">
       <attribute name="title">
@@ -1084,12 +894,1896 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabMsgTxRxConf">
+      <attribute name="title">
+       <string>MsgTxRxConf</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_39">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidget_msg">
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>bsmMsgsRxConfig</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_36">
+           <item row="0" column="0">
+            <layout class="QFormLayout" name="formLayout_4">
+             <property name="topMargin">
+              <number>7</number>
+             </property>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>AID值</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_bsmaid"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_21">
+               <property name="text">
+                <string>起始UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_bsmstartime"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_31">
+               <property name="text">
+                <string>结束UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_bsmendtime"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_bsmenable">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_19">
+               <property name="text">
+                <string>使能接收</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>mapMsgTxConfig</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_41">
+           <item row="0" column="0">
+            <layout class="QFormLayout" name="formLayout_6">
+             <property name="topMargin">
+              <number>7</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_32">
+               <property name="text">
+                <string>使能接收</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>AID值</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_mapaid"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>消息优先级</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_mappriotity"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_56">
+               <property name="text">
+                <string>消息发送源mac地址</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_mapmac">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_ip_4">
+               <property name="text">
+                <string>是否安全发送</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_57">
+               <property name="text">
+                <string>起始UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="lineEdit_mapstartime"/>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_58">
+               <property name="text">
+                <string>结束UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="lineEdit_mapendtime"/>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_59">
+               <property name="text">
+                <string>广播方式</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_deviceGroupType_4">
+               <property name="text">
+                <string>广播间隔</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLineEdit" name="lineEdit_mapinterval"/>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_deviceGroupCode_4">
+               <property name="text">
+                <string>广播消息源</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_mapenable">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="comboBox_mapbroadcast">
+               <item>
+                <property name="text">
+                 <string>触发性广播</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>周期性广播</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QComboBox" name="comboBox_mapsource">
+               <item>
+                <property name="text">
+                 <string>默认配置文件</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于默认云平台</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于外部云平台</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QCheckBox" name="checkBox_mapsecurity">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_3">
+          <attribute name="title">
+           <string>spatMsgTxConfig</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_40">
+           <item row="0" column="0">
+            <layout class="QFormLayout" name="formLayout_7">
+             <property name="topMargin">
+              <number>7</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_60">
+               <property name="text">
+                <string>使能接收</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_61">
+               <property name="text">
+                <string>AID值</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_spataid"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_65">
+               <property name="text">
+                <string>消息优先级</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_spatpriotity"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_68">
+               <property name="text">
+                <string>消息发送源mac地址</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_spatmac">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_ip_5">
+               <property name="text">
+                <string>是否安全发送</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_74">
+               <property name="text">
+                <string>起始UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="lineEdit_spatstartime"/>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_75">
+               <property name="text">
+                <string>结束UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="lineEdit_spatendtime"/>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_76">
+               <property name="text">
+                <string>广播方式</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_deviceGroupType_5">
+               <property name="text">
+                <string>广播间隔</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLineEdit" name="lineEdit_spatinterval"/>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_deviceGroupCode_5">
+               <property name="text">
+                <string>广播消息源</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_spatenable">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="comboBox_spatbroadcast">
+               <item>
+                <property name="text">
+                 <string>触发性广播</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>周期性广播</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QComboBox" name="comboBox_spatsource">
+               <item>
+                <property name="text">
+                 <string>默认配置文件</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于默认云平台</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于外部云平台</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QCheckBox" name="checkBox_spatsecurity">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_4">
+          <attribute name="title">
+           <string>rsiMsgTxConfig</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_38">
+           <item row="0" column="0">
+            <layout class="QFormLayout" name="formLayout_9">
+             <property name="topMargin">
+              <number>7</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_77">
+               <property name="text">
+                <string>使能接收</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_78">
+               <property name="text">
+                <string>AID值</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsiaid"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_83">
+               <property name="text">
+                <string>消息优先级</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsipriotity"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_84">
+               <property name="text">
+                <string>消息发送源mac地址</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsimac">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_ip_6">
+               <property name="text">
+                <string>是否安全发送</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_86">
+               <property name="text">
+                <string>起始UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsistartime"/>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_87">
+               <property name="text">
+                <string>结束UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsiendtime"/>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_89">
+               <property name="text">
+                <string>广播方式</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_deviceGroupType_6">
+               <property name="text">
+                <string>广播间隔</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsiinterval"/>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_deviceGroupCode_6">
+               <property name="text">
+                <string>广播消息源</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_rsienable">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="comboBox_rsibroadcast">
+               <item>
+                <property name="text">
+                 <string>触发性广播</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>周期性广播</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QComboBox" name="comboBox_rsisource">
+               <item>
+                <property name="text">
+                 <string>默认配置文件</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于默认云平台</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于外部云平台</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QCheckBox" name="checkBox_rsisecurity">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>rsmMsgTxConfig</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_37">
+           <item row="0" column="0">
+            <layout class="QFormLayout" name="formLayout_10">
+             <property name="topMargin">
+              <number>7</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_90">
+               <property name="text">
+                <string>使能接收</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_91">
+               <property name="text">
+                <string>AID值</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsmaid"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_93">
+               <property name="text">
+                <string>消息优先级</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsmpriotity"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_94">
+               <property name="text">
+                <string>消息发送源mac地址</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsmmac">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_ip_7">
+               <property name="text">
+                <string>是否安全发送</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_95">
+               <property name="text">
+                <string>起始UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsmstartime"/>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_96">
+               <property name="text">
+                <string>结束UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsmendtime"/>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_99">
+               <property name="text">
+                <string>广播方式</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_deviceGroupType_7">
+               <property name="text">
+                <string>广播间隔</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLineEdit" name="lineEdit_rsminterval"/>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_deviceGroupCode_7">
+               <property name="text">
+                <string>广播消息源</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_rsmenable">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="comboBox_rsmbroadcast">
+               <item>
+                <property name="text">
+                 <string>触发性广播</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>周期性广播</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QComboBox" name="comboBox_rsmsource">
+               <item>
+                <property name="text">
+                 <string>默认配置文件</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于默认云平台</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于外部云平台</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QCheckBox" name="checkBox_rsmsecurity">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_6">
+          <attribute name="title">
+           <string>rtcmMsgTxConfig</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_35">
+           <item row="0" column="0">
+            <layout class="QFormLayout" name="formLayout_12">
+             <property name="topMargin">
+              <number>7</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_101">
+               <property name="text">
+                <string>使能接收</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_102">
+               <property name="text">
+                <string>AID值</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineEdit_rtcmaid"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_104">
+               <property name="text">
+                <string>消息优先级</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineEdit_rtcmpriotity"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_105">
+               <property name="text">
+                <string>消息发送源mac地址</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineEdit_rtcmmac">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_ip_8">
+               <property name="text">
+                <string>是否安全发送</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_106">
+               <property name="text">
+                <string>起始UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="lineEdit_rtcmstartime"/>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_107">
+               <property name="text">
+                <string>结束UTC时间</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="lineEdit_rtcmendtime"/>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_108">
+               <property name="text">
+                <string>广播方式</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_deviceGroupType_8">
+               <property name="text">
+                <string>广播间隔</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLineEdit" name="lineEdit_rtcminterval"/>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_deviceGroupCode_8">
+               <property name="text">
+                <string>广播消息源</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_rtcmenable">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="comboBox_rtcmbroadcast">
+               <item>
+                <property name="text">
+                 <string>触发性广播</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>周期性广播</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QComboBox" name="comboBox_rtcmsource">
+               <item>
+                <property name="text">
+                 <string>默认配置文件</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于默认云平台</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>来源于外部云平台</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QCheckBox" name="checkBox_rtcmsecurity">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabMsgStatus">
+      <attribute name="title">
+       <string>MsgStatus</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_82">
+       <item row="0" column="0" rowspan="2">
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
+          <string>v2x发送接收状态</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_42">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>模组初始化状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_msgsinits">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>模组接收状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>模组发送状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>Map发送状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Rsi发送状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Spat发送状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Rsm发送状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Rtcm发送状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_109">
+            <property name="text">
+             <string>Bsm接收状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_msgsrs">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_msgts">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_msgsmapts">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_msgsrsits">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_msgsspatts">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLabel" name="label_msgsrsmts">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLabel" name="label_msgsrtcmts">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QLabel" name="label_msgsbsmrs">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string>map工作状态</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_43">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_120">
+            <property name="text">
+             <string>平台下发消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_116">
+            <property name="text">
+             <string>配置消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_124">
+            <property name="text">
+             <string>ans编码状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_122">
+            <property name="text">
+             <string>ans转换状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_118">
+            <property name="text">
+             <string>本地源消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_126">
+            <property name="text">
+             <string>发送给收发中心状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_msgsmap">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_msgsmap_2">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_msgsmap_3">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_msgsmap_4">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_msgsmap_5">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_msgsmap_6">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>rsi工作状态</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_44">
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_131">
+            <property name="text">
+             <string>ans编码状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_137">
+            <property name="text">
+             <string>本地源消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_130">
+            <property name="text">
+             <string>配置消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_133">
+            <property name="text">
+             <string>ans转换状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_129">
+            <property name="text">
+             <string>平台下发消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_139">
+            <property name="text">
+             <string>发送给收发中心状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_msgsrsi">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_msgsrsi_2">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_msgsrsi_3">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_msgsrsi_4">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_msgsrsi_5">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_msgsrsi_6">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="title">
+          <string>spat工作状态</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_45">
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_145">
+            <property name="text">
+             <string>ans转换状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_141">
+            <property name="text">
+             <string>平台下发消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_143">
+            <property name="text">
+             <string>ans编码状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_142">
+            <property name="text">
+             <string>配置消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_149">
+            <property name="text">
+             <string>本地源消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_151">
+            <property name="text">
+             <string>发送给收发中心状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_msgsspat">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_msgsspat_2">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_msgsspat_3">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_msgsspat_4">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_msgsspat_5">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_msgsspat_6">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QGroupBox" name="groupBox_10">
+         <property name="title">
+          <string>rsm工作状态</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_46">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_153">
+            <property name="text">
+             <string>平台下发消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_154">
+            <property name="text">
+             <string>配置消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_163">
+            <property name="text">
+             <string>发送给收发中心状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_161">
+            <property name="text">
+             <string>本地源消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_155">
+            <property name="text">
+             <string>ans编码状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_157">
+            <property name="text">
+             <string>ans转换状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_msgsrsm">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_msgsrsm_2">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_msgsrsm_3">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_msgsrsm_4">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_msgsrsm_5">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_msgsrsm_6">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QGroupBox" name="groupBox_21">
+         <property name="title">
+          <string>rtcm工作状态</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_81">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_310">
+            <property name="text">
+             <string>平台下发消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_311">
+            <property name="text">
+             <string>配置消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_314">
+            <property name="text">
+             <string>ans转换状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_320">
+            <property name="text">
+             <string>发送给收发中心状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_318">
+            <property name="text">
+             <string>本地源消息获取状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_312">
+            <property name="text">
+             <string>ans编码状态</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_msgsrtcm">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_msgsrtcm_2">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_msgsrtcm_3">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_msgsrtcm_4">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_msgsrtcm_5">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_msgsrtcm_6">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_10" rowstretch="0,0,0,0,0,0" columnstretch="0,0,0,0,0">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>7</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>20</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>25</number>
+     </property>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>broker IP</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_12">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>业务 sub topic</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEdit_user">
+       <property name="text">
+        <string>test</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>运维 sub topic</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>broker用户名</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEdit_serverip">
+       <property name="text">
+        <string>172.16.11.244</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>业务 pub topic</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>broker密码</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>运维 pub topic</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="pushBroker">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Connect</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" colspan="3">
+      <widget class="QLineEdit" name="lineEdit_ptopic">
+       <property name="text">
+        <string>/china/ctfo/rsu/402012/down</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1" colspan="3">
+      <widget class="QLineEdit" name="lineEdit_stopic_2">
+       <property name="text">
+        <string>/ctfo/sys/+/+/model/event/+/report</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1" colspan="3">
+      <widget class="QLineEdit" name="lineEdit_ptopic_2">
+       <property name="text">
+        <string>/v2x/v1/rsu/event/</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="lineEdit_pswd">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>test</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="3">
+      <widget class="QLineEdit" name="lineEdit_stopic">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>/china/ctfo/rsu/+/up</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="pushBrokerDis">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Disconnect</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item row="0" column="1" rowspan="2">
     <widget class="QTabWidget" name="tabWidget_show">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_table">
       <attribute name="title">
@@ -1098,34 +2792,6 @@
       <layout class="QGridLayout" name="gridLayout_11">
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout">
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_88">
-           <property name="text">
-            <string>OpertionConfReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="label_103">
-           <property name="text">
-            <string>DeviceHeartBeat</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_DeviceRegister">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QLabel" name="label_ServiceState">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_92">
            <property name="text">
@@ -1133,159 +2799,15 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
-          <widget class="QLabel" name="label_DeviceState">
+         <item row="9" column="0">
+          <widget class="QLabel" name="label_110">
            <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QLabel" name="label_Alarm">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <widget class="QLabel" name="label_HeartBeat">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_82">
-           <property name="text">
-            <string>DeviceRegisterReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="label_ServiceConf">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_79">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>cnt</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_DeviceBaseInfo">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_98">
-           <property name="text">
-            <string>ServiceConfReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_97">
-           <property name="text">
-            <string>ServiceStateReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_81">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>interval</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_80">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_100">
-           <property name="text">
-            <string>AlarmReport</string>
+            <string>BsmRx</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
           <widget class="QLabel" name="label_OpertionConf">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_85">
-           <property name="text">
-            <string>DeviceBaseInfoReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_DeviceRegister_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="label_DeviceBaseInfo_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QLabel" name="label_OpertionConf_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="2">
-          <widget class="QLabel" name="label_ServiceConf_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QLabel" name="label_DeviceState_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2">
-          <widget class="QLabel" name="label_ServiceState_2">
            <property name="text">
             <string>0</string>
            </property>
@@ -1300,6 +2822,238 @@
          </item>
          <item row="8" column="2">
           <widget class="QLabel" name="label_HeartBeat_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_ServiceState">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_ServiceConf">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_85">
+           <property name="text">
+            <string>DeviceBaseInfoReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QLabel" name="label_DeviceState_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="2">
+          <widget class="QLabel" name="label_BsmRx_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_DeviceRegister">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_98">
+           <property name="text">
+            <string>ServiceConfReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_81">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>interval</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLabel" name="label_BsmRx">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLabel" name="label_ServiceConf_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_97">
+           <property name="text">
+            <string>ServiceStateReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLabel" name="label_DeviceState">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_DeviceRegister_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_DeviceBaseInfo">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_DeviceBaseInfo_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_82">
+           <property name="text">
+            <string>DeviceRegisterReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLabel" name="label_HeartBeat">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_88">
+           <property name="text">
+            <string>OpertionConfReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_79">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>cnt</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_103">
+           <property name="text">
+            <string>DeviceHeartBeat</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_OpertionConf_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_100">
+           <property name="text">
+            <string>AlarmReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QLabel" name="label_ServiceState_2">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_80">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>name</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLabel" name="label_Alarm">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0">
+          <widget class="QLabel" name="label_111">
+           <property name="text">
+            <string>SpatRx</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="1">
+          <widget class="QLabel" name="label_SpatRx">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="2">
+          <widget class="QLabel" name="label_SpatRx_2">
            <property name="text">
             <string>0</string>
            </property>
@@ -1340,20 +3094,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_OpertionConf">
-      <attribute name="title">
-       <string>OpertionConf</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_22">
-       <item row="0" column="0">
-        <widget class="QTreeView" name="treeView_OpertionConf">
-         <property name="autoExpandDelay">
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="tab_DeviceState">
       <attribute name="title">
        <string>DeviceState</string>
@@ -1381,20 +3121,6 @@
       <layout class="QGridLayout" name="gridLayout_24">
        <item row="0" column="0">
         <widget class="QTreeView" name="treeView_ServiceState">
-         <property name="autoExpandDelay">
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_ServiceConf">
-      <attribute name="title">
-       <string>ServiceConf</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_25">
-       <item row="0" column="0">
-        <widget class="QTreeView" name="treeView_ServiceConf">
          <property name="autoExpandDelay">
           <number>0</number>
          </property>
