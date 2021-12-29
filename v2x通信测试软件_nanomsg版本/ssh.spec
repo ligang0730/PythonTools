@@ -6,7 +6,7 @@ block_cipher = None
 
 a = Analysis(
     ['ssh.py'],
-    pathex=['C:\\\\Users\\\\ctfo\\\\AppData\\\\Local\\\\Programs\\\\nanomsg\\\\bin'],
+    pathex=[],
     binaries=[],
     datas=[],
     hiddenimports=[],

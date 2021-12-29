@@ -12,8 +12,8 @@ import json
 import difflib
 import select
 import struct
-import nnpy
 
+from pynng import Pair0, Pair1
 from PyQt5 import QtCore, QtGui
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QEventLoop, QTimer, QStringListModel
@@ -189,10 +189,12 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         PORT = 6610
         message = "irqmsg"
         timeout1 = 0
-        self.nn_pairA = nnpy.Socket(nnpy.AF_SP, nnpy.PAIR)
+        #self.nn_pairA = nnpy.Socket(nnpy.AF_SP, nnpy.PAIR)
+        self.nn_pairA = Pair0()
         nn_hostip = 'tcp://' + str(self.HOST_IP) + ':' + str(PORT)
         #print(nn_hostip)
-        self.nn_pairA.connect(nn_hostip)
+        #self.nn_pairA.connect(nn_hostip)
+        self.nn_pairA.dial(nn_hostip)
         print("nn_pairA connect")
         while self.t2_running:
             data = self.nn_pairA.recv()
@@ -227,19 +229,19 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
     def push_lenset(self):
         message = "l " + str(self.lineEdit_len.text()) + '\0'
-        self.nn_pairA.send(message.encode('ascii'), 0)
+        self.nn_pairA.send(message.encode('ascii'))
 
     def push_powset(self):
         message = "p " + str(self.lineEdit_pow.text()) + '\0'
-        self.nn_pairA.send(message.encode('ascii'), 0)
+        self.nn_pairA.send(message.encode('ascii'))
 
     def push_hzset(self):
         message = "h " + str(self.lineEdit_hz.text()) + '\0'
-        self.nn_pairA.send(message.encode('ascii'), 0)
+        self.nn_pairA.send(message.encode('ascii'))
 
     def push_relog(self):
         message = "r " + str(self.lineEdit_xh.text()) + '\0'
-        self.nn_pairA.send(message.encode('ascii'), 0)
+        self.nn_pairA.send(message.encode('ascii'))
 
     def push_udpclose(self):
         self.killtest()
