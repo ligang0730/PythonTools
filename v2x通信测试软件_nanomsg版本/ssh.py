@@ -21,6 +21,7 @@ from PyQt5.QtGui import QTextCursor
 from PyQt5.QtWidgets import *
 from ssh_form import Ui_Form
 from socket import *
+from icon import *
 
 class itemfileinfo:
     def __init__(self, macaddr, ipaddr):
@@ -43,6 +44,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         super(MyPyQT_Form, self).__init__()
         self.setupUi(self)
 
+        self.setWindowIcon(QtGui.QIcon(':/logo.ico'))
         sys.stdout = EmittingStr(textWritten=self.outputWritten)
         sys.stderr = EmittingStr(textWritten=self.outputWritten)
         #self.rootpath = os.getcwd()
@@ -68,7 +70,11 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.textEdit.ensureCursorVisible()
 
     def showResult(self):
-        self.label_bid.setText(self.dict_json['id'])
+        try:
+            self.label_bid.setText(self.dict_json['id'])
+            self.label_sendCnt.setText(str(self.dict_json['sendCnt']))
+        except:
+            pass
         list_msg = self.dict_json['msgData']
         #print(list_msg)
         try:

@@ -452,7 +452,7 @@
         </font>
        </property>
        <property name="text">
-        <string>find ip</string>
+        <string>Find IP</string>
        </property>
       </widget>
      </item>
@@ -1027,10 +1027,13 @@
    <item row="1" column="5" colspan="3">
     <layout class="QGridLayout" name="gridLayout_9" rowstretch="0">
      <property name="bottomMargin">
-      <number>20</number>
+      <number>7</number>
      </property>
-     <property name="spacing">
-      <number>20</number>
+     <property name="horizontalSpacing">
+      <number>7</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>0</number>
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="label">
@@ -1736,6 +1739,51 @@
    </item>
    <item row="5" column="7" colspan="3">
     <widget class="QListView" name="listView"/>
+   </item>
+   <item row="1" column="9">
+    <layout class="QGridLayout" name="gridLayout_11" rowstretch="0">
+     <property name="bottomMargin">
+      <number>7</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>7</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>已发送</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_sendCnt">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
