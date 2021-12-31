@@ -28,22 +28,19 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
-  <layout class="QGridLayout" name="gridLayout_13" rowstretch="0,0,0" columnstretch="0,0">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetDefaultConstraint</enum>
-   </property>
-   <property name="horizontalSpacing">
-    <number>10</number>
-   </property>
-   <property name="verticalSpacing">
-    <number>60</number>
-   </property>
+  <layout class="QGridLayout" name="gridLayout_12">
    <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout_9">
      <property name="leftMargin">
       <number>10</number>
      </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
      <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
       <number>10</number>
      </property>
      <property name="horizontalSpacing">
@@ -54,6 +51,12 @@
      </property>
      <item row="0" column="2">
       <widget class="QPushButton" name="pushStartRecv">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>开始接收</string>
        </property>
@@ -61,6 +64,12 @@
      </item>
      <item row="0" column="0">
       <widget class="QPushButton" name="pushPublish">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>发送配置</string>
        </property>
@@ -68,6 +77,12 @@
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="pushQuery">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>查询配置</string>
        </property>
@@ -80,8 +95,14 @@
      <property name="enabled">
       <bool>true</bool>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tabDeviceSet">
       <attribute name="title">
@@ -263,7 +284,7 @@
        <string>OperationSet</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_32">
-       <item row="0" column="0">
+       <item row="0" column="0" rowspan="2">
         <layout class="QFormLayout" name="formLayout_3">
          <item row="0" column="0">
           <widget class="QLabel" name="label_35">
@@ -322,44 +343,72 @@
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label_39">
+          <widget class="QLabel" name="label_113">
            <property name="text">
-            <string>logInfoRate</string>
+            <string>logLevel</string>
            </property>
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="lineEdit_logInfoRate">
+          <widget class="QLineEdit" name="lineEdit_logLevel">
            <property name="text">
             <string/>
            </property>
           </widget>
          </item>
          <item row="5" column="0">
-          <widget class="QLabel" name="label_40">
+          <widget class="QLabel" name="label_39">
            <property name="text">
-            <string>logFTP</string>
+            <string>logInfoRate</string>
            </property>
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="lineEdit_logFTP">
+          <widget class="QLineEdit" name="lineEdit_logInfoRate">
            <property name="text">
             <string/>
            </property>
           </widget>
          </item>
          <item row="6" column="0">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>logFTP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="lineEdit_logFTP">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
           <widget class="QLabel" name="label_41">
            <property name="text">
             <string>alarmInfoRate</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
+         <item row="7" column="1">
           <widget class="QLineEdit" name="lineEdit_alarmInfoRate">
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>ftp下载地址前缀ftp：//后面跟账号密码用：分开，没有就直接跟ip地址然后用：分割开后面跟端口号，然后/后跟路径</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLabel" name="label_114">
+           <property name="text">
+            <string>实例：ftp://test:test@172.16.11.244:21/C:UsersctfoDesktopttrryy</string>
            </property>
           </widget>
          </item>
@@ -665,14 +714,14 @@
        <item row="0" column="0">
         <layout class="QFormLayout" name="formLayout_8">
          <item row="0" column="0">
-          <widget class="QLabel" name="label_restartTime">
+          <widget class="QLabel" name="label_112">
            <property name="text">
             <string>restartTime</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_76"/>
+          <widget class="QLineEdit" name="label_restartTime"/>
          </item>
         </layout>
        </item>
@@ -687,73 +736,190 @@
         <layout class="QFormLayout" name="formLayout_11">
          <item row="0" column="0">
           <widget class="QLabel" name="label_66">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>deviceID</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_deviceID2"/>
+          <widget class="QLineEdit" name="lineEdit_deviceID2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_67">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>oldVersion</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_oldVersion"/>
+          <widget class="QLineEdit" name="lineEdit_oldVersion">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_73">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>newVersion</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="lineEdit_newVersion"/>
+          <widget class="QLineEdit" name="lineEdit_newVersion">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_72">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>downloadAddr</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="lineEdit_downloadAddr"/>
+          <widget class="QLineEdit" name="lineEdit_downloadAddr">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_71">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>ftpAccount</string>
            </property>
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="lineEdit_ftpAccount"/>
+          <widget class="QLineEdit" name="lineEdit_ftpAccount">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_70">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>ftpPWD</string>
            </property>
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="lineEdit_ftpPWD"/>
+          <widget class="QLineEdit" name="lineEdit_ftpPWD">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_69">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>time</string>
            </property>
           </widget>
          </item>
          <item row="6" column="1">
-          <widget class="QLineEdit" name="lineEdit_time"/>
+          <widget class="QLineEdit" name="lineEdit_time">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLabel" name="label_17">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>ftp下载地址前缀ftp：//后面跟ip地址然后用：分割开后面跟端口号，然后/后跟路径</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLabel" name="label_24">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>实例：ftp://172.16.11.244:21/C:UsersctfoDesktopVX1000U5_APP_V5.06.07B1</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -902,7 +1068,7 @@
        <item row="0" column="0">
         <widget class="QTabWidget" name="tabWidget_msg">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab">
           <attribute name="title">
@@ -2575,26 +2741,11 @@
     </widget>
    </item>
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_10" rowstretch="0,0,0,0,0,0" columnstretch="0,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout_10">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>7</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="horizontalSpacing">
-      <number>20</number>
-     </property>
-     <property name="verticalSpacing">
-      <number>25</number>
-     </property>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
@@ -2607,7 +2758,52 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>业务 pub topic</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="lineEdit_stopic">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>/china/ctfo/rsu/+/up</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEdit_user">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>test</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
       <widget class="QLabel" name="label_12">
        <property name="font">
         <font>
@@ -2620,14 +2816,26 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit_user">
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushBroker">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>test</string>
+        <string>Connect</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="5" column="0">
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
@@ -2637,6 +2845,67 @@
        </property>
        <property name="text">
         <string>运维 sub topic</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>broker密码</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="lineEdit_serverip">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>172.16.11.244</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="pushBrokerDis">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Disconnect</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="lineEdit_stopic_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>/ctfo/sys/+/+/model/event/+/report</string>
        </property>
       </widget>
      </item>
@@ -2653,40 +2922,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_serverip">
-       <property name="text">
-        <string>172.16.11.244</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_8">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>业务 pub topic</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_3">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>broker密码</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
+     <item row="6" column="0">
       <widget class="QLabel" name="label_5">
        <property name="font">
         <font>
@@ -2699,41 +2935,20 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QPushButton" name="pushBroker">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Connect</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1" colspan="3">
+     <item row="6" column="1">
       <widget class="QLineEdit" name="lineEdit_ptopic">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>/china/ctfo/rsu/402012/down</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1" colspan="3">
-      <widget class="QLineEdit" name="lineEdit_stopic_2">
-       <property name="text">
-        <string>/ctfo/sys/+/+/model/event/+/report</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1" colspan="3">
-      <widget class="QLineEdit" name="lineEdit_ptopic_2">
-       <property name="text">
-        <string>/v2x/v1/rsu/event/</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
+     <item row="1" column="1">
       <widget class="QLineEdit" name="lineEdit_pswd">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -2741,40 +2956,33 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>test</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1" colspan="3">
-      <widget class="QLineEdit" name="lineEdit_stopic">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="lineEdit_ptopic_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
        </property>
        <property name="text">
-        <string>/china/ctfo/rsu/+/up</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QPushButton" name="pushBrokerDis">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Disconnect</string>
+        <string>/v2x/v1/rsu/event/</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="0" column="1" rowspan="2">
+   <item row="0" column="1">
     <widget class="QTabWidget" name="tabWidget_show">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -2782,53 +2990,30 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_table">
       <attribute name="title">
        <string>table</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_11">
-       <item row="0" column="0">
+       <item row="0" column="0" rowspan="2">
         <layout class="QGridLayout" name="gridLayout">
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_92">
-           <property name="text">
-            <string>DeviceStateReport</string>
+         <item row="10" column="2">
+          <widget class="QLabel" name="label_SpatRx_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
            </property>
-          </widget>
-         </item>
-         <item row="9" column="0">
-          <widget class="QLabel" name="label_110">
-           <property name="text">
-            <string>BsmRx</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_OpertionConf">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="2">
-          <widget class="QLabel" name="label_Alarm_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="2">
-          <widget class="QLabel" name="label_HeartBeat_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QLabel" name="label_ServiceState">
            <property name="text">
             <string>0</string>
            </property>
@@ -2836,34 +3021,116 @@
          </item>
          <item row="4" column="1">
           <widget class="QLabel" name="label_ServiceConf">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_85">
+         <item row="8" column="2">
+          <widget class="QLabel" name="label_HeartBeat_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
-            <string>DeviceBaseInfoReport</string>
+            <string>0</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="2">
-          <widget class="QLabel" name="label_DeviceState_2">
+         <item row="6" column="2">
+          <widget class="QLabel" name="label_ServiceState_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_92">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>DeviceStateReport</string>
            </property>
           </widget>
          </item>
          <item row="9" column="2">
           <widget class="QLabel" name="label_BsmRx_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_DeviceRegister">
+         <item row="5" column="1">
+          <widget class="QLabel" name="label_DeviceState">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLabel" name="label_BsmRx">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_OpertionConf_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLabel" name="label_HeartBeat">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
@@ -2871,97 +3138,92 @@
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_98">
-           <property name="text">
-            <string>ServiceConfReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_81">
            <property name="font">
             <font>
              <family>Arial</family>
              <pointsize>11</pointsize>
             </font>
            </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
            <property name="text">
-            <string>interval</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <string>ServiceConfReport</string>
            </property>
           </widget>
          </item>
-         <item row="9" column="1">
-          <widget class="QLabel" name="label_BsmRx">
+         <item row="3" column="1">
+          <widget class="QLabel" name="label_OpertionConf">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="2">
-          <widget class="QLabel" name="label_ServiceConf_2">
+         <item row="7" column="1">
+          <widget class="QLabel" name="label_Alarm">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_100">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>AlarmReport</string>
            </property>
           </widget>
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_97">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>ServiceStateReport</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
-          <widget class="QLabel" name="label_DeviceState">
+         <item row="9" column="0">
+          <widget class="QLabel" name="label_110">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>BsmRx</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="label_ServiceState">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_DeviceRegister_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_DeviceBaseInfo">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="label_DeviceBaseInfo_2">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_82">
-           <property name="text">
-            <string>DeviceRegisterReport</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <widget class="QLabel" name="label_HeartBeat">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_88">
-           <property name="text">
-            <string>OpertionConfReport</string>
            </property>
           </widget>
          </item>
@@ -2984,31 +3246,139 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_DeviceRegister_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
          <item row="8" column="0">
           <widget class="QLabel" name="label_103">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>DeviceHeartBeat</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="2">
-          <widget class="QLabel" name="label_OpertionConf_2">
+         <item row="5" column="2">
+          <widget class="QLabel" name="label_DeviceState_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_100">
+         <item row="10" column="0">
+          <widget class="QLabel" name="label_111">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
-            <string>AlarmReport</string>
+            <string>SpatRx</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="2">
-          <widget class="QLabel" name="label_ServiceState_2">
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_DeviceBaseInfo_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_DeviceBaseInfo">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2">
+          <widget class="QLabel" name="label_Alarm_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_88">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>OpertionConfReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_DeviceRegister">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_81">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>interval</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -3031,31 +3401,55 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
-          <widget class="QLabel" name="label_Alarm">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="label_111">
-           <property name="text">
-            <string>SpatRx</string>
-           </property>
-          </widget>
-         </item>
          <item row="10" column="1">
           <widget class="QLabel" name="label_SpatRx">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
            </property>
           </widget>
          </item>
-         <item row="10" column="2">
-          <widget class="QLabel" name="label_SpatRx_2">
+         <item row="4" column="2">
+          <widget class="QLabel" name="label_ServiceConf_2">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_85">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>DeviceBaseInfoReport</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_82">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>DeviceRegisterReport</string>
            </property>
           </widget>
          </item>

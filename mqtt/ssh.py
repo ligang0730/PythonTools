@@ -22,6 +22,7 @@ from PyQt5.QtCore import QAbstractItemModel, QModelIndex, Qt, QAbstractListModel
     QDataStream, QByteArray, QJsonDocument, QVariant, QJsonValue, QJsonParseError
 from PyQt5.QtWidgets import QApplication, QFileDialog, QTreeView
 from multiprocessing import Process, Pipe
+from icon import *
 
 global child_conn_Register, parent_conn_Register
 global child_conn_BaseInfo, parent_conn_BaseInfo
@@ -295,6 +296,8 @@ class MQTTClient(object):
                 child_conn_MsgStatus.send(dict_json)
             if dict_tag == 10012:
                 child_conn_MsgConf.send(dict_json)
+        print("recv:")
+        print(msgTopic, jsonstring)
 
     def _on_publish(self, client, userdata, result):
         pass
@@ -317,6 +320,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         global autorecvflag
         super(MyPyQT_Form, self).__init__()
         self.setupUi(self)
+
+        self.setWindowIcon(QtGui.QIcon(':/logo.ico'))
         self.pushBrokerDis.setEnabled(False)
         self.pushPublish.setEnabled(False)
         self.pushQuery.setEnabled(False)
@@ -491,6 +496,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.lineEdit_appRunningInfoRate.setText(str(msg_dist['appRunningInfoRate']))
             self.lineEdit_logInfoRate.setText(str(msg_dist['logInfoRate']))
             self.lineEdit_alarmInfoRate.setText(str(msg_dist['alarmInfoRate']))
+            self.lineEdit_logLevel.setText(str(msg_dist['logLevel']))
 
     def startShowJsontreeView_DeviceState(self):
         global parent_conn_DeviceState
@@ -1074,6 +1080,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         sendmsgjson = json.dumps(dict)
         ptopic = self.lineEdit_ptopic.text()
         self.client.on_publish(ptopic, sendmsgjson, 1)
+        print("send:")
+        print(ptopic, sendmsgjson)
 
     def push_query(self):
         tab_index_show = self.tabWidget_show.currentIndex()
