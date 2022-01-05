@@ -268,9 +268,11 @@ class MQTTClient(object):
             child_conn_Register.send(jsonstring)
 
         if autorecvflag == 1:
-            if msgTopic.rfind('bsm') >= 0:
+            #if msgTopic.rfind('bsm') >= 0:
+            if dict_tag == 10022:
                 child_conn_Bsm.send(jsonstring)
-            if msgTopic.rfind('spat') >= 0:
+            #if msgTopic.rfind('spat') >= 0:
+            if dict_tag == 10025:
                 child_conn_Spat.send(jsonstring)
             if dict_tag == 10004:
                 child_conn_DeviceState.send(jsonstring)
@@ -366,12 +368,12 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         user = self.lineEdit_user.text()
         pswd = self.lineEdit_pswd.text()
         stopic = self.lineEdit_stopic.text()
-        stopic2 = self.lineEdit_stopic_2.text()
+        #stopic2 = self.lineEdit_stopic_2.text()
         try:
             self.client = MQTTClient(brokerip, 1883)
             self.client.connect(user, pswd)
             self.client.on_subscribe(stopic)
-            self.client.on_subscribe(stopic2)
+            #self.client.on_subscribe(stopic2)
             self.client.on_loopstart()
         except:
             return
@@ -791,7 +793,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
     def msgTxRxConf(self):
         msgTxRx_dict = {}
-        item_dict = {"state": False, "aid": 0, "priotity": 0, "mac_addr": [0,0,0,0,0,0], "security_flg": 0,
+        item_dict = {"state": False, "aid": 0, "priotity": 0, "mac_addr": "00:00:00:00:00:00", "security_flg": 0,
                         "begin_time": 0, "end_time": 0, "broadcast_style" : 0, "interval" : 0, "source" : 0}
 
         #tab_i = self.tabWidget_msg.currentIndex()
@@ -806,9 +808,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         map_dist['state'] = self.checkBox_mapenable.isChecked()
         map_dist['aid'] = self.is_number(self.lineEdit_mapaid.text())
         map_dist['priotity'] = self.is_number(self.lineEdit_mappriotity.text())
-        macstring = self.lineEdit_mapmac.text().split(":", 6)
-        for i in range(len(macstring)):
-            map_dist['mac_addr'][i] = self.is_number(macstring[i])
+        map_dist['mac_addr'] = self.lineEdit_mapmac.text()
         map_dist['security_flg'] = self.checkBox_mapsecurity.isChecked()
         map_dist['begin_time'] = self.is_number(self.lineEdit_mapstartime.text())
         map_dist['end_time'] = self.is_number(self.lineEdit_mapendtime.text())
@@ -821,9 +821,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         spat_dist['state'] = self.checkBox_spatenable.isChecked()
         spat_dist['aid'] = self.is_number(self.lineEdit_spataid.text())
         spat_dist['priotity'] = self.is_number(self.lineEdit_spatpriotity.text())
-        macstring = self.lineEdit_spatmac.text().split(":", 6)
-        for i in range(len(macstring)):
-            spat_dist['mac_addr'][i] = self.is_number(macstring[i])
+        spat_dist['mac_addr'] = self.lineEdit_spatmac.text()
         spat_dist['security_flg'] = self.checkBox_spatsecurity.isChecked()
         spat_dist['begin_time'] = self.is_number(self.lineEdit_spatstartime.text())
         spat_dist['end_time'] = self.is_number(self.lineEdit_spatendtime.text())
@@ -836,9 +834,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         rsi_dist['state'] = self.checkBox_rsienable.isChecked()
         rsi_dist['aid'] = self.is_number(self.lineEdit_rsiaid.text())
         rsi_dist['priotity'] = self.is_number(self.lineEdit_rsipriotity.text())
-        macstring = self.lineEdit_rsimac.text().split(":", 6)
-        for i in range(len(macstring)):
-            rsi_dist['mac_addr'][i] = self.is_number(macstring[i])
+        rsi_dist['mac_addr'] = self.lineEdit_rsimac.text()
         rsi_dist['security_flg'] = self.checkBox_rsisecurity.isChecked()
         rsi_dist['begin_time'] = self.is_number(self.lineEdit_rsistartime.text())
         rsi_dist['end_time'] = self.is_number(self.lineEdit_rsiendtime.text())
@@ -851,9 +847,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         rsm_dist['state'] = self.checkBox_rsmenable.isChecked()
         rsm_dist['aid'] = self.is_number(self.lineEdit_rsmaid.text())
         rsm_dist['priotity'] = self.is_number(self.lineEdit_rsmpriotity.text())
-        macstring = self.lineEdit_rsmmac.text().split(":", 6)
-        for i in range(len(macstring)):
-            rsm_dist['mac_addr'][i] = self.is_number(macstring[i])
+        rsm_dist['mac_addr'] = self.lineEdit_rsmmac.text()
         rsm_dist['security_flg'] = self.checkBox_rsmsecurity.isChecked()
         rsm_dist['begin_time'] = self.is_number(self.lineEdit_rsmstartime.text())
         rsm_dist['end_time'] = self.is_number(self.lineEdit_rsmendtime.text())
@@ -866,9 +860,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         rtcm_dist['state'] = self.checkBox_rtcmenable.isChecked()
         rtcm_dist['aid'] = self.is_number(self.lineEdit_rtcmaid.text())
         rtcm_dist['priotity'] = self.is_number(self.lineEdit_rtcmpriotity.text())
-        macstring = self.lineEdit_rtcmmac.text().split(":", 6)
-        for i in range(len(macstring)):
-            rtcm_dist['mac_addr'][i] = self.is_number(macstring[i])
+        rtcm_dist['mac_addr'] = self.lineEdit_rtcmmac.text()
         rtcm_dist['security_flg'] = self.checkBox_rtcmsecurity.isChecked()
         rtcm_dist['begin_time'] = self.is_number(self.lineEdit_rtcmstartime.text())
         rtcm_dist['end_time'] = self.is_number(self.lineEdit_rtcmendtime.text())
@@ -876,6 +868,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         rtcm_dist['interval'] = self.is_number(self.lineEdit_rtcminterval.text())
         rtcm_dist['source'] = self.comboBox_rtcmsource.currentIndex()
         msgTxRx_dict['rtcmTx'] = rtcm_dist
+        print(msgTxRx_dict)
         return msgTxRx_dict
 
     def push_publish(self):
@@ -900,7 +893,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         if tabIndexSet == 0:
             dict['msgType'] = 'DeviceSetRequest'
             dict['tag'] = codeType2Tag(dict['msgType'])
-            dict_DeviceSet['deviceId'] = self.deviceId.text()
+            dict_DeviceSet['deviceId'] = self.lineEdit_deviceId.text()
             dict_DeviceSet['deviceName'] = self.lineEdit_deviceName.text()
             dict_DeviceSet['regionCode'] = self.is_number(self.lineEdit_regionCode.text())
             dict_DeviceSet['curCommType'] = self.lineEdit_curCommType.text()
@@ -916,8 +909,6 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_DeviceSet['owner'] = self.lineEdit_owner.text()
             dict_DeviceSet['transEncryption'] = self.lineEdit_transEncryption.text()
             dict['msgData'] = dict_DeviceSet
-            sendmsgjson = json.dumps(dict)
-            ptopic = self.lineEdit_ptopic.text()
 
         if tabIndexSet == 1:
             dict['msgType'] = 'OperationSetRequest'
@@ -929,8 +920,6 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_OperationSet['alarmInfoRate'] = self.is_number(self.lineEdit_alarmInfoRate.text())
             dict_OperationSet['logFTP'] = self.lineEdit_logFTP.text()
             dict['msgData'] = dict_OperationSet
-            sendmsgjson = json.dumps(dict)
-            ptopic = self.lineEdit_ptopic.text()
 
         if tabIndexSet == 2:
             dict['msgType'] = 'ServiceSetRequest'
@@ -971,8 +960,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_ServiceSet['rsiConfig']['upFilters'].append \
                 (json.loads(self.lineEdit_upFiltersval6.text().replace("\'", "\"")))
 
-            dict_ServiceSet['spatConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_4.text())
-            dict_ServiceSet['spatConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_4.text())
+            dict_ServiceSet['spatConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_5.text())
+            dict_ServiceSet['spatConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_5.text())
             dict_ServiceSet['spatConfig']['upFilters'].append \
                 (json.loads(self.lineEdit_upFilterskey9.text().replace("\'", "\"")))
             dict_ServiceSet['spatConfig']['upFilters'].append \
@@ -982,8 +971,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_ServiceSet['spatConfig']['upFilters'].append \
                 (json.loads(self.lineEdit_upFiltersval10.text().replace("\'", "\"")))
 
-            dict_ServiceSet['rsmConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_5.text())
-            dict_ServiceSet['rsmConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_5.text())
+            dict_ServiceSet['rsmConfig']['upLimit'] = self.is_number(self.lineEdit_upLimit_4.text())
+            dict_ServiceSet['rsmConfig']['downLimit'] = self.is_number(self.lineEdit_downLimit_4.text())
             dict_ServiceSet['rsmConfig']['upFilters'].append \
                 (json.loads(self.lineEdit_upFilterskey7.text().replace("\'", "\"")))
             dict_ServiceSet['rsmConfig']['upFilters'].append \
@@ -992,18 +981,13 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 (json.loads(self.lineEdit_upFilterskey8.text().replace("\'", "\"")))
             dict_ServiceSet['rsmConfig']['upFilters'].append \
                 (json.loads(self.lineEdit_upFiltersval8.text().replace("\'", "\"")))
-
             dict['msgData'] = dict_ServiceSet
-            sendmsgjson = json.dumps(dict)
-            ptopic = self.lineEdit_ptopic.text()
 
         if tabIndexSet == 3:
             dict['msgType'] = 'RestartRequest'
             dict['tag'] = codeType2Tag(dict['msgType'])
             dict_Restart['restartTime'] = self.is_number(self.label_restartTime.text())
             dict['msgData'] = dict_Restart
-            sendmsgjson = json.dumps(dict)
-            ptopic = self.lineEdit_ptopic.text()
 
         if tabIndexSet == 4:
             dict['msgType'] = 'UpdateRequest'
@@ -1016,8 +1000,6 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_Update['ftpPWD'] = self.lineEdit_ftpPWD.text()
             dict_Update['time'] = self.lineEdit_time.text()
             dict['msgData'] = dict_Update
-            sendmsgjson = json.dumps(dict)
-            ptopic = self.lineEdit_ptopic.text()
 
         if tabIndexSet == 5:
             self.treeView_Map_tx.setModel(self.model_Map)
@@ -1027,8 +1009,11 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 self.model_Map.loadJson(fileData)
             except:
                 return
-            sendmsgjson = bytes.decode(fileData)
-            ptopic = self.lineEdit_ptopic_2.text() + "map"
+            msgStr = bytes.decode(fileData)
+            msgjson = json.loads(msgStr)
+            dict['msgType'] = 'MapRequest'
+            dict['tag'] = codeType2Tag(dict['msgType'])
+            dict['msgData'] = msgjson
 
         if tabIndexSet == 6:
             self.treeView_Rsi_tx.setModel(self.model_Rsi)
@@ -1038,8 +1023,11 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 self.model_Rsi.loadJson(fileData)
             except:
                 return
-            sendmsgjson = bytes.decode(fileData)
-            ptopic = self.lineEdit_ptopic_2.text() + "rsi"
+            msgStr = bytes.decode(fileData)
+            msgjson = json.loads(msgStr)
+            dict['msgType'] = 'RsiRequest'
+            dict['tag'] = codeType2Tag(dict['msgType'])
+            dict['msgData'] = msgjson
 
         if tabIndexSet == 7:
             self.treeView_Rsm_tx.setModel(self.model_Rsm)
@@ -1049,26 +1037,29 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 self.model_Rsm.loadJson(fileData)
             except:
                 return
-            sendmsgjson = bytes.decode(fileData)
-            ptopic = self.lineEdit_ptopic_2.text() + "rsm"
+            msgStr = bytes.decode(fileData)
+            msgjson = json.loads(msgStr)
+            dict['msgType'] = 'RsmRequest'
+            dict['tag'] = codeType2Tag(dict['msgType'])
+            dict['msgData'] = msgjson
 
         if tabIndexSet == 8:
             return
-
         if tabIndexSet == 9:
             return
-
         if tabIndexSet == 10:
             dict['msgType'] = 'MsgRxTxConfRequest'
             dict['msgData'] = self.msgTxRxConf()
-            sendmsgjson = json.dumps(dict)
-            ptopic = self.lineEdit_ptopic.text()
-            #ptopic = self.lineEdit_ptopic_2.text() + "msgTxRxConf"
 
         if tabIndexSet > 10:
             return
-        #print(sendmsgjson)
+
+        sendmsgjson = json.dumps(dict)
+        ptopic = self.lineEdit_ptopic.text()
+        # print(ptopic, sendmsgjson)
         self.client.on_publish(ptopic, sendmsgjson, 1)
+        print("send request:")
+        print(ptopic, sendmsgjson)
 
     def publish(self, msgType):
         self.seqNum += 1
@@ -1080,7 +1071,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         sendmsgjson = json.dumps(dict)
         ptopic = self.lineEdit_ptopic.text()
         self.client.on_publish(ptopic, sendmsgjson, 1)
-        print("send:")
+        print("send query:")
         print(ptopic, sendmsgjson)
 
     def push_query(self):
@@ -1122,7 +1113,11 @@ def codeType2Tag(type):
                     'OperationConfQueryResponse':30002,'ServiceConfQueryResponse':30003,
                     'DeviceStateQueryResponse':30004,'ServiceStateQueryResponse':30005,
                     'MsgStatusResponse':10011,'MsgStatusQuery':30011,
-                    'MsgRxTxConfResponse':10012,'MsgRxTxConfRequest':20012,'MsgRxTxConfQuery':30012}
+                    'MsgRxTxConfResponse':10012,'MsgRxTxConfRequest':20012,'MsgRxTxConfQuery':30012,
+                    'MapReport':10021,'BsmReport':10022,'RsmReport':10023,'RsiReport':10024,
+                    'SpatReport':10025,'MapRequest':20021,'RsmRequest':20023,'RsiRequest':10024,
+                    'SpatRequest':10025}
+
     for item in enumtypedict.items():
         if type == item[0]:
             return item[1]
