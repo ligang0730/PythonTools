@@ -11,6 +11,7 @@ import win32api,win32con
 import json
 import paho.mqtt.client as mqtt
 import datetime
+import configparser
 
 from PyQt5 import QtCore, QtGui
 from PyQt5 import QtWidgets
@@ -35,7 +36,8 @@ global child_conn_HeartBeat, parent_conn_HeartBeat
 global child_conn_Bsm, parent_conn_Bsm
 global child_conn_Spat, parent_conn_Spat
 global child_conn_MsgStatus, parent_conn_MsgStatus
-global child_conn_MsgConf, parent_conn_MsgMsgConf
+global child_conn_MsgConf, parent_conn_MsgConf
+global child_conn_LastWill, parent_conn_LastWill
 
 global autorecvflag
 
@@ -241,7 +243,7 @@ class MQTTClient(object):
     def _on_message(self, client, userdata, msg):
         global child_conn_Register, child_conn_BaseInfo, child_conn_OpertionConf, child_conn_ServiceConf,\
             child_conn_DeviceState, child_conn_ServiceState, child_conn_Alarm, child_conn_HeartBeat,\
-            child_conn_Bsm, child_conn_MsgStatus, child_conn_MsgConf
+            child_conn_Bsm, child_conn_MsgStatus, child_conn_MsgConf, child_conn_LastWill
         global autorecvflag
 
         msgTopic = msg.topic
@@ -253,9 +255,17 @@ class MQTTClient(object):
         try:
             dict_json = json.loads(msg_json)
             dict_tag = dict_json['tag']
+            try:
+                dict_Type = dict_json['msgType']
+            except:
+                dict_Type = ""
         except:
             dict_tag = 0
-            pass
+            #print(msgTopic, jsonstring)
+
+        if dict_Type == "LastWill":
+            #print(jsonstring)
+            child_conn_LastWill.send(jsonstring)
 
         if dict_tag == 10001:
             child_conn_BaseInfo.send(jsonstring)
@@ -265,6 +275,7 @@ class MQTTClient(object):
         elif dict_tag == 10003:
             child_conn_ServiceConf.send(dict_json)
         elif dict_tag == 10007:
+            #print(msgTopic, jsonstring)
             child_conn_Register.send(jsonstring)
 
         if autorecvflag == 1:
@@ -298,8 +309,9 @@ class MQTTClient(object):
                 child_conn_MsgStatus.send(dict_json)
             if dict_tag == 10012:
                 child_conn_MsgConf.send(dict_json)
-        print("recv:")
-        print(msgTopic, jsonstring)
+
+        #print("recv:")
+        #print(msgTopic, jsonstring)
 
     def _on_publish(self, client, userdata, result):
         pass
@@ -346,6 +358,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.treeView_Rsm_rx.setStyleSheet("background:#ffffff")
         self.treeView_Bsm_rx.setStyleSheet("background:#ffffff")
         self.treeView_Spat_rx.setStyleSheet("background:#ffffff")
+        self.treeView_LastWill.setStyleSheet("background:#ffffff")
 
         self.model_Register = QJsonModel()
         self.model_BaseInfo = QJsonModel()
@@ -359,18 +372,44 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.model_Rsm = QJsonModel()
         self.model_Bsm = QJsonModel()
         self.model_Spat = QJsonModel()
+        self.model_LastWill = QJsonModel()
 
         autorecvflag = 0
         self.seqNum = 0
+
+        if os.path.exists("mqtt_config.ini"):
+            iniconf = configparser.RawConfigParser()
+            iniconf.read("mqtt_config.ini")
+            iniconf.get('config', 'brokerip')
+            self.lineEdit_serverip.setText(str(iniconf.get('config', 'brokerip')))
+            self.lineEdit_serverport.setText(str(iniconf.get('config', 'brokerport')))
+            self.lineEdit_user.setText(str(iniconf.get('config', 'user')))
+            self.lineEdit_pswd.setText(str(iniconf.get('config', 'pswd')))
+            self.lineEdit_stopic.setText(str(iniconf.get('config', 'stopic')))
+            self.lineEdit_ptopic.setText(str(iniconf.get('config', 'ptopic')))
+
+    def creatinifile(self, brokerip, brokerport, user, pswd, stopic, ptopic):
+        inifp = open("mqtt_config.ini", "w")
+        inidata = "[config]" + "\rbrokerip=" + str(brokerip) + "\rbrokerport=" + str(brokerport) + \
+                  "\ruser=" + str(user) + "\rpswd=" + str(pswd) + "\rstopic=" + str(stopic) + \
+                  "\rptopic=" + str(ptopic)
+        try:
+            inifp.writelines(inidata)
+        finally:
+            inifp.close()
 
     def push_broker(self):
         brokerip = self.lineEdit_serverip.text()
         user = self.lineEdit_user.text()
         pswd = self.lineEdit_pswd.text()
         stopic = self.lineEdit_stopic.text()
+        brokerport = int(self.lineEdit_serverport.text())
+        ptopic = self.lineEdit_ptopic.text()
+
+        self.creatinifile(brokerip, brokerport, user, pswd, stopic, ptopic)
         #stopic2 = self.lineEdit_stopic_2.text()
         try:
-            self.client = MQTTClient(brokerip, 1883)
+            self.client = MQTTClient(brokerip, brokerport)
             self.client.connect(user, pswd)
             self.client.on_subscribe(stopic)
             #self.client.on_subscribe(stopic2)
@@ -431,6 +470,10 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.t12.setDaemon(True)
         self.t12.start()
 
+        self.t13 = threading.Thread(target=self.startShowJsontreeView_LastWill, args=())
+        self.t13.setDaemon(True)
+        self.t13.start()
+
     def startShowJsontreeView_Register(self):
         global parent_conn_Register
         cnt = 0
@@ -454,7 +497,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             msg = parent_conn_BaseInfo.recv()
             try:
                 msg_dist = msg['msgData']
-                self.lineEdit_deviceId.setText(str(msg_dist['deviceId']))
+                self.lineEdit_deviceId.setText(str(msg_dist['deviceID']))
                 self.lineEdit_deviceName.setText(str(msg_dist['deviceName']))
                 self.lineEdit_regionCode.setText(str(msg_dist['regionCode']))
                 self.lineEdit_curCommType.setText(str(msg_dist['curCommType']))
@@ -469,6 +512,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 self.lineEdit_locationType.setText(str(msg_dist['locationType']))
                 self.lineEdit_owner.setText(str(msg_dist['owner']))
                 self.lineEdit_transEncryption.setText(str(msg_dist['transEncryption']))
+                #print(msg)
+                self.lineEdit_snNum.setText(str(msg['deviceSN']))
             except:
                 self.model_BaseInfo.loadJson(msg)
             cnt += 1
@@ -492,13 +537,17 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.label_OpertionConf.setText(str(cnt))
             self.label_OpertionConf_2.setText(str(duringtime.seconds))
 
-            self.lineEdit_deviceId2.setText(msg_dist['deviceId'])
+            self.lineEdit_deviceId2.setText(msg_dist['deviceID'])
             self.lineEdit_heartbeatRate.setText(str(msg_dist['heartbeatRate']))
             self.lineEdit_deviceRunningInfoRate.setText(str(msg_dist['deviceRunningInfoRate']))
             self.lineEdit_appRunningInfoRate.setText(str(msg_dist['appRunningInfoRate']))
             self.lineEdit_logInfoRate.setText(str(msg_dist['logInfoRate']))
             self.lineEdit_alarmInfoRate.setText(str(msg_dist['alarmInfoRate']))
             self.lineEdit_logLevel.setText(str(msg_dist['logLevel']))
+
+            self.lineEdit_ostag.setText(str(msg['tag']))
+            self.lineEdit_ostimeStamp.setText(str(msg['timeStamp']))
+            self.lineEdit_osseqNum.setText(str(msg['seqNum']))
 
     def startShowJsontreeView_DeviceState(self):
         global parent_conn_DeviceState
@@ -580,8 +629,13 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.lineEdit_upFilterskey4.setText(str(msg_dist['bsmConfig']['upFilters'][2]))
             self.lineEdit_upFiltersval4.setText(str(msg_dist['bsmConfig']['upFilters'][3]))
 
+            self.lineEdit_sstag.setText(str(msg['tag']))
+            self.lineEdit_sstimeStamp.setText(str(msg['timeStamp']))
+            self.lineEdit_ssseqNum.setText(str(msg['seqNum']))
+
     def startShowJsontreeView_Alarm(self):
         global parent_conn_Alarm
+        cnt = 0
         cnt = 0
         while True:
             self.treeView_Alarm.setModel(self.model_Alarm)
@@ -593,6 +647,13 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.model_Alarm.loadJson(msg)
             self.label_Alarm.setText(str(cnt))
             self.label_Alarm_2.setText(str(duringtime.seconds))
+
+    def startShowJsontreeView_LastWill(self):
+        global parent_conn_LastWill
+        while True:
+            self.treeView_LastWill.setModel(self.model_LastWill)
+            msg = parent_conn_LastWill.recv()
+            self.model_LastWill.loadJson(msg)
 
     def startShowJsontreeView_HeartBeat(self):
         global parent_conn_HeartBeat
@@ -868,18 +929,18 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         rtcm_dist['interval'] = self.is_number(self.lineEdit_rtcminterval.text())
         rtcm_dist['source'] = self.comboBox_rtcmsource.currentIndex()
         msgTxRx_dict['rtcmTx'] = rtcm_dist
-        print(msgTxRx_dict)
+        #print(msgTxRx_dict)
         return msgTxRx_dict
 
     def push_publish(self):
         sendmsgjson = ""
         dict = {"timeStamp":"","deviceSN":"","seqNum":"","ack":True,"msgType":"","tag":0,"msgData":{}}
-        dict_OperationSet = {"deviceId":"","heartbeatRate":0,"deviceRunningInfoRate":0,"appRunningInfoRate":0,
+        dict_OperationSet = {"deviceID":"","heartbeatRate":0,"deviceRunningInfoRate":0,"appRunningInfoRate":0,
                              "logInfoRate":0,"logFTP":"","alarmInfoRate":0}
-        dict_DeviceSet = {"deviceId": "", "deviceName": "", "regionCode": 0, "curCommType": "", "ip":"", "port":0,
+        dict_DeviceSet = {"deviceID": "", "deviceName": "", "regionCode": 0, "curCommType": "", "ip":"", "port":0,
                           "gatewayIP":"", "mask":"", "deviceGroupType":"", "deviceGroupCode":"", "montantId":"",
                           "locationDesc":"", "locationType":0, "owner":"", "transEncryption":""}
-        dict_ServiceSet = {"deviceId": "",
+        dict_ServiceSet = {"deviceID": "",
                            "mapConfig":{"upLimit":0, "downLimit":0, "upFilters":[]},
                            "bsmConfig": {"sampleMode":"", "sampleRate":0, "upLimit":0, "downLimit":0, "upFilters":[]},
                            "rsiConfig": {"upLimit":0, "downLimit":0,"upFilters":[]},
@@ -887,7 +948,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                            "rsmConfig": {"upLimit":0, "downLimit":0,"upFilters":[]}}
         dict_Restart = {"deviceID": "", "restartTime": 0}
         dict_Update = {"deviceID": "", "oldVersion": "", "newVersion": "", "downloadAddr": "", "ftpAccount": "",
-                       "ftpPWD": "", "time": ""}
+                       "ftpPWD": "", "time": 0}
 
         tabIndexSet = self.tabWidget_set.currentIndex()
         if tabIndexSet == 0:
@@ -998,7 +1059,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             dict_Update['downloadAddr'] = self.lineEdit_downloadAddr.text()
             dict_Update['ftpAccount'] = self.lineEdit_ftpAccount.text()
             dict_Update['ftpPWD'] = self.lineEdit_ftpPWD.text()
-            dict_Update['time'] = self.lineEdit_time.text()
+            dict_Update['time'] = self.is_number(self.lineEdit_time.text())
             dict['msgData'] = dict_Update
 
         if tabIndexSet == 5:
@@ -1058,21 +1119,21 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         ptopic = self.lineEdit_ptopic.text()
         # print(ptopic, sendmsgjson)
         self.client.on_publish(ptopic, sendmsgjson, 1)
-        print("send request:")
-        print(ptopic, sendmsgjson)
+        #("send request:")
+        #print(ptopic, sendmsgjson)
 
     def publish(self, msgType):
         self.seqNum += 1
         curtime = time.strftime("%Y%m%d%H%M%S", time.localtime())
         dict = {'timeStamp': curtime, 'deviceSN': '', 'seqNum': str(self.seqNum), 'ack': True, 'msgType': '', 'tag': 0,
-                'msgData': {'deviceId': '', 'deviceName': ''}}
+                'msgData': {'deviceID': '', 'deviceName': ''}}
         dict['msgType'] = msgType
         dict['tag'] = codeType2Tag(dict['msgType'])
         sendmsgjson = json.dumps(dict)
         ptopic = self.lineEdit_ptopic.text()
         self.client.on_publish(ptopic, sendmsgjson, 1)
-        print("send query:")
-        print(ptopic, sendmsgjson)
+        #print("send query:")
+        #print(ptopic, sendmsgjson)
 
     def push_query(self):
         tab_index_show = self.tabWidget_show.currentIndex()
@@ -1148,7 +1209,8 @@ if __name__ == '__main__':
     global child_conn_Bsm, parent_conn_Bsm
     global child_conn_Spat, parent_conn_Spat
     global child_conn_MsgStatus, parent_conn_MsgStatus
-    global child_conn_MsgConf, parent_conn_MsgMsgConf
+    global child_conn_MsgConf, parent_conn_MsgConf
+    global child_conn_LastWill, parent_conn_LastWill
 
     parent_conn_Register, child_conn_Register = Pipe()
     parent_conn_BaseInfo, child_conn_BaseInfo = Pipe()
@@ -1162,6 +1224,7 @@ if __name__ == '__main__':
     parent_conn_Spat, child_conn_Spat = Pipe()
     parent_conn_MsgStatus, child_conn_MsgStatus = Pipe()
     parent_conn_MsgConf, child_conn_MsgConf = Pipe()
+    parent_conn_LastWill, child_conn_LastWill = Pipe()
 
     app = QtWidgets.QApplication(sys.argv)
     my_pyqt_form = MyPyQT_Form()
