@@ -36,6 +36,7 @@ import sys
 import os
 import folium
 import copy
+from icon import *
 
 class E_DriveBehavior(Enum):
     goStraightForward = 0            #直行
@@ -220,10 +221,12 @@ class EmittingStr(QtCore.QObject):
         QTimer.singleShot(1000, loop.quit)
         loop.exec_()
 
+gQmtex = QMutex()
 class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(MyPyQT_Form, self).__init__()
         self.setupUi(self)
+        self.setWindowIcon(QtGui.QIcon(':/logo.ico'))
         #sys.stdout = EmittingStr(textWritten=self.outputWritten)
         #sys.stderr = EmittingStr(textWritten=self.outputWritten)
         self.listView.setStyleSheet("background:#ffffff")
@@ -298,12 +301,16 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.refresh_temp.start()
 
     def refresh_temp_url_2(self,path_url):
+        gQmtex.lock()
         self.qwebengine.load(QUrl.fromLocalFile(path_url))#获得子程序传来的数据，每10s更新一次显示
+        gQmtex.unlock()
 
     def loadMapFile(self):
         path = "file:\\" + os.getcwd() + "\\save_map.html"
         path = path.replace('\\', '/')
+        gQmtex.lock()
         self.qwebengine.load(QUrl(path))
+        gQmtex.unlock()
 
     def push_connect(self):
         PORT = int(self.lineEdit_port.text())
@@ -384,6 +391,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                     clearTimeList[i] = v + 1
                 self.clearSuggestionLabel(clearTimeList)
                 if dict_data['type'] == "suggestion":
+                    print(dict_data['data'])
                     for sd in dict_data['data']:
                         if sd['carid'] == self.label_carid1.text():
                             clearTimeList[1] = 0
@@ -456,7 +464,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                     if catState['laneId'] == lane['laneId']:
                         for i in range(len(lane['points'])):
                             sgeoInfo = getGeoInfo(lane['points'][i]['startpos'], curloc)
-                            egeoInfo = getGeoInfo(lane['points'][i]['endpos'], curloc)
+                            egeoInfo = getGeoInfo(curloc, lane['points'][i]['endpos'])
                             sdist = sgeoInfo['s12']
                             edist = egeoInfo['s12']
                             offsetdist = sdist + edist - catState['speed'] - 1
@@ -464,9 +472,10 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                                 catState['linkName'] = roadinfo['linkName']
                                 catState['laneId'] = lane['laneId']
                                 catState['roadXh'] = i
-                                #catState['curbrng'] = egeoInfo['azi1'] + 180
-                                catState['curbrng'] = lane['points'][i]['brng']
+                                catState['curbrng'] = egeoInfo['azi1']
+                                #catState['curbrng'] = lane['points'][i]['brng']
                                 catState['curloc'] = catState['tarloc']
+
         return catState
 
     def runCarInit(self, carInfo, curStep):
@@ -493,10 +502,12 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             if carState['linkName'] == roadinfo['linkName']:
                 for lane in roadinfo['laneInfo']:
                     if carState['laneId'] == lane['laneId'] and carState['roadXh'] == (len(lane['points'])-1):
-                        if carState['carId'] == carInfo['carId']:
-                            stepRet += 1
-                            if stepRet > 1:
-                                stepRet = 0
+                        gInfo = getGeoInfo(carState['curloc'], lane['points'][-1]['endpos'])
+                        if gInfo['s12'] < (carState['speed'] + 1):
+                            if carState['carId'] == carInfo['carId']:
+                                stepRet += 1
+                                if stepRet > 1:
+                                    stepRet = 0
         return stepRet
 
     def startRunCart(self, carInfoList):
@@ -510,6 +521,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             sendDict = {"data": []}
             for carSt in carStatelist:
                 dict = {"id": 0, "lat": 0, "lon": 0, "brng": 0}
+                # if carSt['speed'] == 0:
+                #     continue
                 carSt['tarloc'] = getTarLoc(carSt['curloc'], carSt['curbrng'], carSt['speed'])
                 dict['id'] = carSt['carId']
                 dict['lat'] = carSt['tarloc'][0] * 10000000
@@ -548,8 +561,9 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         for carSt in cartStatelist:
             draw_line(map, carSt['curloc'], carSt['tarloc'], 3, carSt['color'], 1, "")
-
+        gQmtex.lock()
         map.save("save_map.html")
+        gQmtex.unlock()
 
     def firstLoadMap(self):
         combox_speed_list = ['1', '3', '5', '7', '9', '11']
@@ -599,7 +613,9 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 draw_icon(map, pointslanesList[0], 'blue')
                 draw_lines(map, pointslanesList, 3, "silver", 1,
                            linkName + '-' + str(lanesId) + ': ')
+                gQmtex.lock()
                 map.save("save_map.html")
+                gQmtex.unlock()
 
         self.comboBox_startLinkName.addItems(combox_link_list)
         self.comboBox_endLinkName.addItems(combox_link_list)
