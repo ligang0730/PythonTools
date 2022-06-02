@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="C:/Users/ctfo/Desktop/ssddd/leaflet.js"></script>
+    <script src="C:/Users/ctfo/Desktop/ssddd/jquery-1.12.4.min.js"></script>
+    <script src="C:/Users/ctfo/Desktop/ssddd/bootstrap.min.js"></script>
+    <script src="C:/Users/ctfo/Desktop/ssddd/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="C:/Users/ctfo/Desktop/ssddd/leaflet.css"/>
+    <link rel="stylesheet" href="C:/Users/ctfo/Desktop/ssddd/bootstrap.min.css"/>
+    <link rel="stylesheet" href="C:/Users/ctfo/Desktop/ssddd/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="C:/Users/ctfo/Desktop/ssddd/font-awesome.min.css"/>
+    <link rel="stylesheet" href="C:/Users/ctfo/Desktop/ssddd/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="C:/Users/ctfo/Desktop/ssddd/leaflet.awesome.rotate.min.css"/>
+    
+<div id="map"></div>
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5f8dd2bbe4ea4ff985902dfc53784f57 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_5f8dd2bbe4ea4ff985902dfc53784f57" ></div>
+        
+</body>
+<script>    
+
+            var map_5f8dd2bbe4ea4ff985902dfc53784f57 = L.map(
+                "map_5f8dd2bbe4ea4ff985902dfc53784f57",
+                {
+                    center: [40.043041289917014, 116.28213733434677],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 18,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_dd97221c89524187817ec42f504d46bb = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_5f8dd2bbe4ea4ff985902dfc53784f57);
+        
+    
+                var lat_lng_popup_2ca20d5202344980978246673a1ca02d = L.popup();
+                function latLngPop(e) {
+                    lat_lng_popup_2ca20d5202344980978246673a1ca02d
+                        .setLatLng(e.latlng)
+                        .setContent("Latitude: " + e.latlng.lat.toFixed(4) +
+                                    "<br>Longitude: " + e.latlng.lng.toFixed(4))
+                        .openOn(map_5f8dd2bbe4ea4ff985902dfc53784f57);
+                    }
+                map_5f8dd2bbe4ea4ff985902dfc53784f57.on('click', latLngPop);
+            
+</script>

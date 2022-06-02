@@ -546,8 +546,8 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="label_4">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_carid3">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -555,12 +555,25 @@
          </font>
         </property>
         <property name="text">
-         <string>当前主车驾驶行为</string>
+         <string>4</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_curB">
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_carid4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="label_sugg1">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -572,34 +585,8 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_carid0">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_13">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>驾驶建议</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="label_sugg0">
+      <item row="5" column="2">
+       <widget class="QLabel" name="label_sugg4">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -620,25 +607,12 @@
          </font>
         </property>
         <property name="text">
-         <string>1</string>
+         <string>2</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="label_19">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>驾驶建议</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="label_sugg1">
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_sugg0">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -659,12 +633,51 @@
          </font>
         </property>
         <property name="text">
-         <string>2</string>
+         <string>3</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="label_21">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_carid0">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="label_sugg3">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="label_13">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>驾驶建议</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="label_23">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -689,34 +702,8 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_carid3">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>3</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="label_23">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>驾驶建议</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <widget class="QLabel" name="label_sugg3">
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_curB">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -728,8 +715,8 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_carid4">
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_19">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -737,7 +724,7 @@
          </font>
         </property>
         <property name="text">
-         <string>4</string>
+         <string>驾驶建议</string>
         </property>
        </widget>
       </item>
@@ -754,8 +741,8 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="2">
-       <widget class="QLabel" name="label_sugg4">
+      <item row="3" column="1">
+       <widget class="QLabel" name="label_21">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -763,7 +750,20 @@
          </font>
         </property>
         <property name="text">
-         <string>-</string>
+         <string>驾驶建议</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>当前主车驾驶行为</string>
         </property>
        </widget>
       </item>

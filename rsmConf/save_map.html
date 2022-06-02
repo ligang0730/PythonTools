@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="E:/work/rsmConf/js/leaflet.js"></script>
+    <script src="E:/work/rsmConf/js/jquery-1.12.4.min.js"></script>
+    <script src="E:/work/rsmConf/js/bootstrap.min.js"></script>
+    <script src="E:/work/rsmConf/js/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="E:/work/rsmConf/js/leaflet.css"/>
+    <link rel="stylesheet" href="E:/work/rsmConf/js/bootstrap.min.css"/>
+    <link rel="stylesheet" href="E:/work/rsmConf/js/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="E:/work/rsmConf/js/font-awesome.min.css"/>
+    <link rel="stylesheet" href="E:/work/rsmConf/js/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="E:/work/rsmConf/js/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b678c9d2250e51083b23d644834f35e8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_b678c9d2250e51083b23d644834f35e8" ></div>
+        
+</body>
+<script>    
+    
+            var map_b678c9d2250e51083b23d644834f35e8 = L.map(
+                "map_b678c9d2250e51083b23d644834f35e8",
+                {
+                    center: [39.1746714, 117.3456788],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 18,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_76d81de19a09eafb577350fd60252302 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_b678c9d2250e51083b23d644834f35e8);
+        
+    
+                var lat_lng_popup_697590f0964e35c60162e0d516aa33a6 = L.popup();
+                function latLngPop(e) {
+                    lat_lng_popup_697590f0964e35c60162e0d516aa33a6
+                        .setLatLng(e.latlng)
+                        .setContent("Latitude: " + e.latlng.lat.toFixed(4) +
+                                    "<br>Longitude: " + e.latlng.lng.toFixed(4))
+                        .openOn(map_b678c9d2250e51083b23d644834f35e8);
+                    }
+                map_b678c9d2250e51083b23d644834f35e8.on('click', latLngPop);
+            
+    
+            var circle_marker_57f703a64e4e6143e6bfb0b6d8fffc5e = L.circleMarker(
+                [39.1752994, 117.3454213],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b678c9d2250e51083b23d644834f35e8);
+        
+    
+            var circle_marker_c5bc91aa5d4da947bbac8bd49be40676 = L.circleMarker(
+                [39.1772081, 117.3448151],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b678c9d2250e51083b23d644834f35e8);
+        
+    
+            var circle_marker_6540256c583ff1952a18e5c23ad5cfd6 = L.circleMarker(
+                [39.1763182, 117.3450833],
+                {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b678c9d2250e51083b23d644834f35e8);
+        
+</script>

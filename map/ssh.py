@@ -4,18 +4,15 @@ import os
 import sys
 import threading
 import time
-import paramiko
 import json
 import io, libconf
 import qtree as Qtree
-import numpy as np
-import pandas as pd
-import numpy as np
+# import numpy as np
 import folium
-import math
+# import math
 from pynng import Pair0, Pair1
 
-import random
+# import random
 from folium.plugins import HeatMap, MiniMap, MarkerCluster
 from PyQt5 import QtCore, QtGui
 from PyQt5 import QtWidgets
@@ -37,6 +34,7 @@ import os
 import folium
 import copy
 from icon import *
+from pathlib2 import Path
 
 class E_DriveBehavior(Enum):
     goStraightForward = 0            #直行
@@ -145,38 +143,43 @@ def getTarLoc(loc, brng, dist):
     tarloc = geo.Direct(loc[0], loc[1], brng, dist)
     return tarloc['lat2'], tarloc['lon2']
 
-def calTarLoc(loc, brng, dist): #dist单位：米
-    lat1 = loc[0]
-    lon1 = loc[1]
-    earth_arc = 111.199 #地球每度的弧长,单位：千米
-    dist = dist / 1000
-    brng = math.radians(brng)
-    lon2 = lon1 + (dist * math.sin(brng)) / (earth_arc * math.cos(math.radians(lat1)))
-    lat2 = lat1 + (dist * math.cos(brng)) / earth_arc
-    return lat2, lon2
+# def calTarLoc(loc, brng, dist): #dist单位：米
+#     lat1 = loc[0]
+#     lon1 = loc[1]
+#     earth_arc = 111.199 #地球每度的弧长,单位：千米
+#     dist = dist / 1000
+#     brng = math.radians(brng)
+#     lon2 = lon1 + (dist * math.sin(brng)) / (earth_arc * math.cos(math.radians(lat1)))
+#     lat2 = lat1 + (dist * math.cos(brng)) / earth_arc
+#     return lat2, lon2
+#
+# def point_distance_line(point,line_point1,line_point2):
+#     #计算向量
+#     vec1 = line_point1 - point
+#     vec2 = line_point2 - point
+#     distance = np.abs(np.cross(vec1,vec2)) / np.linalg.norm(line_point1-line_point2)
+#     return distance
+#
+# def get_distance_from_point_to_line(point, line_point1, line_point2):
+#     #对于两点坐标为同一点时,返回点与点的距离
+#     if line_point1 == line_point2:
+#         point_array = np.array(point )
+#         point1_array = np.array(line_point1)
+#         return np.linalg.norm(point_array -point1_array )
+#     #计算直线的三个参数
+#     A = line_point2[1] - line_point1[1]
+#     B = line_point1[0] - line_point2[0]
+#     C = (line_point1[1] - line_point2[1]) * line_point1[0] + \
+#         (line_point2[0] - line_point1[0]) * line_point1[1]
+#     #根据点到直线的距离公式计算距离
+#     distance = np.abs(A * point[0] + B * point[1] + C) / (np.sqrt(A**2 + B**2))
+#     return distance
 
-def point_distance_line(point,line_point1,line_point2):
-    #计算向量
-    vec1 = line_point1 - point
-    vec2 = line_point2 - point
-    distance = np.abs(np.cross(vec1,vec2)) / np.linalg.norm(line_point1-line_point2)
-    return distance
-
-def get_distance_from_point_to_line(point, line_point1, line_point2):
-    #对于两点坐标为同一点时,返回点与点的距离
-    if line_point1 == line_point2:
-        point_array = np.array(point )
-        point1_array = np.array(line_point1)
-        return np.linalg.norm(point_array -point1_array )
-    #计算直线的三个参数
-    A = line_point2[1] - line_point1[1]
-    B = line_point1[0] - line_point2[0]
-    C = (line_point1[1] - line_point2[1]) * line_point1[0] + \
-        (line_point2[0] - line_point1[0]) * line_point1[1]
-    #根据点到直线的距离公式计算距离
-    distance = np.abs(A * point[0] + B * point[1] + C) / (np.sqrt(A**2 + B**2))
-    return distance
-
+def replacetext(search_text, replace_text):
+    file = Path(r"save_map.html")
+    data = file.read_text()
+    data = data.replace(search_text, replace_text)
+    file.write_text(data)
 
 #加载url文件相对位置的子线程
 class Refresh_temp_url(QThread):
@@ -561,11 +564,38 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         for carSt in cartStatelist:
             draw_line(map, carSt['curloc'], carSt['tarloc'], 3, carSt['color'], 1, "")
+        self.saveHtmlFile(map)
+
+    def saveHtmlFile(self, map):
         gQmtex.lock()
         map.save("save_map.html")
+        curPath = os.getcwd().replace('\\', '/')
+        replacetext('https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js',
+                    curPath + '/js/leaflet.js')
+        replacetext('https://code.jquery.com/jquery-1.12.4.min.js',
+                    curPath + '/js/jquery-1.12.4.min.js')
+        replacetext('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js',
+                    curPath + '/js/bootstrap.min.js')
+        replacetext('https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js',
+                    curPath + '/js/leaflet.awesome-markers.js')
+        replacetext('https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css',
+                    curPath + '/js/leaflet.css')
+        replacetext('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css',
+                    curPath + '/js/bootstrap.min.css')
+        replacetext('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css',
+                    curPath + '/js/bootstrap-theme.min.css')
+        replacetext('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
+                    curPath + '/js/font-awesome.min.css')
+        replacetext('https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css',
+                    curPath + '/js/leaflet.awesome-markers.css')
+        replacetext(
+            'https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css',
+            curPath + '/js/leaflet.awesome.rotate.min.css')
         gQmtex.unlock()
 
     def firstLoadMap(self):
+        color_list = ['olive', 'pink', 'red', 'blue', 'orange', 'green', 'purple']
+        color_num = 0
         combox_speed_list = ['1', '3', '5', '7', '9', '11']
         combox_color_list = ['olive', 'pink', 'red', 'blue', 'orange', 'green', 'purple']
         combox_zoom_list = ['10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
@@ -575,47 +605,38 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         map = folium.Map(location=[self.lat, self.lon], tiles="openstreetmap", zoom_start=17)
         map.add_child(folium.LatLngPopup())
         # map.add_child(folium.ClickForMarker())
-        self.linkList = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][0]['links']
-        for ilink in self.linkList:
-            linkName = ilink['desptName']
-            combox_link_list.append(linkName)
-            # linkspeedLimitsUp = ilink['speedLimits'][0]['speed']
-            # linkspeedLimitsDn = ilink['speedLimits'][1]['speed']
-            # try:
-            #     linkpoints = [[(self.lon13 + ilink['points'][0]['value'][0]) / 10000000,
-            #                    (self.lat13 + ilink['points'][0]['value'][1]) / 10000000],
-            #                   [(self.lon13 + ilink['points'][1]['value'][0]) / 10000000,
-            #                    (self.lat13 + ilink['points'][1]['value'][1]) / 10000000]]
-            #     draw_lines(map, linkpoints, 5, "grey", 0.5,
-            #                'speedLimits' + ':' + str(linkspeedLimitsUp) + ', ' + str(linkspeedLimitsDn))
-            # except:
-            #     pass
-            for ilanes in ilink['lanes']:
-                lanesId = ilanes['laneID']
-                combox_lane_list.append(str(lanesId))
-                # lanespeedLimitsUp = ilanes['speedLimits'][0]['speed']
-                # lanespeedLimitsDn = ilanes['speedLimits'][1]['speed']
-                try:
-                    self.laneWidth = ilanes['laneWidth']
-                except:
-                    pass
-                pointslanesList = []
-                for ilanespos in ilanes['points']:
-                    pointslanesList.append([(self.lat13 + ilanespos['value'][0]) / 10000000,
-                                            (self.lon13 + ilanespos['value'][1]) / 10000000])
-                self.poslanesList.append(pointslanesList)
-                curMane = ilanes['maneuvers']
-                for conctTo in ilanes['conctTo']:
-                    nextMane = conctTo['connectingLane']['maneuvers']
-                    draw_MarkerCluster(map, pointslanesList[-1],
-                                       'curMane:' + str(E_Maneuvers(curMane)),
-                                       'nextMane:' + str(E_Maneuvers(nextMane)))
-                draw_icon(map, pointslanesList[0], 'blue')
-                draw_lines(map, pointslanesList, 3, "silver", 1,
-                           linkName + '-' + str(lanesId) + ': ')
-                gQmtex.lock()
-                map.save("save_map.html")
-                gQmtex.unlock()
+        nodeList = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes']
+        #self.linkList = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][0]['links']
+        for inode in nodeList:
+            nodeId = inode['nodeRefID']['id']
+            for ilink in inode['links']:
+                linkName = ilink['desptName']
+                combox_link_list.append(linkName)
+                for ilanes in ilink['lanes']:
+                    lanesId = ilanes['laneID']
+                    combox_lane_list.append(str(lanesId))
+                    # lanespeedLimitsUp = ilanes['speedLimits'][0]['speed']
+                    # lanespeedLimitsDn = ilanes['speedLimits'][1]['speed']
+                    try:
+                        self.laneWidth = ilanes['laneWidth']
+                    except:
+                        pass
+                    pointslanesList = []
+                    for ilanespos in ilanes['points']:
+                        pointslanesList.append([(self.lat13 + ilanespos['value'][0]) / 10000000,
+                                                (self.lon13 + ilanespos['value'][1]) / 10000000])
+                    self.poslanesList.append(pointslanesList)
+                    curMane = ilanes['maneuvers']
+                    for conctTo in ilanes['conctTo']:
+                        nextMane = conctTo['connectingLane']['maneuvers']
+                        # draw_MarkerCluster(map, pointslanesList[-1],
+                        #                    'curMane:' + str(E_Maneuvers(curMane)),
+                        #                    'nextMane:' + str(E_Maneuvers(nextMane)))
+                    draw_icon(map, pointslanesList[0], 'blue')
+                    draw_lines(map, pointslanesList, 3, color_list[color_num], 1,
+                               str(nodeId) + '-' + linkName + '-' + str(lanesId) + ':' + str(E_Maneuvers(curMane)))
+            color_num = 0 if color_num == (len(color_list) - 1) else (color_num + 1)
+        self.saveHtmlFile(map)
 
         self.comboBox_startLinkName.addItems(combox_link_list)
         self.comboBox_endLinkName.addItems(combox_link_list)

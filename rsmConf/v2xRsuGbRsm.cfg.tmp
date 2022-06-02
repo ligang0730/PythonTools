@@ -1,0 +1,79 @@
+RSM =
+{
+    id = "000001";
+    refPos =
+    [
+        391431087,
+        1171840408,
+        0
+    ];
+    Participants =
+    (
+        {
+            ptcType = 1;
+            ptcId = 1;
+            SourceType = 1;
+            Pos =
+            {
+                present = 7;
+                offset =
+                [
+                    391442341,
+                    1171840462
+                ];
+            };
+            speed = 200;
+            heading = 7200;
+            Size =
+            {
+                width = 10;
+                length = 20;
+                height = 34;
+            };
+        },
+        {
+            ptcType = 3;
+            ptcId = 3;
+            SourceType = 5;
+            speed = 200;
+            heading = 7200;
+            Pos =
+            {
+                present = 7;
+                offset =
+                [
+                    391429000,
+                    1171839000
+                ];
+            };
+            Size =
+            {
+                width = 10;
+                length = 20;
+                height = 34;
+            };
+        },
+        {
+            ptcType = 4;
+            ptcId = 2;
+            SourceType = 4;
+            speed = 200;
+            heading = 7200;
+            Pos =
+            {
+                present = 7;
+                offset =
+                [
+                    391429000,
+                    1171839000
+                ];
+            };
+            Size =
+            {
+                width = 10;
+                length = 20;
+                height = 34;
+            };
+        }
+    );
+};
