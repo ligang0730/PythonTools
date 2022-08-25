@@ -1,608 +1,961 @@
-V2XMAP =
-{
-    MAPTX =
-    {
-        MsgContent =
-        (
-            {
-                msgCount = 0;
-                timeStamp = 0;
-                nodes =
-                (
-                    {
-                        desptName = "ff1";
-                        nodeRefID =
-                        {
-                            region = 0;
-                            id = 1000;
-                        };
-                        refPoint =
-                        [
-                            391432335,
-                            1171791994
-                        ];
-                        links =
-                        (
-                            {
-                                desptName = "chengxiangE_L";
-                                upstreamNodeId =
-                                {
-                                    region = 0;
-                                    id = 3;
-                                };
-                                speedLimits =
-                                (
-                                    {
-                                        type = 4;
-                                        speed = 5;
-                                    },
-                                    {
-                                        type = 5;
-                                        speed = 60;
-                                    }
-                                );
-                                laneWidth = 360;
-                                points =
-                                (
-                                    {
-                                        present = 7;
-                                        value =
-                                        [
-                                            15310,
-                                            -1823
-                                        ];
-                                    },
-                                    {
-                                        present = 7;
-                                        value =
-                                        [
-                                            665,
-                                            -1126
-                                        ];
-                                    }
-                                );
-                                movements =
-                                (
-                                    {
-                                        remoteNodeID =
-                                        {
-                                            region = 0;
-                                            id = 2;
-                                        };
-                                        signalGroup = 1;
-                                    }
-                                );
-                                lanes =
-                                (
-                                    {
-                                        laneID = 1;
-                                        laneWidth = 150;
-                                        laneAttributes =
-                                        {
-                                            sharedWith = 0;
-                                            laneType =
-                                            {
-                                                present = 1;
-                                                value = 1;
-                                            };
-                                        };
-                                        maneuvers = 1;
-                                        points =
-                                        (
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    15435,
-                                                    -1502
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    13750,
-                                                    -1421
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    5304,
-                                                    -1689
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    1976,
-                                                    -1233
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    624,
-                                                    -777
-                                                ];
-                                            }
-                                        );
-                                        conctTo =
-                                        (
-                                            {
-                                                remoteNodeID =
-                                                {
-                                                    region = 0;
-                                                    id = 2;
-                                                };
-                                                connectingLane =
-                                                {
-                                                    laneID = 1;
-                                                    maneuvers = 1;
-                                                };
-                                                signalGroup = 1;
-                                            }
-                                        );
-                                        speedLimits =
-                                        (
-                                            {
-                                                type = 4;
-                                                speed = 5;
-                                            },
-                                            {
-                                                type = 5;
-                                                speed = 60;
-                                            }
-                                        );
-                                    },
-                                    {
-                                        laneID = 2;
-                                        laneWidth = 150;
-                                        laneAttributes =
-                                        {
-                                            sharedWith = 0;
-                                            laneType =
-                                            {
-                                                present = 1;
-                                                value = 1;
-                                            };
-                                        };
-                                        maneuvers = 2;
-                                        points =
-                                        (
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    15435,
-                                                    -1958
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    13771,
-                                                    -1904
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    5158,
-                                                    -2226
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    1997,
-                                                    -1743
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    686,
-                                                    -1287
-                                                ];
-                                            }
-                                        );
-                                        conctTo =
-                                        (
-                                            {
-                                                remoteNodeID =
-                                                {
-                                                    region = 0;
-                                                    id = 2;
-                                                };
-                                                connectingLane =
-                                                {
-                                                    laneID = 1;
-                                                    maneuvers = 1;
-                                                };
-                                                signalGroup = 1;
-                                            }
-                                        );
-                                        speedLimits =
-                                        (
-                                            {
-                                                type = 4;
-                                                speed = 5;
-                                            },
-                                            {
-                                                type = 5;
-                                                speed = 60;
-                                            }
-                                        );
-                                    }
-                                );
-                            },
-                            {
-                                desptName = "chengxiangE_R";
-                                upstreamNodeId =
-                                {
-                                    region = 0;
-                                    id = 1;
-                                };
-                                speedLimits =
-                                (
-                                    {
-                                        type = 4;
-                                        speed = 5;
-                                    },
-                                    {
-                                        type = 5;
-                                        speed = 60;
-                                    }
-                                );
-                                laneWidth = 360;
-                                points =
-                                (
-                                    {
-                                        present = 7;
-                                        value =
-                                        [
-                                            666,
-                                            322
-                                        ];
-                                    },
-                                    {
-                                        present = 7;
-                                        value =
-                                        [
-                                            15186,
-                                            -215
-                                        ];
-                                    }
-                                );
-                                movements =
-                                (
-                                    {
-                                        remoteNodeID =
-                                        {
-                                            region = 0;
-                                            id = 2;
-                                        };
-                                        signalGroup = 1;
-                                    }
-                                );
-                                lanes =
-                                (
-                                    {
-                                        laneID = 1;
-                                        laneWidth = 150;
-                                        laneAttributes =
-                                        {
-                                            sharedWith = 0;
-                                            laneType =
-                                            {
-                                                present = 1;
-                                                value = 1;
-                                            };
-                                        };
-                                        maneuvers = 1;
-                                        points =
-                                        (
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    666,
-                                                    322
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    4993,
-                                                    -590
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    7822,
-                                                    -697
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    11857,
-                                                    -483
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    15186,
-                                                    -215
-                                                ];
-                                            }
-                                        );
-                                        conctTo =
-                                        (
-                                            {
-                                                remoteNodeID =
-                                                {
-                                                    region = 0;
-                                                    id = 2;
-                                                };
-                                                connectingLane =
-                                                {
-                                                    laneID = 1;
-                                                    maneuvers = 1;
-                                                };
-                                                signalGroup = 1;
-                                            },
-                                            {
-                                                remoteNodeID =
-                                                {
-                                                    region = 0;
-                                                    id = 2;
-                                                };
-                                                connectingLane =
-                                                {
-                                                    laneID = 1;
-                                                    maneuvers = 1;
-                                                };
-                                                signalGroup = 1;
-                                            }
-                                        );
-                                        speedLimits =
-                                        (
-                                            {
-                                                type = 4;
-                                                speed = 5;
-                                            },
-                                            {
-                                                type = 5;
-                                                speed = 60;
-                                            }
-                                        );
-                                    },
-                                    {
-                                        laneID = 2;
-                                        laneWidth = 150;
-                                        laneAttributes =
-                                        {
-                                            sharedWith = 0;
-                                            laneType =
-                                            {
-                                                present = 1;
-                                                value = 1;
-                                            };
-                                        };
-                                        maneuvers = 2;
-                                        points =
-                                        (
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    749,
-                                                    966
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    5076,
-                                                    -54
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    7863,
-                                                    -54
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    15144,
-                                                    322
-                                                ];
-                                            }
-                                        );
-                                        conctTo =
-                                        (
-                                            {
-                                                remoteNodeID =
-                                                {
-                                                    region = 0;
-                                                    id = 2;
-                                                };
-                                                connectingLane =
-                                                {
-                                                    laneID = 1;
-                                                    maneuvers = 1;
-                                                };
-                                                signalGroup = 1;
-                                            }
-                                        );
-                                        speedLimits =
-                                        (
-                                            {
-                                                type = 4;
-                                                speed = 5;
-                                            },
-                                            {
-                                                type = 5;
-                                                speed = 60;
-                                            }
-                                        );
-                                    }
-                                );
-                            },
-                            {
-                                desptName = "beimaRe_U";
-                                upstreamNodeId =
-                                {
-                                    region = 0;
-                                    id = 2;
-                                };
-                                speedLimits =
-                                (
-                                    {
-                                        type = 4;
-                                        speed = 5;
-                                    },
-                                    {
-                                        type = 5;
-                                        speed = 60;
-                                    }
-                                );
-                                laneWidth = 360;
-                                points =
-                                (
-                                    {
-                                        present = 7;
-                                        value =
-                                        [
-                                            15851,
-                                            483
-                                        ];
-                                    },
-                                    {
-                                        present = 7;
-                                        value =
-                                        [
-                                            15311,
-                                            46456
-                                        ];
-                                    }
-                                );
-                                movements =
-                                (
-                                    {
-                                        remoteNodeID =
-                                        {
-                                            region = 0;
-                                            id = 3;
-                                        };
-                                        signalGroup = 1;
-                                    }
-                                );
-                                lanes =
-                                (
-                                    {
-                                        laneID = 1;
-                                        laneWidth = 360;
-                                        laneAttributes =
-                                        {
-                                            sharedWith = 0;
-                                            laneType =
-                                            {
-                                                present = 1;
-                                                value = 1;
-                                            };
-                                        };
-                                        maneuvers = 2;
-                                        points =
-                                        (
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    15435,
-                                                    644
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    14645,
-                                                    22906
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    14811,
-                                                    44096
-                                                ];
-                                            },
-                                            {
-                                                present = 7;
-                                                value =
-                                                [
-                                                    15019,
-                                                    46510
-                                                ];
-                                            }
-                                        );
-                                        conctTo =
-                                        (
-                                            {
-                                                remoteNodeID =
-                                                {
-                                                    region = 0;
-                                                    id = 4;
-                                                };
-                                                connectingLane =
-                                                {
-                                                    laneID = 1;
-                                                    maneuvers = 2;
-                                                };
-                                                signalGroup = 1;
-                                            }
-                                        );
-                                        speedLimits =
-                                        (
-                                            {
-                                                type = 4;
-                                                speed = 5;
-                                            },
-                                            {
-                                                type = 5;
-                                                speed = 50;
-                                            }
-                                        );
-                                    }
-                                );
-                            }
-                        );
-                    }
+V2XMAP={
+  comment="compiled at 220804:175330 on DESKTOP-CHCMQJL by ljc";
+  MAPTX={
+    msgCnt=1;
+    MsgContent=(
+      {
+        txInterSec=1;
+        txInterUsec=0;
+        msgCount=0;
+        nodesCnt=1;
+        nodes=(
+          {
+            desptName="yhgs#25";
+            nodeRefID={
+              region=20;
+              id=25;
+            };
+            refPoint=[397206650,1164966770];
+            linksCnt=4;
+            links=(
+              {
+                desptName="n2s";
+                upstreamNodeId={
+                  region=0;
+                  id=0;
+                };
+                speedLimitsCnt=1;
+                speedLimits=(
+                  {
+                    type=5;
+                    speed=833;
+                  }
                 );
-            }
+                lanesCnt=2;
+                lanes=(
+                  {
+                    laneID=1;
+                    maneuvers=7;
+                    pointsCnt=5;
+                    points=(
+                      {
+                        present=3;
+                        value=[29390,-12310];
+                      },
+                      {
+                        present=3;
+                        value=[26110,-10900];
+                      },
+                      {
+                        present=3;
+                        value=[24600,-10130];
+                      },
+                      {
+                        present=3;
+                        value=[14490,-5970];
+                      },
+                      {
+                        present=2;
+                        value=[2510,-1120];
+                      }
+                    );
+                    conctToCnt=6;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=2;
+                        };
+                        signalGroup=32;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=34;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=31;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=2;
+                    maneuvers=4;
+                    pointsCnt=4;
+                    points=(
+                      {
+                        present=3;
+                        value=[29130,-12780];
+                      },
+                      {
+                        present=3;
+                        value=[28700,-12350];
+                      },
+                      {
+                        present=3;
+                        value=[25070,-10870];
+                      },
+                      {
+                        present=2;
+                        value=[2400,-1530];
+                      }
+                    );
+                    conctToCnt=4;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=2;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  }
+                );
+              },
+              {
+                desptName="e2w";
+                upstreamNodeId={
+                  region=0;
+                  id=0;
+                };
+                speedLimitsCnt=1;
+                speedLimits=(
+                  {
+                    type=5;
+                    speed=833;
+                  }
+                );
+                lanesCnt=4;
+                lanes=(
+                  {
+                    laneID=1;
+                    maneuvers=1;
+                    pointsCnt=3;
+                    points=(
+                      {
+                        present=3;
+                        value=[6940,21970];
+                      },
+                      {
+                        present=3;
+                        value=[3800,10880];
+                      },
+                      {
+                        present=1;
+                        value=[880,1700];
+                      }
+                    );
+                    conctToCnt=6;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=2;
+                        };
+                        signalGroup=32;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=34;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=31;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=2;
+                    maneuvers=1;
+                    pointsCnt=4;
+                    points=(
+                      {
+                        present=3;
+                        value=[7240,21860];
+                      },
+                      {
+                        present=3;
+                        value=[4950,13520];
+                      },
+                      {
+                        present=2;
+                        value=[2750,6380];
+                      },
+                      {
+                        present=1;
+                        value=[1140,1590];
+                      }
+                    );
+                    conctToCnt=4;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=2;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=3;
+                    maneuvers=5;
+                    pointsCnt=4;
+                    points=(
+                      {
+                        present=3;
+                        value=[7510,21750];
+                      },
+                      {
+                        present=3;
+                        value=[5070,12930];
+                      },
+                      {
+                        present=2;
+                        value=[3590,7880];
+                      },
+                      {
+                        present=1;
+                        value=[1480,1430];
+                      }
+                    );
+                    conctToCnt=4;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=19;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=3;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=34;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=23;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=4;
+                    maneuvers=1;
+                    pointsCnt=4;
+                    points=(
+                      {
+                        present=3;
+                        value=[8290,21660];
+                      },
+                      {
+                        present=3;
+                        value=[7490,20270];
+                      },
+                      {
+                        present=3;
+                        value=[5530,13320];
+                      },
+                      {
+                        present=3;
+                        value=[4420,10700];
+                      }
+                    );
+                    conctToCnt=1;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  }
+                );
+              },
+              {
+                desptName="s2n";
+                upstreamNodeId={
+                  region=0;
+                  id=0;
+                };
+                speedLimitsCnt=1;
+                speedLimits=(
+                  {
+                    type=5;
+                    speed=833;
+                  }
+                );
+                lanesCnt=2;
+                lanes=(
+                  {
+                    laneID=1;
+                    maneuvers=4;
+                    pointsCnt=2;
+                    points=(
+                      {
+                        present=3;
+                        value=[-16350,7040];
+                      },
+                      {
+                        present=2;
+                        value=[-2660,1450];
+                      }
+                    );
+                    conctToCnt=6;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=2;
+                        };
+                        signalGroup=32;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=34;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=31;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=2;
+                    maneuvers=4;
+                    pointsCnt=3;
+                    points=(
+                      {
+                        present=3;
+                        value=[-15900,7340];
+                      },
+                      {
+                        present=2;
+                        value=[-5450,3070];
+                      },
+                      {
+                        present=2;
+                        value=[-2520,1860];
+                      }
+                    );
+                    conctToCnt=4;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=2;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  }
+                );
+              },
+              {
+                desptName="w2e";
+                upstreamNodeId={
+                  region=0;
+                  id=0;
+                };
+                speedLimitsCnt=1;
+                speedLimits=(
+                  {
+                    type=5;
+                    speed=833;
+                  }
+                );
+                lanesCnt=3;
+                lanes=(
+                  {
+                    laneID=1;
+                    maneuvers=1;
+                    pointsCnt=2;
+                    points=(
+                      {
+                        present=3;
+                        value=[-6180,-16370];
+                      },
+                      {
+                        present=1;
+                        value=[-960,-1360];
+                      }
+                    );
+                    conctToCnt=6;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=2;
+                        };
+                        signalGroup=32;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=34;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=31;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=2;
+                    maneuvers=1;
+                    pointsCnt=2;
+                    points=(
+                      {
+                        present=3;
+                        value=[-6470,-16230];
+                      },
+                      {
+                        present=1;
+                        value=[-1230,-1250];
+                      }
+                    );
+                    conctToCnt=4;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=2;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=4;
+                        };
+                        signalGroup=13;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=33;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  },
+                  {
+                    laneID=3;
+                    maneuvers=5;
+                    pointsCnt=2;
+                    points=(
+                      {
+                        present=3;
+                        value=[-6790,-16070];
+                      },
+                      {
+                        present=1;
+                        value=[-1540,-1130];
+                      }
+                    );
+                    conctToCnt=4;
+                    conctTo=(
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=19;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=3;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=24;
+                        };
+                        connectingLane={
+                          laneID=3;
+                          maneuvers=1;
+                        };
+                        signalGroup=21;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=33;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=1;
+                        };
+                        signalGroup=1;
+                      },
+                      {
+                        remoteNodeID={
+                          region=20;
+                          id=34;
+                        };
+                        connectingLane={
+                          laneID=1;
+                          maneuvers=4;
+                        };
+                        signalGroup=23;
+                      }
+                    );
+                    speedLimitsCnt=1;
+                    speedLimits=(
+                      {
+                        type=5;
+                        speed=833;
+                      }
+                    );
+                  }
+                );
+              }
+            );
+          }
         );
-    };
+      }
+    );
+  };
 };
