@@ -6,86 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1198</width>
-    <height>855</height>
+    <width>1168</width>
+    <height>854</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Map配置文件生成工具 1.0</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>logo.ico</normaloff>logo.ico</iconset>
+   <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_12">
-   <item row="0" column="0" rowspan="2">
-    <widget class="QFrame" name="frame_2">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_shuaxin">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>刷新</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_save">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>保存</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="pushButton_open">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>打开</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="3">
-       <widget class="QTreeView" name="treeView_read">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="0">
+   <item row="0" column="1">
     <widget class="QFrame" name="frame_3">
      <property name="sizePolicy">
       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -116,16 +45,10 @@
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="1">
          <widget class="QComboBox" name="comboBox_nodexh">
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="font">
            <font>
             <family>Arial</family>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
          </widget>
@@ -135,7 +58,7 @@
           <property name="font">
            <font>
             <family>Arial</family>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text">
@@ -150,14 +73,14 @@
          <widget class="QComboBox" name="comboBox_linkxh">
           <property name="minimumSize">
            <size>
-            <width>150</width>
+            <width>141</width>
             <height>0</height>
            </size>
           </property>
           <property name="font">
            <font>
             <family>Arial</family>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
          </widget>
@@ -167,7 +90,7 @@
           <property name="font">
            <font>
             <family>Arial</family>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text">
@@ -183,7 +106,7 @@
           <property name="font">
            <font>
             <family>Arial</family>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
          </widget>
@@ -193,7 +116,7 @@
           <property name="font">
            <font>
             <family>Arial</family>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
            </font>
           </property>
           <property name="text">
@@ -211,7 +134,7 @@
         <property name="font">
          <font>
           <family>Arial</family>
-          <pointsize>11</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="currentIndex">
@@ -224,173 +147,95 @@
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_6">
-            <property name="verticalSpacing">
-             <number>25</number>
-            </property>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_nodeName">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
+             <widget class="QLineEdit" name="lineEdit_nodeName"/>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>lat</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="8" column="1">
              <widget class="QPushButton" name="pushButton_nodeLoad">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>加载node</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEdit_nodeLon">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>nodeRefID region</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_8">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>refPoint lon</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>refPoint lat</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEdit_nodeLat">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_5">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>nodeRefID id</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_nodeId">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_nodeRegion">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QPushButton" name="pushButton_nodeCreat">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>添加node</string>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_2">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>创建的node名字</string>
               </property>
              </widget>
             </item>
             <item row="5" column="1">
-             <widget class="QPushButton" name="pushButton_nodeDel">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
+             <widget class="QLineEdit" name="lineEdit_nodeLat"/>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLineEdit" name="lineEdit_nodeLon"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>region</string>
               </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>lon</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_nodeId"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>refPoint</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_nodeRegion"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>nodeRefID</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>id</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QPushButton" name="pushButton_nodeLoad_2">
               <property name="text">
                <string>删除node</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="0">
-             <widget class="QPushButton" name="pushButton_nodeMod">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
+            <item row="8" column="0">
+             <widget class="QPushButton" name="pushButton_nodeLoad_3">
               <property name="text">
                <string>修改node</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QPushButton" name="pushButton_nodeCreat">
+              <property name="text">
+               <string>添加node</string>
               </property>
              </widget>
             </item>
@@ -405,43 +250,7 @@
          <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="0" rowspan="2">
            <layout class="QGridLayout" name="gridLayout_2">
-            <property name="verticalSpacing">
-             <number>15</number>
-            </property>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_34">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>speedLimitsdown</string>
-              </property>
-             </widget>
-            </item>
             <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEdit_linkSpeedUp">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_linkUpNodeId">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
              <widget class="QLineEdit" name="lineEdit_linkSpeedDown">
               <property name="font">
                <font>
@@ -451,82 +260,7 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_13">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>speedLimitsup</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>name</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QPushButton" name="pushButton_linkAdd">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>添加link</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEdit_linkWidth">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>upstreamNodeId</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QPushButton" name="pushButton_linkDel">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>删除link</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QPushButton" name="pushButton_linkMod">
               <property name="font">
                <font>
@@ -539,7 +273,7 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
+            <item row="1" column="1">
              <widget class="QLineEdit" name="lineEdit_linkName">
               <property name="font">
                <font>
@@ -549,7 +283,7 @@
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QPushButton" name="pushButton_linkLoad">
               <property name="font">
                <font>
@@ -562,7 +296,89 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit_linkSpeedUp">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_34">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>speedLimitsdown</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_linkUpNodeId">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_12">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>upstreamNodeId</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_11">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>name</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QLineEdit" name="lineEdit_linkWidth">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QPushButton" name="pushButton_linkDel">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>删除link</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
              <widget class="QLabel" name="label_14">
               <property name="font">
                <font>
@@ -575,12 +391,8 @@
               </property>
              </widget>
             </item>
-           </layout>
-          </item>
-          <item row="0" column="1">
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_31">
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_13">
               <property name="font">
                <font>
                 <family>Arial</family>
@@ -588,17 +400,57 @@
                </font>
               </property>
               <property name="text">
-               <string>当前points序号</string>
+               <string>speedLimitsup</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="comboBox_linkPointsxh">
+            <item row="6" column="0">
+             <widget class="QPushButton" name="pushButton_linkAdd">
               <property name="font">
                <font>
                 <family>Arial</family>
                 <pointsize>11</pointsize>
                </font>
+              </property>
+              <property name="text">
+               <string>添加link</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="2">
+             <widget class="QPushButton" name="pushButton_loadlinkpage">
+              <property name="text">
+               <string>加载</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="1">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="3" column="0">
+             <widget class="QPushButton" name="pushButton_linkPointsAdd">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>添加points</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QPushButton" name="pushButton_linkPointsDel">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>删除points</string>
               </property>
              </widget>
             </item>
@@ -612,6 +464,29 @@
               </property>
               <property name="text">
                <string>Lat</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBox_linkPointsxh">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_31">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>当前points序号</string>
               </property>
              </widget>
             </item>
@@ -634,6 +509,19 @@
                 <family>Arial</family>
                 <pointsize>11</pointsize>
                </font>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QPushButton" name="pushButton_linkPointsMod">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>修改points</string>
               </property>
              </widget>
             </item>
@@ -666,8 +554,8 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
-             <widget class="QPushButton" name="pushButton_linkPointsAdd">
+            <item row="5" column="1">
+             <widget class="QPushButton" name="pushButton_linkPointsLoad">
               <property name="font">
                <font>
                 <family>Arial</family>
@@ -675,20 +563,7 @@
                </font>
               </property>
               <property name="text">
-               <string>添加points</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QPushButton" name="pushButton_linkPointsDel">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>删除points</string>
+               <string>加载points</string>
               </property>
              </widget>
             </item>
@@ -825,133 +700,15 @@
          <attribute name="title">
           <string>lanes</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_15">
-          <item row="0" column="0" rowspan="2">
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_9">
-            <property name="verticalSpacing">
-             <number>15</number>
-            </property>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_lanesWidth">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
             <item row="6" column="1">
-             <widget class="QPushButton" name="pushButton_lanesLoad">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>加载lanes</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEdit_lanesSpeedLimitDown">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_lanesId">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEdit_lanesSpeedLimitUp">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QPushButton" name="pushButton_lanesAdd">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>添加lanes</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QPushButton" name="pushButton_lanesMod">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>修改lanes</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_74">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>speedLimitsUp</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_lanesManeuvers">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_75">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>speedLimitsDown</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
              <widget class="QPushButton" name="pushButton_lanesDel">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -959,38 +716,48 @@
               </property>
              </widget>
             </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_74">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>speedLimitsUp</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_lanesManeuvers">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QPushButton" name="pushButton_lanesAdd">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>添加lanes</string>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_64">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>maneuvers</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_62">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>laneID</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
              <widget class="QLabel" name="label_63">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -998,16 +765,141 @@
               </property>
              </widget>
             </item>
+            <item row="7" column="0">
+             <widget class="QPushButton" name="pushButton_lanesMod">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>修改lanes</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_64">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>maneuvers</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit_lanesSpeedLimitDown">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_lanesWidth">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QPushButton" name="pushButton_lanesLoad">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>加载lanes</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="lineEdit_lanesId">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_75">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>speedLimitsDown</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_62">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>laneID</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QLineEdit" name="lineEdit_lanesSpeedLimitUp">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="2">
+             <widget class="QPushButton" name="pushButton_loadlanespage">
+              <property name="text">
+               <string>加载</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
           <item row="0" column="1">
            <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_66">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>points序号</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="1">
              <widget class="QComboBox" name="comboBox_lanesPointsxh">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
@@ -1017,37 +909,11 @@
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
                <string>lat</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_66">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>points序号</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QPushButton" name="pushButton_lanesPointsAdd">
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>11</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>添加points</string>
               </property>
              </widget>
             </item>
@@ -1056,7 +922,7 @@
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
@@ -1066,7 +932,7 @@
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1079,8 +945,21 @@
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QPushButton" name="pushButton_lanesPointsAdd">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>添加points</string>
               </property>
              </widget>
             </item>
@@ -1089,7 +968,7 @@
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1097,16 +976,38 @@
               </property>
              </widget>
             </item>
-           </layout>
-          </item>
-          <item row="1" column="1">
-           <layout class="QGridLayout" name="gridLayout_11">
-            <item row="0" column="0">
+            <item row="4" column="0">
+             <widget class="QPushButton" name="pushButton_lanesPointsMod">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>修改points</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QPushButton" name="pushButton_lanesPointsLoad">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>加载points</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
              <widget class="QLabel" name="label_76">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1114,22 +1015,22 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
+            <item row="5" column="1">
              <widget class="QComboBox" name="comboBox_lanesConctToxh">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="label_70">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1137,22 +1038,22 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
+            <item row="6" column="1">
              <widget class="QLineEdit" name="lineEdit_lanesNodeId">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="label_71">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1160,22 +1061,22 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
+            <item row="7" column="1">
              <widget class="QLineEdit" name="lineEdit_lanesDownNodeId">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="label_72">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1183,22 +1084,22 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
+            <item row="8" column="1">
              <widget class="QLineEdit" name="lineEdit_lanesDownManeuvers">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
+            <item row="9" column="0">
              <widget class="QLabel" name="label_73">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1206,22 +1107,22 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
+            <item row="9" column="1">
              <widget class="QLineEdit" name="lineEdit_lanesDownSign">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
              </widget>
             </item>
-            <item row="5" column="0">
+            <item row="10" column="0">
              <widget class="QPushButton" name="pushButton_lanesConcToAdd">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1229,12 +1130,12 @@
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="10" column="1">
              <widget class="QPushButton" name="pushButton_lanesConcToDel">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1242,12 +1143,12 @@
               </property>
              </widget>
             </item>
-            <item row="6" column="0">
+            <item row="11" column="0">
              <widget class="QPushButton" name="pushButton_lanesConcToMod">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1255,12 +1156,12 @@
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="11" column="1">
              <widget class="QPushButton" name="pushButton_lanesConcToLoad">
               <property name="font">
                <font>
                 <family>Arial</family>
-                <pointsize>11</pointsize>
+                <pointsize>10</pointsize>
                </font>
               </property>
               <property name="text">
@@ -1277,7 +1178,7 @@
      </layout>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="3">
+   <item row="1" column="1">
     <widget class="QFrame" name="frame">
      <property name="sizePolicy">
       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -1298,6 +1199,73 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_14"/>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QFrame" name="frame_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_open">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>打开</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButton_shuaxin">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>刷新</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButton_save">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>保存</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QTreeView" name="treeView_read">
+        <property name="minimumSize">
+         <size>
+          <width>407</width>
+          <height>772</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
@@ -1343,8 +1311,8 @@
    <slot>push_creatnode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>157</x>
-     <y>730</y>
+     <x>595</x>
+     <y>450</y>
     </hint>
     <hint type="destinationlabel">
      <x>444</x>
@@ -1359,8 +1327,8 @@
    <slot>push_addlinkpoint()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>389</y>
+     <x>889</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
      <x>715</x>
@@ -1375,8 +1343,8 @@
    <slot>push_addlinkmovement()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>905</x>
+     <y>439</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1391,8 +1359,8 @@
    <slot>push_addlink()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>612</x>
+     <y>410</y>
     </hint>
     <hint type="destinationlabel">
      <x>905</x>
@@ -1407,8 +1375,8 @@
    <slot>push_addlanespoint()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>389</y>
+     <x>923</x>
+     <y>220</y>
     </hint>
     <hint type="destinationlabel">
      <x>445</x>
@@ -1423,8 +1391,8 @@
    <slot>push_addlanesconct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>923</x>
+     <y>450</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1439,8 +1407,8 @@
    <slot>push_addlanes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>601</x>
+     <y>417</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1455,12 +1423,28 @@
    <slot>push_loadnode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>720</x>
-     <y>799</y>
+     <x>1128</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
      <y>400</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_linkPointsMod</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>push_modlinkpoints()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>885</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>876</x>
+     <y>430</y>
     </hint>
    </hints>
   </connection>
@@ -1471,8 +1455,8 @@
    <slot>push_modlinkmovement()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>905</x>
+     <y>479</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1487,8 +1471,8 @@
    <slot>push_dellinkpoints()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>389</y>
+     <x>1128</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
      <x>446</x>
@@ -1503,8 +1487,8 @@
    <slot>push_dellinkmovement()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>1128</x>
+     <y>439</y>
     </hint>
     <hint type="destinationlabel">
      <x>442</x>
@@ -1519,8 +1503,8 @@
    <slot>push_modlink()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>612</x>
+     <y>466</y>
     </hint>
     <hint type="destinationlabel">
      <x>447</x>
@@ -1535,8 +1519,8 @@
    <slot>push_dellink()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>760</x>
+     <y>410</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1551,8 +1535,8 @@
    <slot>push_modconct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>923</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1567,12 +1551,28 @@
    <slot>push_delconct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>1128</x>
+     <y>450</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
      <y>175</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_lanesPointsMod</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>push_modlanespoints()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>923</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>270</y>
     </hint>
    </hints>
   </connection>
@@ -1583,8 +1583,8 @@
    <slot>push_dellanespoints()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>389</y>
+     <x>1128</x>
+     <y>220</y>
     </hint>
     <hint type="destinationlabel">
      <x>446</x>
@@ -1596,11 +1596,11 @@
    <sender>pushButton_lanesMod</sender>
    <signal>clicked()</signal>
    <receiver>Form</receiver>
-   <slot>push_modlanes()</slot>
+   <slot>push_dellanes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>601</x>
+     <y>466</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1615,12 +1615,28 @@
    <slot>push_dellanes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>797</x>
+     <y>417</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
      <y>320</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_linkPointsLoad</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>push_loadlinkpoint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1128</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>445</x>
+     <y>256</y>
     </hint>
    </hints>
   </connection>
@@ -1631,8 +1647,8 @@
    <slot>push_loadlinkmovement()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>1128</x>
+     <y>479</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1647,12 +1663,28 @@
    <slot>push_loadlink()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>760</x>
+     <y>466</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
      <y>478</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_lanesPointsLoad</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>push_loadlanespoint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1128</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>445</x>
+     <y>165</y>
     </hint>
    </hints>
   </connection>
@@ -1663,8 +1695,8 @@
    <slot>push_loadlanes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>135</x>
-     <y>389</y>
+     <x>797</x>
+     <y>466</y>
     </hint>
     <hint type="destinationlabel">
      <x>443</x>
@@ -1679,8 +1711,8 @@
    <slot>push_loadconct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>397</y>
+     <x>1128</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1695,8 +1727,8 @@
    <slot>push_save()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>736</x>
-     <y>52</y>
+     <x>429</x>
+     <y>40</y>
     </hint>
     <hint type="destinationlabel">
      <x>448</x>
@@ -1705,14 +1737,14 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_nodeDel</sender>
+   <sender>pushButton_nodeLoad_2</sender>
    <signal>clicked()</signal>
    <receiver>Form</receiver>
    <slot>push_delnode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>720</x>
-     <y>730</y>
+     <x>1128</x>
+     <y>450</y>
     </hint>
     <hint type="destinationlabel">
      <x>1167</x>
@@ -1721,14 +1753,14 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_nodeMod</sender>
+   <sender>pushButton_nodeLoad_3</sender>
    <signal>clicked()</signal>
    <receiver>Form</receiver>
    <slot>push_modnode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>157</x>
-     <y>799</y>
+     <x>595</x>
+     <y>485</y>
     </hint>
     <hint type="destinationlabel">
      <x>445</x>
@@ -1737,50 +1769,34 @@
    </hints>
   </connection>
   <connection>
-   <sender>tabWidget</sender>
-   <signal>currentChanged(int)</signal>
+   <sender>pushButton_loadlanespage</sender>
+   <signal>clicked()</signal>
    <receiver>Form</receiver>
-   <slot>sign_tabPageChange()</slot>
+   <slot>push_loadlanepage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>81</x>
-     <y>328</y>
+     <x>717</x>
+     <y>126</y>
     </hint>
     <hint type="destinationlabel">
-     <x>5</x>
-     <y>536</y>
+     <x>446</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>comboBox_nodexh</sender>
-   <signal>currentIndexChanged(int)</signal>
+   <sender>pushButton_loadlinkpage</sender>
+   <signal>clicked()</signal>
    <receiver>Form</receiver>
-   <slot>sign_comboxChange_node()</slot>
+   <slot>push_loadlinkpage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>150</x>
-     <y>295</y>
+     <x>634</x>
+     <y>123</y>
     </hint>
     <hint type="destinationlabel">
-     <x>100</x>
-     <y>265</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>comboBox_linkxh</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>Form</receiver>
-   <slot>sign_comboxChange_link()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>458</x>
-     <y>296</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>332</x>
-     <y>267</y>
+     <x>445</x>
+     <y>132</y>
     </hint>
    </hints>
   </connection>
@@ -1816,8 +1832,8 @@
   <slot>push_save()</slot>
   <slot>push_delnode()</slot>
   <slot>push_modnode()</slot>
-  <slot>sign_tabPageChange()</slot>
-  <slot>sign_comboxChange_node()</slot>
-  <slot>sign_comboxChange_link()</slot>
+  <slot>push_loadlanepage()</slot>
+  <slot>push_loadlinkpage()</slot>
+  <slot>push_loadnodepage()</slot>
  </slots>
 </ui>
