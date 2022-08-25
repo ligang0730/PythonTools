@@ -1,0 +1,46 @@
+//
+// VehEmgExt.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+enum ResponseType {
+    notInUseOrNotEquipped_response_type = 0;
+    emergency_response_type             = 1;    // -- active service call at emergency level
+    nonEmergency_response_type          = 2;    // -- also used when returning from service call
+    pursuit_response_type               = 3;    // -- sender driving may be erratic
+    stationary_response_type            = 4;    // -- sender is not moving, stopped along roadside
+    slowMoving_response_type            = 5;    // -- such a litter trucks, etc.
+    stopAndGoMovement_response_type     = 6;    // -- such as school bus or garbage truck
+}
+
+enum SirenInUse {
+    unavailable_siren_inuse = 0;    // -- Not Equipped or unavailable
+    notInUse_siren_inuse    = 1;
+    inUse_siren_inuse       = 2;
+    reserved_siren_inuse    = 3;    // -- for future use
+}
+
+enum LightbarInUse {
+    unavailable_light_bar_inuse         = 0;    // -- Not Equipped or unavailable
+    notInUse_light_bar_inuse            = 1;    // -- none active
+    inUse_light_bar_inuse               = 2;
+    yellowCautionLights_light_bar_inuse = 3;
+    schooldBusLights_light_bar_inuse    = 4;
+    arrowSignsActive_light_bar_inuse    = 5;
+    slowMovingVehicle_light_bar_inuse   = 6;
+    freqStops_light_bar_inuse           = 7;
+}
+
+
+message VehicleEmergencyExtensions {
+    ResponseType responseType   = 1;
+    SirenInUse sirenUse         = 2;
+    LightbarInUse lightsUse     = 3;
+}
+
+

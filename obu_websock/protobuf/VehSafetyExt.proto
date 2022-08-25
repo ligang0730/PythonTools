@@ -1,0 +1,101 @@
+//
+// VehSafetyExt.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "DefTime.proto";
+import "VehStatus.proto";
+import "DefMotion.proto";
+import "DefPosition.proto";
+
+
+// BIT STRING
+enum GNSSstatus {
+    unavailable_gnss_status                 = 0;    // -- Not Equipped or unavailable
+    isHealthy_gnss_status                   = 1;
+    isMonitored_gnss_status                 = 2;
+    baseStationType_gnss_status             = 3;    // -- Set to zero if a moving base station,
+    // -- or if a rover device (an OBU),
+    // -- set to one if it is a fixed base station
+    aPDOPofUnder5_gnss_status               = 4;    // -- A dilution of precision greater than 5
+    inViewOfUnder5_gnss_status              = 5;    // -- Less than 5 satellites in view
+    localCorrectionsPresent_gnss_status     = 6;    // -- pseudo range corrections used
+    networkCorrectionsPresent_gnss_status   = 7;    // -- RTK type corrections used
+}
+
+
+message FullPositionVector {
+    DDateTime utcTime                   = 1;
+    // -- time with mSec precision
+    Position3D pos                      = 2;
+    uint32 heading                      = 3;
+    // INTEGER (0..28800)
+    // -- Units of 0.0125 degrees
+    // -- A range of 0 to 359.9875 degrees
+    TransmissionState transmission      = 4;
+    uint32 speed                        = 5;
+    // INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    PositionConfidenceSet posAccuracy   = 6;
+    TimeConfidence timeConfidence       = 7;
+    MotionConfidenceSet motionCfd       = 8;
+}
+
+
+message PathHistoryPoint {
+    Position3D points                   = 1;
+    uint32 timeOffset                   = 2;
+    // -- Offset backwards in time
+    // INTEGER (1..65535)
+    // -- Units of of 10 mSec,
+    // -- with a range of 0.01 seconds to 10 minutes and 55.34 seconds
+    uint32 speed                        = 3;
+    // -- Speed over the reported period
+    // INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    PositionConfidenceSet posAccuracy   = 4;
+    // -- The accuracy of this value
+    int32 heading                       = 5;
+    // -- overall heading
+    // INTEGER (0..240)
+    // -- Units of 1.5 degrees
+    // -- over a range of 0~358.5 degrees
+}
+
+
+message PathHistory {
+    FullPositionVector initialPosition  = 1;
+    GNSSstatus currGNSSstatus           = 2;
+    repeated PathHistoryPoint points    = 3;
+    // SIZE(1..23)
+}
+
+
+message PathPrediction {
+    int32 radiusOfCurve = 1;
+    // RadiusOfCurvature ::= INTEGER (-32767..32767) 
+    // -- Units of 10cm 
+    // -- A straight path to use value of 32767
+    // -- Units of 10cm
+    // -- straight path to use value of 32767
+    uint32 confidence               = 2;
+    // Confidence ::= INTEGER (0..200)
+    // -- Units of 0.5 percent
+
+}
+
+message VehicleSafetyExtensions {
+    VehicleEventFlags events        = 1;    // OPTIONAL
+    PathHistory pathHistory         = 2;    // OPTIONAL
+    PathPrediction pathPrediction   = 3;    // OPTIONAL
+    ExteriorLights lights           = 4;    // OPTIONAL
+}
+
+

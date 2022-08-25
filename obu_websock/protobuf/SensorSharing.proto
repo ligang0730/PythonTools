@@ -1,0 +1,263 @@
+//
+// SensorSharing.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "RSI.proto";
+import "RSM.proto";
+import "VIR.proto";
+import "DefMotion.proto";
+import "Confidence.proto";
+import "DefPosition.proto";
+import "VehSafetyExt.proto";
+import "DefAcceleration.proto";
+import "google/protobuf/wrappers.proto";
+
+
+enum EquipmentType {
+    unknown_equipment_type  = 0;
+    rsu_equipment_type      = 1;
+    obu_equipment_type      = 2;
+    vru_equipment_type      = 3;
+}
+
+enum DetectedPTCType {
+    unknown_detected_ptc_type           = 0;    // -- 未知障碍物
+    unknown_movable_detected_ptc_type   = 1;    // -- 未知可移动障碍物
+    unknown_unmovable_detected_ptc_type = 2;    // -- 未知不可移动障碍物
+    car_detected_ptc_type               = 3;    // -- 轿车
+    van_detected_ptc_type               = 4;    // --面包车
+    truck_detected_ptc_type             = 5;    // --卡车
+    bus_detected_ptc_type               = 6;    // --大巴
+    cyclist_detected_ptc_type           = 7;    // --自行车
+    motorcyclist_detected_ptc_type      = 8;    // --摩托车
+    tricyclist_detected_ptc_type        = 9;    // --三轮车
+    pedestrian_detected_ptc_type        = 10;   // --行人
+}
+
+enum ObstacleType {
+    unknown_obstacle_type                           = 0;
+    rockfall_obstacle_type                          = 1;
+    landslide_obstacle_type                         = 2;
+    animal_intrusion_obstacle_type                  = 3;
+    liquid_spill_obstacle_type                      = 4;
+    goods_scattered_obstacle_type                   = 5;
+    trafficcone_obstacle_type                       = 6;    // -- 锥筒
+    safety_triangle_obstacle_type                   = 7;    // -- 三角牌
+    traffic_roadblock_obstacle_type                 = 8;
+    inspection_shaft_without_cover_obstacle_type    = 9;
+    unknown_fragments_obstacle_type                 = 10;
+    unknown_hard_object_obstacle_type               = 11;
+    unknown_soft_object_obstacle_type               = 12;
+}
+
+
+message Planning {
+    uint32 duration                         = 1;
+    // -- time duration for this plan
+    // INTEGER (0..600)
+    // -- Unit 0.1s
+    uint32 planConfidence                   = 2;
+    // INTEGER (0..200)
+    // -- Units of 0.5 percent
+    uint32 drivingBehavior                  = 3;
+    // BIT STRING of enum DriveBehavior
+    repeated PathPlanningPoint pathPlanning = 4;
+    // PathPlanning ::= SEQUENCE (SIZE(1..100)) OF PathPlanningPoint
+    // -- 考虑8s规划，1s用10个点表示，共需80个点。预留到100个
+}
+
+
+message Attitude {
+    int32 pitch     = 1;
+    // Pitch ::= INTEGER (-7200..7200) 
+    // -- LSB units of 0.0125 degrees (signed) 
+    // -- range of -90 to 90 degrees
+    int32 roll      = 2;
+    // Roll ::= INTEGER (-7200..7200) 
+    // -- LSB units of 0.0125 degrees (signed)
+    // -- range of -90 to 90 degrees 
+    int32 yaw       = 3;
+    // Yaw ::= INTEGER (-14400..14400)
+    // -- LSB units of 0.0125 degrees (signed)
+    // -- range of -180 to 180 degrees
+}
+
+
+message AttitudeConfidence {
+    HeadingConfidence pitchConfidence       = 1;
+    HeadingConfidence rollRateConfidence    = 2;
+    HeadingConfidence yawRate               = 3;
+}
+
+
+message AngularVelocity {
+    int32 pitchRate     = 1;
+    // PitchRate ::= INTEGER (-32767..32767) 
+    // -- LSB units of 0.01 degrees per second(signed)
+    int32 rollRate      = 2;
+    // RollRate ::= INTEGER (-32767..32767) 
+    // -- LSB units of 0.01 degrees per second(signed)
+    int32 yawRate       = 3;
+    // YawRate ::= INTEGER (-32767..32767)
+}
+
+
+message AngularVelocityConfidence {
+    AngularVConfidence pitchRate    = 1;
+    AngularVConfidence rollRate     = 2;
+    AngularVConfidence yawRate      = 3;
+}
+
+
+
+message MotorDataExtension {
+    uint32 lights                                   = 1;
+    // ExteriorLights, in VehStatus.proto
+    Attitude vehAttitude                            = 2;
+    AttitudeConfidence vehAttitudeConfidence        = 3;
+    AngularVelocity vehAngVel                       = 4;
+    AngularVelocityConfidence vehAngVelConfidence   = 5;
+}
+
+
+message Non_motorDataExtension {
+    uint32 overallRadius            = 1;
+    // INTEGER (0..200),
+    // -- In units of one decimeter
+    // -- Radius considering cluster or attachment
+    // -- Type-related Data --
+    //Non_motorData non_motorData     = 2;
+}
+
+
+message DetectedPTCData {
+    ParticipantData ptc                     = 1;
+    // -- Basic information of traffic participant
+    ObjectSizeConfidence objSizeConfidence  = 2;
+    // --大小置信度
+    DetectedPTCType detectedPTCType         = 3;
+    uint32 typeConfidence                   = 4;
+    // INTEGER (0..200)
+    // -- Units of 0.5 percent
+    // -- 类型置信度
+    AccSet4WayConfidence acc4WayConfidence  = 5;
+    // --四轴加速度置信度
+    uint32 statusDuration                   = 6;
+    // INTEGER (1..65535)
+    // -- Time length for which ptc keeps the same situation
+    // -- Mainly used for stationary vehicle
+    PathHistory pathHistory                 = 7;
+    repeated Planning planning              = 8;
+    // -- 路侧对被感知对象的预测可以比车端做得更优，协同预测
+    uint32 tracking                         = 9;
+    // INTEGER (1..65535)
+    // -- tracking time of this obstacle
+    // -- in seconds
+    repeated Position3D polygon             = 10;
+    // -- 3D vertex list
+
+    oneof type_relatedExt {
+        MotorDataExtension motorExt         = 11;
+        // -- Data Extension for vehicle
+        Non_motorDataExtension non_motorExt = 12;
+        // -- Data Extension for vehicle
+    }
+}
+
+message ObjectSize {
+    uint32 width    = 1;
+    // SizeValue ::= INTEGER (0..1023)
+    // -- LSB units are 10 cm with a range of >100 meters
+    uint32 length   = 2;
+    // SizeValue ::= INTEGER (0..1023)
+    // -- LSB units are 10 cm with a range of >100 meters
+    uint32 height   = 3;    // OPTIONAL
+    // SizeValue ::= INTEGER (0..1023)
+    // -- LSB units are 10 cm with a range of >100 meters
+}
+
+
+message DetectedObstacleData {
+    ObstacleType obsType                            = 1;
+    google.protobuf.UInt32Value objTypeConfidence   = 2;    // OPTIONAL,
+    // Confidence ::= INTEGER (0..200)
+    // -- Units of 0.5 percent
+    uint32 obsId                                    = 3;
+    // obsId INTEGER (0..65535),
+    // -- temporary ID set by the message sender
+    // -- 0 is reserved
+    // -- 1..255 represent different detected obstacles
+    // -- obsId of different participant needs to be unique locally
+    SourceType source                               = 4;
+    uint32 secMark                                  = 5;
+    // secMark DSecond,
+    // DSecond ::= INTEGER (0..65535)
+    // -- units of milliseconds
+    Position3D pos                                  = 6;
+    PositionConfidenceSet posConfidence             = 7;
+    uint32 speed                                    = 8;
+    // Speed: Speed ::= INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    SpeedConfidence speedCfd                        = 9;    // OPTIONAL,
+    uint32 heading                                  = 10;
+    // Heading ::= INTEGER (0..28800)
+    // -- Units of 0.0125 degrees
+    // -- A range of 0 to 359.9875 degrees
+    HeadingConfidence headingCfd                    = 11;   // OPTIONAL,
+    uint32 verSpeed                                 = 12;
+    // Speed: Speed ::= INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    SpeedConfidence verSpeedConfidence              = 13;   // OPTIONAL,
+    AccelerationSet4Way accelSet                    = 14;   // OPTIONAL,
+    ObjectSize size                                 = 15;
+    ObjectSizeConfidence objSizeConfidence          = 16;   // OPTIONAL,
+    uint32 tracking                                 = 17;
+    // tracking INTEGER (1..65535) OPTIONAL,
+    // -- tracking time of this obstacle
+    // -- in seconds
+    repeated Position3D polygon                     = 18;   // OPTIONAL,
+    // Polygon ::= SEQUENCE(SIZE(4..32)) OF PositionOffsetLLV
+    // -- 3D vertex list
+}
+
+
+message Polygon {
+    repeated Position3D polygon             = 1;
+}
+
+
+message SensorSharingMsg {
+    uint32 msgCnt                           = 1;    // 0~127
+    string id                               = 2;    // SIZE(8)
+    // -- temperary vehicle ID / RSU ID
+    // -- who provides the sensor sharing info.
+    EquipmentType equipmentType             = 3;
+    // -- Type of the sender
+    uint32 secMark                          = 4;
+    Position3D sensorPos                    = 5;
+    // -- Position of the RSU or OBU that sends this message
+    // -- Used as the reference position within this VSS message
+    repeated Polygon detectedRegion         = 6;    // OPTIONAL
+    // -- detection area description
+    // --自动驾驶车辆结合目标物的输出做不同的安全策略
+    repeated DetectedPTCData participants   = 7;    // OPTIONAL
+    // DetectedPTCList ::= SEQUENCE (SIZE(1..512)) OF DetectedPTCData
+    // -- 一个大路口的目标物可以达到300到500
+    // -- 实际使用时，需要考虑底层空口资源能力
+    // -- All or part of the traffic participants
+    repeated DetectedObstacleData obstacles = 8;    // OPTIONAL
+    // -- All or part of Obstacles
+    repeated RTEData rtes                   = 9;    // OPTIONAL
+    // RTEList ::= SEQUENCE (SIZE(1..8)) OF RTEData
+    // -- All the rte data packed in this message
+}
+
+

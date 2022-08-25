@@ -1,0 +1,22 @@
+//
+// VehSize.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+//import "google/protobuf/wrappers.proto";
+
+
+message VehSize {
+    int32 width         = 1;    // Units are 1 cm with a range of >10 meters
+    int32 length        = 2;    // Units of 1 cm with a range of >40 meters
+    oneof hgt {
+        int32 height    = 3;    // Units of 5 cm, range to 6.35 meters
+    }
+}
+
+

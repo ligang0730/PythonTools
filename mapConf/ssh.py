@@ -29,6 +29,18 @@ class E_Maneuvers(Enum):
     LEFTTURN = 1
     RIGHTTURN = 2
     UTURN = 3
+    LEFTTURNONREDALLOWE = 4
+    RIGHTTURNONREDALLOWE = 5
+    LANECHANGEALLOWED = 6
+    NOSTOPINGALLOWED = 7
+
+list_Maneuvers = ['stop', 'Go straight', 'Turn left', 'Go straight + turn left', 'Turn right',
+                  'Go straight + turn right', 'Turn left + turn right',
+                  'Go straight + turn left + turn right', 'Turn around', 'Go straight + turn around',
+                  'Turn left + turn around', 'Go straight + turn left + turn around',
+                  'Turn right + turn around', 'Go straight + turn right + turn around',
+                  'Turn left + turn right + turn around',
+                  'Go straight + turn left + turn right + turn around']
 
 # 在地图上绘制无边框圆形，填充颜色
 def draw_CircleMarker(loc, radius, map):
@@ -109,8 +121,10 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.qwebengine.setGeometry(QtCore.QRect(10, 10, 731, 461))# 在QWebEngineView中加载网址
         self.gridLayout_14.addWidget(self.qwebengine, 0, 0, 1, 1)
 
+        self.file_path = os.getcwd() + '/v2xRsuGbMap.cfg'
+        self.file_path = self.file_path.replace("/", "\\")
         self.poslanesList = []
-        self.loadMapFile()
+        self.loadMapFile(self.file_path)
         self.dict = {"V2XMAP": {"MAPTX": {"MsgContent":[{"msgCount": 0, "timeStamp": 0, "nodes":[ ]}]}}}
         self.dictNode = {"desptName": "qf#1", "nodeRefID": {"region": 0, "id": 0}, "refPoint": [0, 0], "links": [ ]}
         self.movements = {"remoteNodeID": {"region": 0, "id": 0}, "signalGroup": 0}
@@ -125,6 +139,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                             "connectingLane": {"laneID": 0, "maneuvers": 1}, "signalGroup":1}
 
         self.repoint = [0, 0]
+
 
     def getNumValue(self, lineEditId):
         try:
@@ -158,7 +173,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         td_node['refPoint'][1] = self.getFloatValue(self.lineEdit_nodeLon)
 
         self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'].append(td_node)
-        self.repoint = td_node['refPoint']
+        #self.repoint = td_node['refPoint']
         self.comboBox_nodexh.addItem(td_node['desptName'] + ':' + str(td_node['nodeRefID']['id']))
 
     def push_modnode(self):
@@ -185,7 +200,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.lineEdit_nodeId.setText(str(node['nodeRefID']['id']))
             self.lineEdit_nodeLat.setText(str(node['refPoint'][0]/10000000))
             self.lineEdit_nodeLon.setText(str(node['refPoint'][1]/10000000))
-            self.repoint = node['refPoint']
+            #self.repoint = node['refPoint']
 
     def push_loadlink(self):
         td_link = self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][self.comboBox_nodexh.currentIndex()]['links']
@@ -195,15 +210,29 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             link = td_link[self.comboBox_linkxh.currentIndex()]
             self.lineEdit_linkName.setText(str(link['desptName']))
             self.lineEdit_linkUpNodeId.setText(str(link['upstreamNodeId']['id']))
-            self.lineEdit_linkSpeedDown.setText(str(link['speedLimits'][0]['speed']))
-            self.lineEdit_linkSpeedUp.setText(str(link['speedLimits'][1]['speed']))
-            self.lineEdit_linkWidth.setText(str(link['laneWidth']))
-
-            for point in link['points']:
-                self.comboBox_linkPointsxh.addItem(str(self.repoint[0] + point['value'][0])
-                                                   + ',' + str(self.repoint[1] + point['value'][1]))
-            for movements in link['movements']:
-                self.comboBox_linkmovementxh.addItem(str(movements['remoteNodeID']['id']))
+            try:
+                for speedLimits in link['speedLimits']:
+                    if speedLimits['type'] == 4:
+                        self.lineEdit_linkSpeedDown.setText(str(speedLimits['speed']))
+                    if speedLimits['type'] == 5:
+                        self.lineEdit_linkSpeedUp.setText(str(speedLimits['speed']))
+            except:
+                pass
+            try:
+                self.lineEdit_linkWidth.setText(str(link['laneWidth']))
+            except:
+                pass
+            try:
+                for point in link['points']:
+                    self.comboBox_linkPointsxh.addItem(str(self.repoint[0] + point['value'][0])
+                                                       + ',' + str(self.repoint[1] + point['value'][1]))
+            except:
+                pass
+            try:
+                for movements in link['movements']:
+                    self.comboBox_linkmovementxh.addItem(str(movements['remoteNodeID']['id']))
+            except:
+                pass
 
     def push_addlink(self):
         self.comboBox_linkPointsxh.clear()
@@ -254,8 +283,8 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
     def push_loadlinkmovement(self):
         cur_movement = self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][self.comboBox_nodexh.currentIndex()]['links'] \
-            [self.comboBox_linkxh.currentIndex()]['movements']
-        if len(cur_movement) > 0:
+            [self.comboBox_linkxh.currentIndex()]
+        if 'movements' in cur_movement.keys() and len(cur_movement['movements']) > 0:
             td_movement = cur_movement[self.comboBox_linkmovementxh.currentIndex()]
             self.lineEdit_linkDownNodeId.setText(str(td_movement['remoteNodeID']['id']))
             self.lineEdit_linkDownNodeSign.setText(str(td_movement['signalGroup']))
@@ -294,17 +323,31 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         if len(lanes) > 0:
             td_lanes = lanes[self.comboBox_lanexh.currentIndex()]
             self.lineEdit_lanesId.setText(str(td_lanes['laneID']))
-            self.lineEdit_lanesWidth.setText(str(td_lanes['laneWidth']))
+            try:
+                self.lineEdit_lanesWidth.setText(str(td_lanes['laneWidth']))
+            except:
+                pass
             self.lineEdit_lanesManeuvers.setText(str(td_lanes['maneuvers']))
-            self.lineEdit_lanesSpeedLimitUp.setText(str(td_lanes['speedLimits'][1]['speed']))
-            self.lineEdit_lanesSpeedLimitDown.setText(str(td_lanes['speedLimits'][0]['speed']))
-
-            for point in td_lanes['points']:
-                self.comboBox_lanesPointsxh.addItem(str(self.repoint[0] + point['value'][0])
-                                                    + ',' + str(self.repoint[1] + point['value'][1]))
-            for conct in td_lanes['conctTo']:
-                self.comboBox_lanesConctToxh.addItem((str(conct['remoteNodeID']['id'])
-                                             + ':' + str(conct['connectingLane']['laneID'])))
+            try:
+                for speedlimits in td_lanes['speedLimits']:
+                    if speedlimits['type'] == 4:
+                        self.lineEdit_lanesSpeedLimitDown.setText(str(speedlimits['speed']))
+                    if speedlimits['type'] == 5:
+                        self.lineEdit_lanesSpeedLimitUp.setText(str(speedlimits['speed']))
+            except:
+                pass
+            try:
+                for point in td_lanes['points']:
+                    self.comboBox_lanesPointsxh.addItem(str(self.repoint[0] + point['value'][0])
+                                                        + ',' + str(self.repoint[1] + point['value'][1]))
+            except:
+                pass
+            try:
+                for conct in td_lanes['conctTo']:
+                    self.comboBox_lanesConctToxh.addItem((str(conct['remoteNodeID']['id'])
+                                                 + ':' + str(conct['connectingLane']['laneID'])))
+            except:
+                pass
 
     def push_addlanes(self):
         self.comboBox_lanesPointsxh.clear()
@@ -360,14 +403,16 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
     def push_loadconct(self):
         cur_conct = self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][self.comboBox_nodexh.currentIndex()]['links'] \
-            [self.comboBox_linkxh.currentIndex()]['lanes'][self.comboBox_lanexh.currentIndex()] \
-            ['conctTo']
-        if len(cur_conct) > 0:
-            td_conct = cur_conct[self.comboBox_lanesConctToxh.currentIndex()]
-            self.lineEdit_lanesNodeId.setText(str(td_conct['remoteNodeID']['id']))
-            self.lineEdit_lanesDownNodeId.setText(str(td_conct['connectingLane']['laneID']))
-            self.lineEdit_lanesDownManeuvers.setText(str(td_conct['connectingLane']['maneuvers']))
-            self.lineEdit_lanesDownSign.setText(str(td_conct['signalGroup']))
+            [self.comboBox_linkxh.currentIndex()]['lanes'][self.comboBox_lanexh.currentIndex()]
+        if 'conctTo' in cur_conct.keys() and len(cur_conct['conctTo']) > 0:
+            td_conct = cur_conct['conctTo'][self.comboBox_lanesConctToxh.currentIndex()]
+            try:
+                self.lineEdit_lanesNodeId.setText(str(td_conct['remoteNodeID']['id']))
+                self.lineEdit_lanesDownNodeId.setText(str(td_conct['connectingLane']['laneID']))
+                self.lineEdit_lanesDownManeuvers.setText(str(td_conct['connectingLane']['maneuvers']))
+                self.lineEdit_lanesDownSign.setText(str(td_conct['signalGroup']))
+            except:
+                pass
 
     def push_modconct(self):
         td_ConctTo = self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][self.comboBox_nodexh.currentIndex()]['links'] \
@@ -383,11 +428,11 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                                                   + ':' + str(td_ConctTo['connectingLane']['laneID'])))
 
     def push_delconct(self):
-        cur_conct = self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes']\
-            [self.comboBox_nodexh.currentIndex()]['links'][self.comboBox_linkxh.currentIndex()]\
-            ['lanes'][self.comboBox_lanexh.currentIndex()]['conctTo']
-        if len(cur_conct) > 0:
-            cur_conct.pop(self.comboBox_lanesConctToxh.currentIndex())
+        cur_conct = self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'] \
+            [self.comboBox_nodexh.currentIndex()]['links'][self.comboBox_linkxh.currentIndex()] \
+            ['lanes'][self.comboBox_lanexh.currentIndex()]
+        if 'conctTo' in cur_conct.keys() and len(cur_conct['conctTo']) > 0:
+            cur_conct['conctTo'].pop(self.comboBox_lanesConctToxh.currentIndex())
             self.comboBox_lanesConctToxh.removeItem(self.comboBox_lanesConctToxh.currentIndex())
 
     def push_addlanesconct(self):
@@ -451,20 +496,41 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                     self.comboBox_lanexh.addItem(str(lane['laneID']))
 
     def push_save(self):
-        if os.path.exists('v2xRsuGbMap.cfg.tmp'):
-            os.remove('v2xRsuGbMap.cfg.tmp')
-        if os.path.exists('v2xRsuGbMap.cfg'):
-            os.rename('v2xRsuGbMap.cfg', 'v2xRsuGbMap.cfg.tmp')
+        tmpfilename = self.file_path + '.tmp'
+        if os.path.exists(tmpfilename):
+            os.remove(tmpfilename)
+        cfgfilename = self.file_path
+        if os.path.exists(cfgfilename):
+            os.rename(cfgfilename, tmpfilename)
+        print(cfgfilename)
         #print(self.dict)
         for node in self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes']:
             for link in node['links']:
-                link['speedLimits'] = libconf.LibconfList(link['speedLimits'])
-                link['points'] = libconf.LibconfList(link['points'])
-                link['movements'] = libconf.LibconfList(link['movements'])
+                try:
+                    link['speedLimits'] = libconf.LibconfList(link['speedLimits'])
+                except:
+                    pass
+                try:
+                    link['points'] = libconf.LibconfList(link['points'])
+                except:
+                    pass
+                try:
+                    link['movements'] = libconf.LibconfList(link['movements'])
+                except:
+                    pass
                 for lanes in link['lanes']:
-                    lanes['points'] = libconf.LibconfList(lanes['points'])
-                    lanes['conctTo'] = libconf.LibconfList(lanes['conctTo'])
-                    lanes['speedLimits'] = libconf.LibconfList(lanes['speedLimits'])
+                    try:
+                        lanes['points'] = libconf.LibconfList(lanes['points'])
+                    except:
+                        pass
+                    try:
+                        lanes['conctTo'] = libconf.LibconfList(lanes['conctTo'])
+                    except:
+                        pass
+                    try:
+                        lanes['speedLimits'] = libconf.LibconfList(lanes['speedLimits'])
+                    except:
+                        pass
                 link['lanes'] = libconf.LibconfList(link['lanes'])
             node['links'] = libconf.LibconfList(node['links'])
         self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'] = libconf.LibconfList(self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'])
@@ -473,24 +539,42 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         #print(self.dict)
         configText = libconf.dumps(self.dict)
         print(configText)
-        with open('v2xRsuGbMap.cfg', 'w') as fd_file:
+        with open(cfgfilename, 'w') as fd_file:
             fd_file.write(configText)
             fd_file.close()
+        self.cfgfileInit()
 
-    def openConfFile(self):
-        with io.open('v2xRsuGbMap.cfg') as f:
+    def openConfFile(self, file_path):
+        if not os.path.exists(file_path):
+            return
+        with io.open(file_path) as f:
             self.config = libconf.load(f)
         try:
-            self.lon13 = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][0]['refPoint'][0]
-            self.lat13 = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][0]['refPoint'][1]
+            self.lat13 = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][0]['refPoint'][0]
+            self.lon13 = self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][0]['refPoint'][1]
             self.lon = self.lon13 / 10000000
             self.lat = self.lat13 / 10000000
             return True
         except:
             return False
 
+    def openfile(self):
+        if os.path.dirname(self.file_path) == '':
+            ofdefaultpath = os.getcwd()
+        else:
+            ofdefaultpath = os.path.dirname(self.file_path)
+
+        filepath, filetype = QFileDialog.getOpenFileName(self, '选择文件', ofdefaultpath, '*.cfg')
+        filepath = filepath.replace("/", "\\")
+        return filepath
+
     def push_open(self):
-        self.loadMapFile()
+        self.file_path = self.openfile()
+        self.cfgfileInit()
+
+    def cfgfileInit(self):
+        #print(self.file_path)
+        self.loadMapFile(self.file_path)
         self.config['V2XMAP']['MAPTX']['MsgContent'] = libconf.LibconfArray(self.config['V2XMAP']['MAPTX']['MsgContent'])
         self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'] = \
             libconf.LibconfArray(self.config['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'])
@@ -501,15 +585,18 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
                 = libconf.LibconfArray(node['links'])
             for linki, link in enumerate(node['links']):
-                self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
-                    [linki]['speedLimits'] = libconf.LibconfArray(link['speedLimits'])
+                if 'speedLimits' in self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'][linki]:
+                    self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
+                        [linki]['speedLimits'] = libconf.LibconfArray(link['speedLimits'])
                 self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
                     [linki]['lanes'] = libconf.LibconfArray(link['lanes'])
                 for lanesi, lanes in enumerate(link['lanes']):
                     self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
                         [linki]['lanes'][lanesi]['points'] = libconf.LibconfArray(lanes['points'])
-                    self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
-                        [linki]['lanes'][lanesi]['conctTo'] = libconf.LibconfArray(lanes['conctTo'])
+                    if 'conctTo' in self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
+                        [linki]['lanes'][lanesi]:
+                        self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links'] \
+                            [linki]['lanes'][lanesi]['conctTo'] = libconf.LibconfArray(lanes['conctTo'])
                 try:
                     self.dict['V2XMAP']['MAPTX']['MsgContent'][0]['nodes'][nodei]['links']\
                         [linki]['points'] = libconf.LibconfArray(link['points'])
@@ -520,14 +607,13 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                         [linki]['movements'] = libconf.LibconfArray(link['movements'])
                 except:
                     pass
-
         self.treeView_read.setModel(self.model_read)
         MsgContent_Dict = self.config['V2XMAP']['MAPTX']['MsgContent'][0]
         linkjson = json.dumps(MsgContent_Dict)
         self.model_read.loadJson(linkjson.encode())
 
-    def loadMapFile(self):
-        if self.openConfFile():
+    def loadMapFile(self, file_path):
+        if self.openConfFile(file_path):
             self.reLoadMap()
             path = "file:\\" + os.getcwd() + "\\save_map.html"
             path = path.replace('\\', '/')
@@ -536,12 +622,12 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             gQmtex.unlock()
 
     def push_ditu(self):
-        self.loadMapFile()
+        self.loadMapFile(self.file_path)
 
     def reLoadMap(self):
         color_list = ['olive', 'pink', 'red', 'blue', 'orange', 'green', 'purple']
         color_num = 0
-        map = folium.Map(location=[self.lon, self.lat], tiles="openstreetmap", zoom_start=18)
+        map = folium.Map(location=[self.lat, self.lon], tiles="openstreetmap", zoom_start=18)
         map.add_child(folium.LatLngPopup())
         # map.add_child(folium.ClickForMarker())
 
@@ -551,8 +637,12 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             for ilink in inode['links']:
                 linkName = ilink['desptName']
                 try:
-                    linkpointstart = [(self.lon13 + ilink['points'][0]['value'][0]) / 10000000,
-                                   (self.lat13 + ilink['points'][0]['value'][1]) / 10000000]
+                    if ilink['points'][0]['present'] == 7:
+                        linkpointstart = [(ilink['points'][0]['value'][0]) / 10000000,
+                                       (ilink['points'][0]['value'][1]) / 10000000]
+                    else:
+                        linkpointstart = [(ilink['points'][0]['value'][0] + self.lat13) / 10000000,
+                                          (ilink['points'][0]['value'][1] + self.lon13) / 10000000]
                     draw_icon(map, linkpointstart, 'blue')
                 except:
                     pass
@@ -564,13 +654,18 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                         pass
                     pointslanesList = []
                     for ilanespos in ilanes['points']:
-                        pointslanesList.append([(self.lon13 + ilanespos['value'][0]) / 10000000,
-                                                (self.lat13 + ilanespos['value'][1]) / 10000000])
+                        if ilanespos['present'] == 7:
+                            pointslanesList.append([(ilanespos['value'][0]) / 10000000,
+                                                    (ilanespos['value'][1]) / 10000000])
+                        else:
+                            pointslanesList.append([(ilanespos['value'][0] + self.lat13) / 10000000,
+                                                    (ilanespos['value'][1] + self.lon13) / 10000000])
                     self.poslanesList.append(pointslanesList)
                     curMane = ilanes['maneuvers']
+                    #print(pointslanesList)
                     draw_lines(map, pointslanesList, 3, color_list[color_num], 1,
-                               str(nodeId) + '-' + linkName + '-' + str(lanesId) + ':' + str(E_Maneuvers(curMane)))
-            color_num = 0 if color_num == (len(color_list) - 1) else (color_num + 1)
+                               str(nodeId) + '-' + linkName + '-' + str(lanesId) + ':' + list_Maneuvers[curMane])
+                    color_num = 0 if color_num == (len(color_list) - 1) else (color_num + 1)
 
         gQmtex.lock()
         map.save("save_map.html")

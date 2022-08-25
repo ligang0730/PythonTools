@@ -1,0 +1,32 @@
+//
+// DefAcceleration.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+message AccelerationSet4Way {
+    int32 long  = 1;
+    // -- Along the Vehicle Longitudinal axi
+    int32 lat   = 2;
+    // -- Along the Vehicle Lateral axis
+    // Acceleration ::= INTEGER (-2000..2001)
+    // -- Units are 0.01 m/s^2
+    // -- the value 2000 shall be used for values greater than 2000
+    // -- the value -2000 shall be used for values less than -2000
+    // -- a value of 2001 shall be used for Unavailable
+    int32 vert  = 3;
+    // VerticalAcceleration ::= INTEGER (-127..127)
+    // -- Units of 0.02 G steps over -2.52 to +2.54 G
+    // -- The value +127 shall be used for ranges >= 2.54 G
+    // -- The value -126 shall be used for ranges <= 2.52
+    // -- The value -127 shall be used for unavailable
+    int32 yaw   = 4;
+    // YawRate ::= INTEGER (-32767..32767)
+    // -- Units of 0.01 degrees per second (signed)
+}
+
+

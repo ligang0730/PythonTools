@@ -1,0 +1,20 @@
+//
+// InjectRsu.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "RSI.proto";
+import "SignalPhaseAndTiming.proto";
+
+
+message InjectRsu {
+    RoadSideInformation rsi = 1;
+    SPAT spat               = 2;
+}
+
+

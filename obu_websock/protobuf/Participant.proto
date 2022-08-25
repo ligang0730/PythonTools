@@ -1,0 +1,53 @@
+//
+// Participant.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "VehSize.proto";
+import "VehClass.proto";
+import "VehBrake.proto";
+import "DefPosition.proto";
+import "google/protobuf/wrappers.proto";
+
+
+enum ObjectType {
+    OT_PEDESTRIAN   = 0;
+    OT_NO_MOTOR     = 1;
+    OT_MOTOR        = 2;
+}
+
+enum PosStatus {
+    POS_ERROR       = 0;
+    POS_POOR        = 1;
+    POS_WELL        = 2;
+    POS_EXCELLENT   = 3;
+}
+
+
+
+message Participant {
+    uint32 msgCnt                       = 1;
+    //ObjectType objTp                = 2;
+    string id                           = 3;
+    PosStatus pos_status                = 4;
+    Position3D pos3D                    = 5;
+    int32 heading                       = 6;    // 0.0125, <0: unvariable
+    int32 speed                         = 7;    // 0.02m/s, <0: unvariable
+    VehicleClassification vehClass      = 8;
+    VehSize size                        = 9;
+    google.protobuf.UInt32Value lights  = 10;   // BIT STRING of enum ExteriorLights
+    BrakeSystemStatus brakeStatus       = 11;
+}
+
+
+message Participants {
+    uint32 msgCnt                       = 1;
+    repeated Participant participant    = 2;
+}
+
+

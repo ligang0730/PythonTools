@@ -1,0 +1,208 @@
+//
+// RSI.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "DefTime.proto";
+import "VxCommonDef.proto";
+import "DefPosition.proto";
+import "google/protobuf/wrappers.proto";
+
+
+enum ReferenceLanes {
+    // -- With bits as defined:
+    reserved_refer_lanes    = 0;
+    lane1_refer_lanes       = 1;
+    lane2_refer_lanes       = 2;
+    lane3_refer_lanes       = 3;
+    lane4_refer_lanes       = 4;
+    lane5_refer_lanes       = 5;
+    lane6_refer_lanes       = 6;
+    lane7_refer_lanes       = 7;
+    lane8_refer_lanes       = 8;
+    lane9_refer_lanes       = 9;
+    lane10_refer_lanes      = 10;
+    lane11_refer_lanes      = 11;
+    lane12_refer_lanes      = 12;
+    lane13_refer_lanes      = 13;
+    lane14_refer_lanes      = 14;
+    lane15_refer_lanes      = 15;
+} // (SIZE (16))
+// -- Set bit to 1 if the related lane is effective
+// -- Support maximum 15 lanes
+
+
+enum EventSource {
+    unknown_event_source        = 0;    // -- 0 Unknown
+    police_event_source         = 1;    // -- 1 traffic police
+    government_event_source     = 2;    // -- 2 govenment
+    meteorological_event_source = 3;    // -- 3 meteorological department
+    internet_event_source       = 4;    // -- 4 internet services
+    detection_event_source      = 5;    // -- 5 local detection
+}
+
+
+enum AuxiliarySignVehicleType {
+    restrictedFromBus_aul_veh_type  = 0;
+    // -- 除公共汽车以外
+    vehicle_aul_veh_type            = 1;
+    // -- 机动车
+    truck_aul_veh_type              = 2;
+    // -- 货车
+    tractor_aul_veh_type            = 3;
+    // -- 拖拉机
+    private_aul_veh_type            = 4;
+    // -- 私人专属
+}
+
+
+enum AuxiliarySignDirection {
+    straight_aul_sign_dir       = 0;
+    leftAndRight_aul_sign_dir   = 1;
+    right_aul_sign_dir          = 2;
+    left_aul_sign_dir           = 3;
+    leftFrontTurn_aul_sign_dir  = 4;
+    rightFronTurn_aul_sign_dir  = 5;
+    rightRearTurn_aul_sign_dir  = 6;
+    leftRearTurn_aul_sign_dir   = 7;
+}
+
+
+message ReferencePath {
+    repeated Position3D pos = 1;
+    // activePath PathPointList,
+    // -- RSI is active for vehicles within this path
+    // -- Points are listed from upstream to downstream
+    // -- along the vehicle drive direction.
+    // -- One path includes at least 1 points.
+    // -- A path with only 1 point means a round alert area
+    uint32 pathRadius       = 2;
+    // Radius: INTEGER (0..65535)
+    // -- Define radius
+    // -- Unit is 0.1m
+    // -- The biggest distance away from the alert path
+    // -- within which the warning is active.
+}
+
+
+message ReferenceLink {
+    // -- this Link is from Node of upstreamNodeId to Node of downstreamNodeId
+    NodeReferenceID upstreamNodeId              = 1;
+    NodeReferenceID downstreamNodeId            = 2;
+    google.protobuf.UInt32Value referenceLanes  = 3;    // OPTIONAL
+    // BIT STRING of enum ReferenceLanes
+    // -- Provide reference lanes if is necessary
+    // -- Refer to all lanes if this data is not given
+}
+
+message RSITimeDetails {
+    google.protobuf.UInt32Value startTime                    = 1;    // OPTIONAL,
+    // MinuteOfTheYear ::= INTEGER (0..527040)
+    // -- the value 527040 shall be used for invalid
+    google.protobuf.UInt32Value endTime                      = 2;    // OPTIONAL
+    // MinuteOfTheYear ::= INTEGER (0..527040)
+    // -- the value 527040 shall be used for invalid
+    // -- Exact or estimated end time
+    TimeConfidence endTimeConfidence    = 3;    // OPTIONAL
+}
+
+
+message RTEData {
+    uint32 rteId                                = 1;
+    // rteId INTEGER (0..255),
+    // -- local ID of this rte information set by RSU
+    uint32 eventType                            = 2;
+    // EventType ::= INTEGER (0..65535)
+    // -- Traffic event type according to China GB/T 29100-2012
+    // -- Type of event, according to China GB/T 29100-2012
+    EventSource eventSource                     = 3;
+    Position3D eventPos                         = 4;    // OPTIONAL
+    // -- Position of this event, if exists
+    google.protobuf.UInt32Value eventRadius     = 5;    // OPTIONAL,
+    // Radius ::= INTEGER (0..65535)
+    // -- Define radius
+    // -- Unit is 0.1m
+    // -- Radius of this event, if exists
+    google.protobuf.StringValue description     = 6;    // OPTIONAL
+    // STRING (SIZE(2..512))
+    // -- Additional description to this event
+    RSITimeDetails timeDetails                  = 7;    // OPTIONAL
+    // -- Start time or end time when this event is active
+    google.protobuf.StringValue priority        = 8;    // OPTIONAL
+    // RSIPriority ::= OCTET STRING (SIZE(1))
+    // -- The lower five bits are reserved and shall be set to zero
+    // -- Value from B00000000 to B11100000 represents the lowest to the highest level
+    // -- value assignments
+    // -- the urgency of this RSI data, a relative
+    // -- degree of merit compared with other RSI data
+    repeated ReferencePath referencePaths       = 9;    // OPTIONAL, SIZE(1..8)
+    // -- Related paths of this traffic event
+    repeated ReferenceLink referenceLinks       = 10;   // OPTIONAL, SIZE(1..16)
+    // -- Related links of this traffic event
+    google.protobuf.UInt32Value eventConfidence = 11;   // OPTIONAL,
+    // Confidence ::= INTEGER (0..200)
+    // -- Units of 0.5 percent
+    // -- indicate the event confidence set by event source
+    // -- the probability/confidence of the detected event
+    // -- being truly extent at a certain place, 
+    // -- to help vehicle determine whether to trust the received information.
+}
+
+message AuxiliarySign {
+    google.protobuf.UInt32Value signWithVehicleType = 1;    // OPTIONAL
+    // BIT STRING of AuxiliarySignVehicleType
+    // -- 补充说明某些标志规定车辆的种类、属性，可用于表示一种或两种车辆禁止向某方向行驶的场景中
+    AuxiliarySignDirection signDirection            = 2;    // OPTIONAL
+    // -- 补充说明禁令或标志规定的方向
+}
+
+message RTSData {
+    uint32 rtsId                            = 1;    // INTEGER (0..255)
+    // -- local ID of this rts information set by RSU
+    uint32 signType                         = 2;
+    // -- Type of sign, according to China GB 5768.2
+    // SignType ::= INTEGER (0..65535)
+    // -- Traffic sign type according to China GB 5768.2
+    // -- Text message warning = 0
+    // -- Danger = 37
+    // -- Rockfall = 15
+    // -- SharpTurn = 2
+    // -- UnderConstruction = 38
+    // -- Slippy = 17
+    // -- Tunnel = 21
+    Position3D signPos                      = 3;    // OPTIONAL
+    // -- Position of the traffic sign, if exists
+    google.protobuf.StringValue description = 4;    // OPTIONAL
+    // -- Additional description to the sign
+    RSITimeDetails timeDetails              = 5;    // OPTIONAL
+    // -- start time or end time when this sign is active, if existed
+    uint32 priority                         = 6;
+    // -- the urgency of this RSI data, a relative
+    // -- degree of merit compared with other RSI data
+    // -- The lower five bits are reserved and shall be set to zero
+    // -- Value from B00000000 to B11100000 represents the lowest to the highest level
+    repeated ReferencePath referencePaths   = 7;    // OPTIONAL, SIZE(1..8)
+    // -- Related paths of this traffic sign
+    repeated ReferenceLink referenceLinks   = 8;   // OPTIONAL, SIZE(1..16)
+    // -- Related links of this traffic sign
+    AuxiliarySign auxiliarySign             = 9;
+    // -- Refer to GB5768.2-2009 Chpt.9.2
+    // -- Auxiliary sign
+}
+
+
+message RoadSideInformation {
+    uint32 msgCnt                   = 1;
+    google.protobuf.Int32Value moy  = 2;    // OPTIONAL, MinuteOfTheYear
+    string id                       = 3;    // SIZE(8)
+    Position3D refPos               = 4;
+    repeated RTEData rtes           = 5;    // OPTIONAL, SIZE(1..8)
+    repeated RTSData rtss           = 6;    // OPTIONAL, SIZE(1..16)
+}
+
+

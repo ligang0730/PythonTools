@@ -1,0 +1,32 @@
+//
+// PAM.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+
+enum ParkingType {
+    unknown_parking_type    = 0;
+    ordinary_parking_type   = 1;
+    disabled_parking_type   = 2;
+    mini_parking_type       = 3;
+    attached_parking_type   = 4;
+    charging_parking_type   = 5;
+    stereo_parking_type     = 6;
+    lady_parking_type       = 7;
+    extended_parking_type   = 8;
+    private_parking_type    = 9;
+}   // (SIZE(10,...))
+
+
+
+
+
+
+
+
+

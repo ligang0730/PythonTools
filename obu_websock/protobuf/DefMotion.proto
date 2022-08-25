@@ -1,0 +1,48 @@
+//
+// DefMotion.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+enum HeadingConfidence {
+    unavailable_heading_cfd     = 0;    // -- Not Equipped or unavailable
+    prec10deg_heading_cfd       = 1;    // -- 10 degrees
+    prec05deg_heading_cfd       = 2;    // -- 5 degrees
+    prec01deg_heading_cfd1      = 3;    // -- 1 degrees
+    prec0_1deg_heading_cfd      = 4;    // -- 0.1 degrees
+    prec0_05deg_heading_cfd     = 5;    // -- 0.05 degrees
+    prec0_01deg_heading_cfd     = 6;    // -- 0.01 degrees
+    prec0_0125deg_heading_cfd   = 7;    // -- 0.0125 degrees, aligned with heading LSB
+}
+
+enum SpeedConfidence {
+    unavailable_speed_cfd       = 0;    // -- Not Equipped or unavailabl
+    prec100ms_speed_cfd         = 1;    // -- 100 meters / sec
+    prec10ms_speed_cfd          = 2;    // -- 10 meters / sec
+    prec5ms_speed_cfd           = 3;    // -- 5 meters / sec
+    prec1ms_speed_cfd           = 4;    // -- 1 meters / sec
+    prec0_1ms_speed_cfd         = 5;    // -- 0.1 meters / sec
+    prec0_05ms_speed_cfd        = 6;    // -- 0.05 meters / sec
+    prec0_01ms_speed_cfd        = 7;    // -- 0.01 meters / sec
+}
+
+enum SteeringWheelAngleConfidence {
+    unavailable_steer_wheel_angle_cfd   = 0;    // -- Not Equipped with Wheel angle
+    // -- or Wheel angle status is unavailable
+    prec2deg_steer_wheel_angle_cfd      = 1;    // -- 2 degrees
+    prec1deg_steer_wheel_angle_cfd      = 2;    // -- 1 degree
+    prec0_02deg_steer_wheel_angle_cfd   = 3;    // -- 0.02 degrees
+}
+
+
+message MotionConfidenceSet {
+    SpeedConfidence speedCfd                = 1;
+    HeadingConfidence headingCfd            = 2;
+    SteeringWheelAngleConfidence steerCfd   = 3;
+}
+
+

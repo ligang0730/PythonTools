@@ -1,0 +1,43 @@
+//
+// ObuApp.proto
+// protoc -I=./protobuf --cpp_out=./src/ ./protobuf/*.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "Map.proto";
+import "VehSetting.proto";
+import "Participant.proto";
+import "TargetAlert.proto";
+
+
+message ObuAppResp {
+    uint32 msgCnt       = 1;    // 0~127, same as VehSettingReq's msgCnt
+    int32 retVal        = 2;    // 0:success;   1: error;
+}
+
+message ObuAppInfo {
+    uint64 time         = 1;    // millsecond from 1970
+    string id           = 2;    // SIZE(8)
+}
+
+
+message ObuApp {
+    oneof msg {
+        Participant hv          = 1;    // 10Hz
+        Participants rvs        = 2;    // Trigger
+        //------
+        Map map                 = 5;
+        //------
+        TargetAlert alert       = 9;
+        VehSetting setting      = 10;
+        ObuAppResp resp         = 11;
+    }
+    ObuAppInfo info             = 12;
+}
+
+

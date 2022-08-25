@@ -1,0 +1,388 @@
+//
+// TargetAlert.proto
+// protoc -I=./proto --cpp_out=./src/ ./proto/*.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "Cooperative.proto";
+import "VxCommonDef.proto";
+import "DefPosition.proto";
+import "Participant.proto";
+//import "google/protobuf/wrappers.proto";
+
+
+// v2i---------------------------------------------
+
+enum PhaseStatus {
+    // 表示未知状态
+    PS_UNKNOWN      = 0;
+    // 表示信号灯未工作;
+    PS_DARK         = 1;
+    // 红闪
+    PS_RED_FLASH    = 2;
+    // 红
+    PS_RED          = 3;
+    // 绿灯
+    PS_GREEN        = 6;
+    // 黄灯
+    PS_YELLOW       = 7;
+    // 黄闪
+    PS_YELLOW_FLASH = 8;
+}
+
+enum RTSign {
+    option allow_alias = true;
+    SIGN_START                  = 0;
+    SIGN_INTERSECTION           = 1;
+    SIGN_SHARP_BEND             = 2;
+    SIGN_REVERSE_CURVE          = 3;
+    SIGN_CURVES_AHEAD           = 4;
+    SIGN_STEEP_DESCENT_AHEAD    = 5;
+    SIGN_LONG_DESCENT           = 6;
+    SIGN_NARROW_ROAD            = 7;
+    SIGN_NARROW_BRIDGE          = 8;
+    SIGN_TWO_WAY_TRAFFIC        = 9;
+    SIGN_WATCH_PEDESTRAINS      = 10;
+    SIGN_WATCH_CHILDREN         = 11;
+    SIGN_WATCH_LIVESTOCK        = 12;
+    SIGN_WATCH_WILDLIFE         = 13;
+    SIGN_WATCH_SIGNAL_LAMP      = 14;
+    SIGN_WATCH_ROCKFALL         = 15;
+    SIGN_WATCH_CROSSWIND        = 16;
+    SIGN_SLIPPERY_ROAD          = 17;
+    SIGN_STEEP_MOUNTAIN_ROAD    = 18;
+    SIGN_EMBANDMENT_ROAD        = 19;
+    SIGN_VILLAGE_ROAD           = 20;
+    SIGN_TUNNEL                 = 21;
+    SIGN_FERRY                  = 22;
+    SIGN_CAMELBACK_BRIDGE       = 23;
+    SIGN_ROUGH_ROAD             = 24;
+    SIGN_BUMPY_ROAD             = 25;
+    SIGN_LOW_LYING_ROAD         = 26;
+    SIGN_LOW_WATER_CROSSING     = 27;
+    SIGN_RAILWAY_CROSSING       = 28;
+    SIGN_RAILWAY_NO_PERSION_CROSSING    = 29;
+    SIGN_FURCATION              = 30;
+    SIGN_SLASH                  = 31;
+    SIGN_WATCH_NON_MOTOR_VEH    = 32;
+    SIGN_WATCH_DISABLED         = 33;
+    SIGN_ACCIDENT_BLACK_SPOT    = 34;
+    SIGN_SLOW_DOWN              = 35;
+    SIGN_WATCH_BARRIER          = 36;
+    SIGN_WATCH_DANGER           = 37;
+    SIGN_ROADWORK               = 38;
+    SIGN_ADVICE_SPEED           = 39;
+    SIGN_TUNNEL_LIGHT           = 40;
+    SIGN_WATCH_REVERSIBLE_LANE  = 41;
+    SIGN_KEEP_DISTANCE          = 42;
+    SIGN_FORK_ROAD              = 43;
+    SIGN_MERGE_ROAD             = 44;
+    SIGN_ESCAPE_RAMP            = 45;
+    SIGN_WATCH_ICY_ROAD         = 46;
+    SIGN_WATCH_RAINY_AND_SNOWY  = 46;
+    SIGN_WATCH_FOGGY            = 46;
+    SIGN_WATCH_BAD_WEATHER      = 46;
+    SIGN_WATCH_QUEEN_VEHICLE    = 47;
+    BAN_STOP_TO_GIVE_WAY        = 48;
+    BAN_SLOW_TO_GIVE_WAY        = 49;
+    BAN_GIVE_WAY_TO_ONCOMING_VEH    = 50;
+    BAN_NO_ENTRY                = 51;
+    BAN_NO_DRIVE                = 52;
+    BAN_VEH_ENTRY               = 53;
+    BAN_TRUCE_ENTRY             = 54;
+    BAN_ELECTRO_TRICYCLE_ENTRY  = 55;
+    BAN_LARGE_BUS_ENTRY         = 56;
+    BAN_SEMITRAILER_ENTRY       = 58;
+    BAN_TRACTORS_ENTRY          = 59;
+    BAN_TRICYCLE_ENTRY          = 60;
+    BAN_MOTORBIKE_ENTRY         = 61;
+    BAN_TWO_WHEELER_ENTRY       = 62;
+    BAN_NON_MOTOR_VEH_ENTRY     = 63;
+    BAN_ANIMAL_DRAWN_VEH_ENTRY  = 64;
+    BAN_MANPOWER_TRICYCLE_GUEST_ENTRY   = 65;
+    BAN_MANPOWER_TRICYCLE_CARGO_ENTRY   = 66;
+    BAN_BIKE_ENTRY              = 67;
+    BAN_PEDESTRIAN_ENTRY        = 68;
+    BAN_LEFT_TURN               = 69;
+    BAN_RIGHT_TURN              = 70;
+    BAN_GO_STRAIGHT             = 71;
+    BAN_LEFT_RIGHT_TURN         = 72;
+    BAN_GO_STRAIGHT_LEFT_TURN   = 73;
+    BAN_GO_STRAIGHT_RIGHT_TURN  = 74;
+    BAN_TURN_ROUND              = 75;
+    BAN_OVERTAKE                = 76;
+    BAN_CANCEL_STOP             = 77;   // cancel overtake
+    BAN_STOP                    = 78;
+    BAN_LONG_TIME_STOP          = 79;
+    BAN_HONK                    = 80;
+    BAN_MAX_WIDTH               = 81;
+    BAN_MAX_HEIGHT              = 82;
+    BAN_NAX_WEIGHT              = 83;
+    BAN_AXLE_LOAD               = 84;
+    BAN_SPEED                   = 85;   // speed limit
+    BAN_CANCEL_SPEED            = 86;   // cancel speed limit
+    STOP_EXAMINE                = 87;
+    BAN_DANGEROUS_VEH_ENTRY     = 88;
+    BAN_CUSTOMS                 = 89;
+    BAN_SPEED_LIMIT_AREA        = 90;
+    BAN_CANCEL_SPEED_LIMIT_AREA = 91;
+    BAN_LONG_STOP_AREA          = 92;
+    BAN_CANCEL_LONG_STOP_AREA   = 93;
+    BAN_STOP_AREA               = 94;
+    BAN_CANCEL_STOP_AREA        = 95;
+    //------
+    SIGN_ROUNDABOUT_DRIVING     = 106;
+    SIGN_PEDESTRIAN_CROSSING    = 114;
+    SIGN_EXPRESSWAY_EXIT        = 183;
+    SIGN_ETC_TOLL_STATION       = 198;
+    SIGN_SCHOOL                 = 242;
+    SIGN_DRIVING_TEST_LINE      = 247;
+    // self definition
+    SIGN_TUNNEL_OUTPUT          = 1101;
+    SIGN_EMERGENCY_EXIT         = 1102;
+    SIGN_ELEVATE_HEIGHT         = 1103;
+    //------
+    SIGN_RAMP_CLOSED            = 11100;
+    SIGN_WELCOME_WORD           = 60004;
+    SIGN_OVERSIZE_VEHICLE_RIGHT = 60009;
+    SIGN_BRIDGE                 = 60010;
+    SIGN_TRAMCAR                = 60021;
+}
+
+enum RTEvent {
+    RTE_START                   = 0;
+    RTE_ICE                     = 46;
+    RTE_ROAD_DAMAGED            = 100;
+    RTE_VEHICLE_BREAKDOWN       = 101;
+    RTE_VEH_TO_VEH_ACCIDENT     = 103;
+    //------
+    RTE_VEH_FIRE_OUT            = 201;
+    RTE_FIRE_DETECTED           = 202;
+    //------
+    RTE_WEATHER_RAIN            = 301;
+    RTE_WEATHER_HAIL            = 302;  //
+    RTE_WEATHER_WIND            = 304;
+    RTE_WEATHER_FOG             = 305;
+    RTE_WEATHER_HIGH_TEMP       = 306;
+    RTE_WEATHER_SNOW            = 308;
+    RTE_WEATHER_HAZE            = 311;
+    RTE_WEATHER_SAND_STORM      = 399;
+    //------
+    RTE_SPILLED_MATERIAL        = 401;
+    RTE_PEDESTRIAN_DETECTED     = 405;
+    RTE_ANIMAL_DETECTED         = 406;
+    RTE_ROAD_PONDING            = 407;
+    RTE_ROAD_SLIPPERY           = 408;
+    RTE_ROAD_ICE                = 409;
+    //------
+    RTE_ROADWORK                = 501;
+    //------
+    RTE_ROAD_JAM                = 707;
+    //------
+    RTE_VEH_OVER_SPEED          = 901;
+    RTE_VEH_LOW_SPEED           = 902;
+    RTE_VEH_STOP                = 903;
+    RTE_VEH_WRONG_DIR           = 904;
+    RTE_URGEN_VEH_PRECEDENCE    = 905;
+    RTE_TRUCK_DETECTED          = 906;
+    // self definition
+    RTE_RAMP_MERGE              = 1004;
+    RTE_OCCUPATION_EMERGENCY_LANE   = 1021;
+    RTE_GET_OUT_OF_LIEN         = 1026;
+    RTE_VEHICLE_QUUEUE          = 1051;
+    RTE_DARK_SMOK               = 1052;
+    RTE_CARBONIC_OXIDE_ALERT    = 1053;
+    RTE_ROAD_WORK               = 1054;
+    //------
+    RTE_VISIBILITY_LOW          = 9004;
+    RTE_ROAD_AGGLOMERATE_FOG    = 9912;
+
+}
+
+enum RoadRunType {
+    ROAD_RUN_STRAIGHT   = 0;
+    ROAD_RUN_LEFT       = 1;
+    ROAD_RUN_RIGHT      = 2;
+    ROAD_RUN_U_TURN     = 3;
+}
+
+
+message GreenWave {
+    uint32 light_type           = 1; // BIT_STRING of enum RoadRunType
+    int32 phase_id              = 2; // <0: unvariable
+    PhaseStatus phase_status    = 3;
+    int32 surplus_time          = 4; // unit: second, <0: unvariable
+    int32 advice_speed          = 5; // unit: 0.02m/s, <0: unvariable
+    bool running_red_light      = 6;
+}
+
+message Location {
+    NodeReferenceID id                          = 1;
+    int32 lane_id                               = 2; // -1: unvariable
+    oneof speed {
+        bool over_speed                         = 3;
+        bool lower_speed                        = 4;
+    }
+    repeated GreenWave wave                     = 5;
+    repeated RegulatorySpeedLimit sped_limits   = 6;
+}
+
+message RTS {
+    RTSign sign             = 1;
+    string description      = 2;
+    uint32 dist             = 3; // unit: dm
+    uint32 alert_radius     = 4; // unit: dm
+    Position3D pos3D        = 5;
+}
+
+message RTE {
+    RTEvent event           = 1;
+    string description      = 2;
+    uint32 dist             = 3; // unit: dm
+    uint32 alert_radius     = 4; // unit: dm
+    Position3D pos3D        = 5;
+}
+
+message VIThreat {
+    repeated RTE rte            = 1;
+    repeated RTS rts            = 2;
+    repeated Location location  = 3;
+}
+
+
+// v2v---------------------------------------------
+
+enum DirectionClass {
+    DC_UNKNOWN      = 0;
+    DC_SAME         = 1;
+    DC_INTERSECTION = 2;
+    DC_OPPOSITE     = 3;
+    DC_MERGE        = 4;
+    DC_FORK         = 5;
+}
+
+enum ElevationClass {
+    EC_SAME        = 0;
+    EC_UP          = 1;
+    EC_UP_COMING   = 2;
+    EC_DOWN_COMING = 4;
+    EC_DOWN        = 5;
+}
+
+enum DistanceClass {
+    DC_FARAWAY  = 0;
+    DC_FAR      = 1;
+    DC_NEAR     = 2;
+    DC_SIDE     = 3;
+}
+
+enum ThreatClass {
+    TC_UNKNOWN      = 0;
+    TC_EEBL         = 1;    // 紧急制动
+    TC_FCW          = 2;
+    TC_BSW          = 3;    // 盲区预警
+    TC_LCW          = 4;
+    TC_IMA          = 5;    // 交叉路口碰撞
+    TC_LTA          = 6;    // 左转辅助
+    TC_CLW          = 7;
+    TC_EVA          = 8;
+    TC_DNPW         = 9;    // 逆向超车预警
+    TC_AVW          = 10;   // 异常车辆提醒
+    TC_I2V_PED      = 11;
+    TC_I2V_NO_MOTOR = 12;
+    TC_I2V_MOTOR    = 13;
+    TC_MA           = 30; /* Merge Assist */
+}
+
+enum LaneClass {
+    LC_DETECTED             = 0;
+    LC_AHEAD                = 1;
+    LC_AHEAD_LEFT           = 5;
+    LC_AHEAD_FAR_LEFT       = 13;
+    LC_INTERSETION_LEFT     = 37;
+    LC_BEHIND_FAR_LEFT      = 29;
+    LC_BEHIND_LEFT          = 21;
+    LC_BHIND                = 17;
+    LC_BEHIND_RIGHT         = 19;
+    LC_BEHIND_FAR_RIGHT     = 27;
+    LC_INTERSECTION_RIGHT   = 35;
+    LC_AHEAD_FAR_RIGHT      = 11;
+    LC_AHEAD_RIGHT          = 3;
+    LC_FORK_LEFT            = 69;
+    LC_FORK_RIGHT           = 67;
+    LC_MERGE_LEFT           = 101;
+    LC_MERGE_RIGHT          = 103;
+}
+
+enum ThreatLevel {
+    TL_UNKNOWN    = 0;
+    TL_FATAL      = 3;
+    TL_WARNING    = 6;
+    TL_CAUSE      = 9;
+    TL_DETECTED   = 10;
+}
+
+message DistanceTimeHT {
+    int32 dist_horizon      = 1; // unit: mm
+    int32 dist_vertical     = 2; // unit: mm
+    int32 dist_collision    = 3; // unit: mm
+    int32 time_collision    = 4; // unit: 0.1 second
+    int32 dist_safe         = 5; // unit: mm
+}
+
+message DistanceTimeI {
+    int32 inter_late7       = 1; /* unit: 1e-7 degree */
+    int32 inter_lone7       = 2; /* unit: 1e-7 degree */
+    int32 h2i_dist          = 3; /* unit: mm */
+    int32 r2i_dist          = 4; /* unit: mm */
+    int32 h2i_time          = 5; /* unit: 0.1 second */
+    int32 r2i_time          = 6; /* unit: 0.1 second */
+    int32 h2i_col_dist      = 7; /* unit: mm */
+    int32 r2i_col_dist      = 8; /* unit: mm */
+}
+
+message VVThreatItem {
+    ThreatClass threat_class    = 1;
+    ThreatLevel threat_level    = 2;
+}
+
+message VVThreat {
+    Participant rv              = 1;
+    // distance form hv to rv(big radius distance, unit:mm)
+    int32 dist                  = 2;
+    // (unit: degree)
+    int32 delta_heading         = 3;
+    oneof dt {
+        DistanceTimeHT ht       = 4;
+        DistanceTimeI inter     = 5;
+    }
+    DirectionClass dir_class    = 6;
+    ElevationClass ele_class    = 7;
+    LaneClass lane_class        = 8;
+    DistanceClass dis_class     = 9;
+    VVThreatItem item           = 10;
+}
+
+message VVThreats {
+    repeated VVThreat vvThreat  = 1;
+}
+
+message TargetAlert {
+    uint32 msgCnt           = 1;
+    uint32 secMark          = 2;    // micro second of one minute
+    oneof alert {
+        VIThreat viThreat   = 3;
+        VVThreats vvThreats = 4;
+        CooperativeLaneChange laneLange     = 5;
+        CooperativeVehMerge vehMerge        = 6;
+        CooperativeHighPriorityPassing chpp = 7;
+        CooperativeSharingSensorMsg ssm     = 8;
+    }
+}
+
+

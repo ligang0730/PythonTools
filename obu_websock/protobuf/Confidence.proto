@@ -1,0 +1,74 @@
+//
+// Confidence.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+enum AccConfidence {
+    unavailable_acc_cfd     = 0;    // -- Not Equipped or unavailable
+    prec100deg_acc_cfd      = 1;    // -- 100 m/s2
+    prec10deg_acc_cfd       = 2;    // -- 10 m/s2
+    prec5deg_acc_cfd        = 3;    // -- 5 m/s2
+    prec1deg_acc_cfd        = 4;    // -- 1 m/s2
+    prec0_1deg_acc_cfd      = 5;    // -- 0.1 m/s2
+    prec0_05deg_acc_cfd     = 6;    // -- 0.05 m/s2
+    prec0_01deg_acc_cfd     = 7;    // -- 0.01m/s2
+}
+
+enum AngularVConfidence {
+    unavailable_angularv_cfd    = 0;    // -- Not Equipped or unavailable
+    prec100deg_angularv_cfd     = 1;    // -- 100 degree / sec
+    prec10deg_angularv_cfd      = 2;    // -- 10 degree / sec
+    prec5deg_angularv_cfd       = 3;    // -- 5 degree / sec
+    prec1deg_angularv_cfd       = 4;    // -- 1 degree / sec
+    prec0_1deg_angularv_cfd     = 5;    // -- 0.1 degree / sec
+    prec0_05deg_angularv_cfd    = 6;    // -- 0.05 degree / sec
+    prec0_01deg_angularv_cfd    = 7;    // -- 0.01 degree / sec
+}
+
+enum SizeValueConfidence {
+    unavailable_size_value_cfd  = 0;
+    size_100_00_size_value_cfd  = 1;    // -- (100 m)
+    size_050_00_size_value_cfd  = 2;    // -- (50 m)
+    size_020_00_size_value_cfd  = 3;    // -- (20 m)
+    size_010_00_size_value_cfd  = 4;    // -- (10 m)
+    size_005_00_size_value_cfd  = 5;    // -- (5 m)
+    size_002_00_size_value_cfd  = 6;    // -- (2 m)
+    size_001_00_size_value_cfd  = 7;    // -- (1 m)
+    size_000_50_size_value_cfd  = 8;    // -- (50 cm)
+    size_000_20_size_value_cfd  = 9;    // -- (20 cm)
+    size_000_10_size_value_cfd  = 10;   // -- (10 cm)
+    size_000_05_size_value_cfd  = 11;   // -- (5 cm)
+    size_000_02_size_value_cfd  = 12;   // -- (2 cm)
+    size_000_01_size_value_cfd  = 13;   // -- (1 cm)
+}
+
+message ObjectSizeConfidence {
+    SizeValueConfidence widthConf   = 1;
+    SizeValueConfidence lengthConf  = 2;
+    SizeValueConfidence heightConf  = 3;
+}
+
+message AccSet4WayConfidence {
+    AccConfidence lonAccConfidence      = 1;
+    AccConfidence latAccConfidence      = 2;
+    AccConfidence vertAccConfidence     = 3;
+    AngularVConfidence yawRateCon       = 4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

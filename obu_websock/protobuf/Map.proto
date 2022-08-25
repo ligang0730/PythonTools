@@ -1,0 +1,604 @@
+//
+// VehSize.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "DefPosition.proto";
+import "VxCommonDef.proto";
+import "google/protobuf/wrappers.proto";
+
+
+
+enum DottedSolidMarkingLineType {
+    whiteDottedLine         = 0;
+    whiteSolidLine          = 1;
+    yellowDottedLine        = 2;
+    yellowSolidLine         = 3;
+    whiteDotted_solidLine   = 4;
+    // -- 白色虚实线（内侧为虚线） ，可临时跨越同向车道
+    whiteSotted_dottedLine  = 5;
+    // -- 白色实虚线 （内侧为实线），同向车道可临时跨越至本车道，本车道禁止跨越到同向车道
+    yellowDotted_solidLine  = 6;
+    // --黄色虚实线（内侧为虚线），可临时跨越对向车道
+    yellowSotted_dottedLine = 7;
+    // --黄色虚实线（内侧为实线），对向车道可临时跨越至本车道，本车道禁止跨越到对向车道
+}
+
+// BIT STRING
+enum AllowedManeuvers {
+    // -- With bits as defined:
+    // -- Allowed maneuvers at path end (stop line)
+    // -- All maneuvers with bits not set are therefore prohibited
+    // -- A value of zero shall be used for unknown, indicating no Maneuver
+    maneuverStraightAllowed         = 0;
+    // -- a Straight movement is allowed in this lane
+    maneuverLeftAllowed             = 1;
+    // -- a Left Turn movement is allowed in this lane
+    maneuverRightAllowed            = 2;
+    // -- a Right Turn movement is allowed in this lane
+    maneuverUTurnAllowed            = 3;
+    // -- a U turn movement is allowed in this lane
+    maneuverLeftTurnOnRedAllowed    = 4;
+    // -- a Stop, and then proceed when safe movement
+    // -- is allowed in this lane
+    maneuverRightTurnOnRedAllowed   = 5;
+    // -- a Stop, and then proceed when safe movement
+    // -- is allowed in this lane
+    maneuverLaneChangeAllowed       = 6;
+    // -- a movement which changes to an outer lane
+    // -- on the egress side is allowed in this lane
+    // -- (example: left into either outbound lane)
+    maneuverNoStoppingAllowed       = 7;
+    // -- the vehicle should not stop at the stop line
+    // -- (example: a flashing green arrow)
+    yieldAllwaysRequired            = 8;
+    // -- the allowed movements above are not protected
+    // -- (example: an permanent yellow condition)
+    goWithHalt                      = 9;
+    // -- after making a full stop, may proceed
+    caution                         = 10;
+    // -- proceed past stop line with caution
+    reserved1_AllowedManeuvers      = 11;
+    // -- used to align to 12 Bit Field
+}   // (SIZE(12))
+
+
+// BIT STRING
+enum LaneAttributesVehicle {
+    // -- With bits as defined:
+    isVehicleRevocableLane  = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    isRampLane              = 1;
+    // -- Redefined in Day II Standard
+    hovLaneUseOnly          = 2;
+    restrictedToBusUse      = 3;
+    restrictedToTaxiUse     = 4;
+    restrictedFromPublicUse = 5;
+    emergencyLane           = 6;
+    // -- Redefined in Day II Standard
+    permissionOnRequest     = 7;
+    // -- e.g. to inform about a lane for e-cars
+}   // (SIZE (8,...))
+
+// BIT STRING
+enum LaneAttributesCrosswalk {
+    // -- With bits as defined: 
+    // -- MUTCD provides no suitable "types" to use here
+    crosswalkRevocableLane                              = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    bicyleUseAllowed_LaneAttributesCrosswalk            = 1;
+    // -- The path allows bicycle traffic,
+    // -- if not set, this mode is prohibited
+    isXwalkFlyOverLane                                  = 2;
+    // -- path of lane is not at grade
+    fixedCycleTime                                      = 3;
+    // -- ped walk phases use preset times
+    // -- i.e. there is not a 'push to cross' button
+    biDirectionalCycleTimes_LaneAttributesCrosswalk     = 4;
+    // -- ped walk phases use different SignalGroupID
+    // -- for each direction. The first SignalGroupID
+    // -- in the first Connection represents 'inbound'
+    // -- flow (the direction of travel towards the first
+    // -- node point) while second SignalGroupID in the
+    // -- next Connection entry represents the 'outbound'
+    // -- flow. And use of RestrictionClassID entries
+    // -- in the Connect follow this same pattern in pairs.
+    hasPushToWalkButton                                 = 5;
+    // -- Has a demand input
+    audioSupport                                        = 6;
+    // -- audio crossing cues present
+    rfSignalRequestPresent                              = 7;
+    // -- Supports RF push to walk technologies
+    unsignalizedSegmentsPresent_LaneAttributesCrosswalk = 8;
+    // -- The lane path consists of one of more segments
+    // -- which are not part of a signal group ID
+    // -- Bits 9~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneAttributesBike {
+    // -- With bits as defined:
+    bikeRevocableLane                               = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    pedestrianUseAllowed                            = 1;
+    // -- The path allows pedestrian traffic,
+    // -- if not set, this mode is prohibited
+    isBikeFlyOverLane                               = 2;
+    // -- path of lane is not at grade
+    fixedCycleTime_LaneAttributesBike               = 3;
+    // -- the phases use preset times
+    // -- i.e. there is not a 'push to cross' button
+    biDirectionalCycleTimes_LaneAttributesBike      = 4;
+    // -- ped walk phases use different SignalGroupID
+    // -- for each direction. The first SignalGroupID
+    // -- in the first Connection represents 'inbound'
+    // -- flow (the direction of travel towards the first
+    // -- node point) while second SignalGroupID in the
+    // -- next Connection entry represents the 'outbound'
+    // -- flow. And use of RestrictionClassID entries
+    // -- in the Connect follow this same pattern in pairs.
+    isolatedByBarrier                               = 5;
+    unsignalizedSegmentsPresent_LaneAttributesBike  = 6;
+    // -- The lane path consists of one of more segments
+    // -- which are not part of a signal group ID
+    // -- Bits 7~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneAttributesSidewalk {
+    // -- With bits as defined:
+    sidewalk_RevocableLane                  = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    bicyleUseAllowed_LaneAttributesSidewalk = 1;
+    // -- The path allows bicycle traffic,
+    // -- if not set, this mode is prohibited
+    isSidewalkFlyOverLane                   = 2;
+    // -- path of lane is not at grade
+    walkBikes                               = 3;
+    // -- bike traffic must dismount and walk 
+    // -- Bits 4~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneAttributesBarrier {
+    // -- With bits as defined:
+    median_RevocableLane    = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    median                  = 1;
+    whiteLineHashing        = 2;
+    stripedLines            = 3;
+    doubleStripedLines      = 4;
+    trafficCones            = 5;
+    constructionBarrier     = 6;
+    trafficChannels         = 7;
+    lowCurbs                = 8;
+    highCurbs               = 9;    // -- Bits 10~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneAttributesStriping {
+    // -- With bits as defined:
+    stripeToConnectingLanesRevocableLane    = 0;
+    // -- this lane may be activated or not activated based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    stripeDrawOnLeft                        = 1;
+    stripeDrawOnRight                       = 2;
+    // -- which side of lane to mark
+    stripeToConnectingLanesLeft             = 3;
+    stripeToConnectingLanesRight            = 4;
+    stripeToConnectingLanesAhead            = 5;
+    // -- the stripe type should be
+    // -- presented to the user visually
+    // -- to reflect stripes in the
+    // -- intersection for the type of
+    // -- movement indicated 
+    // -- Bits 6~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneAttributesTrackedVehicle {
+    // -- With bits as defined:
+    spec_RevocableLane          = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    spec_commuterRailRoadTrack  = 1;
+    spec_lightRailRoadTrack     = 2;
+    spec_heavyRailRoadTrack     = 3;
+    spec_otherRailType          = 4;    // -- Bits 5~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneAttributesParking {
+    // -- With bits as defined:
+    // -- Parking use details, note that detailed restrictions such as
+    // -- allowed hours are sent by way of ITIS codes in the TIM message
+    parkingRevocableLane    = 0;
+    // -- this lane may be activated or not based
+    // -- on the current SPAT message contents
+    // -- if not asserted, the lane is ALWAYS present
+    parallelParkingInUse    = 1;
+    headInParkingInUse      = 2;
+    doNotParkZone           = 3;
+    // -- used to denote fire hydrants as well as
+    // -- short disruptions in a parking zone
+    parkingForBusUse        = 4;
+    parkingForTaxiUse       = 5;
+    noPublicParkingUse      = 6;
+    // -- private parking, as in front of
+    // -- private property 
+    // -- Bits 7~15 reserved and set to zero
+}   // (SIZE (16))
+
+// BIT STRING
+enum LaneSharing {
+    // -- With bits as defined:
+    overlappingLaneDescriptionProvided  = 0;
+    // -- Assert when another lane object is present to describe the
+    // -- path of the overlapping shared lane
+    // -- this construct is not used for lane objects which simply cross
+    multipleLanesTreatedAsOneLane       = 1;
+    // -- Assert if the lane object path and width details represents
+    // -- multiple lanes within it that are not further described
+    // -- Various modes and type of traffic that may share this lane:
+    otherNonMotorizedTrafficTypes       = 2;    // -- horse drawn etc.
+    individualMotorizedVehicleTraffic   = 3;
+    busVehicleTraffic                   = 4;
+    taxiVehicleTraffic                  = 5;
+    pedestriansTraffic                  = 6;
+    cyclistVehicleTraffic               = 7;
+    trackedVehicleTraffic               = 8;
+    pedestrianTraffic                   = 9;
+}   // (SIZE (10))
+// -- All zeros would indicate 'not shared' and 'not overlapping'
+
+message LaneTypeAttributes {
+    oneof choice {
+        uint32 vehicle          = 1;    // -- motor vehicle lanes
+        // BIT STRING of enum LaneAttributesVehicle
+        uint32 crosswalk        = 2;    // -- pedestrian crosswalks
+        // BIT STRING of enum LaneAttributesCrosswalk
+        uint32 bikeLane         = 3;    // -- bike lanes
+        // BIT STRING of enum LaneAttributesBike
+        uint32 sidewalk         = 4;    // -- pedestrian sidewalk paths
+        // BIT STRING of enum LaneAttributesSidewalk
+        uint32 median           = 5;    // -- medians & channelization
+        // BIT STRING of enum LaneAttributesBarrier
+        uint32 striping         = 6;    // -- roadway markings
+        // BIT STRING of enum LaneAttributesStriping
+        uint32 trackedVehicle   = 7;
+        // BIT STRING of enum LaneAttributesTrackedVehicle
+        uint32 parking          = 8;    // -- parking and stopping lanes
+        // BIT STRING of enum LaneAttributesParking
+    }
+}
+
+
+message ConnectingLane {
+    uint32 lane                             = 1;
+    // LaneID ::= INTEGER (0..255)
+    // -- the value 0 shall be used when the lane ID is
+    // -- not available or not known
+    // -- Index of the connecting lane
+    google.protobuf.UInt32Value maneuver    = 2;    // OPTIONAL
+    // -- The Maneuver between
+    // -- the enclosing lane and this lane
+    // -- at the stop line to connect them
+}
+
+message Connection {
+    NodeReferenceID remoteIntersection  = 1;
+    // -- This entry indicates the downstream intersection of the link this lane connects to. 
+    // -- This provides a means to create meshes of lanes
+    ConnectingLane connectingLane       = 2;    // OPTIONAL
+    // -- The index of the connecting lane and also
+    // -- the maneuver from the current lane to it
+    // -- When we want to list the allowed lanes of the next link
+    // -- this lane can lead to, we use this entry
+    google.protobuf.UInt32Value phaseId                      = 3;    // OPTIONAL
+    // PhaseID ::= INTEGER (0..255)
+    // -- The value 0 shall be used when the ID is
+    // -- not available or not known
+    // -- The matching signal group send by
+    // -- the SPAT message for this lane/maneuver.
+    // -- Shall be present unless the connectingLane
+    // -- has no signal group (is un-signalized)
+}
+
+message LaneAttributes {
+    google.protobuf.UInt32Value shareWith            = 1;    // OPTIONAL
+    // BIT STRING of enum LaneSharing
+    LaneTypeAttributes laneType = 2;
+}
+
+
+message Lane {
+    uint32 laneID                               = 1;
+    // LaneID ::= INTEGER (0..255)
+    // -- the value 0 shall be used when the lane ID is
+    // -- not available or not known
+    // -- The unique ID number assigned
+    // -- to this lane object
+    google.protobuf.UInt32Value laneWidth       = 2;    // OPTIONAL
+    // LaneWidth ::= INTEGER (0..32767)
+    // -- units of 1 cm
+    LaneAttributes laneAttributes               = 3;    // OPTIONAL
+    // -- Define basic attribute of lane
+    google.protobuf.UInt32Value maneuvers       = 4;    // OPTIONAL
+    // BIT STRING of enum AllowedManeuvers
+    // -- the permitted maneuvers for this lane
+    repeated Connection connectsTo              = 5;    // OPTIONAL
+    // ConnectsToList ::= SEQUENCE (SIZE(1..8)) OF Connection
+    // -- connection to downsteam lanes
+    repeated RegulatorySpeedLimit speedLimits   = 6;    // OPTIONAL
+    // SpeedLimitList ::= SEQUENCE (SIZE(1..9)) OF RegulatorySpeedLimit
+    // -- List all the speed limits
+    repeated Position3D points                  = 7;    // OPTIONAL
+    // -- Define road points and segments
+}
+
+message Movement {
+    NodeReferenceID remoteIntersection  = 1;
+    // -- This entry indicates the downstream intersection of the link this lane connects to. 
+    // -- This provides a means to create meshes of lanes
+
+    google.protobuf.UInt32Value phaseId = 2;    // OPTIONAL
+    // PhaseID ::= INTEGER (0..255)
+    // -- The value 0 shall be used when the ID is
+    // -- not available or not known
+    // -- The matching signal group send by
+    // -- the SPAT message for this lane/maneuver.
+    // -- Shall be present unless the connectingLane
+    // -- has no signal group (is un-signalized)
+}
+
+message Link {
+    string name                                 = 1;    // OPTIONAL
+    // DescriptiveName ::= IA5String (SIZE(1..63))
+    // -- Link name
+
+    NodeReferenceID upstreamNodeId              = 2;
+    // -- this link is from upstreamNode to the Node it belongs to
+
+    repeated RegulatorySpeedLimit speedLimits   = 3;    // OPTIONAL
+    // SpeedLimitList ::= SEQUENCE (SIZE(1..9)) OF RegulatorySpeedLimit
+    // -- List all the speed limits
+
+    uint32 linkWidth                            = 4;
+    // LaneWidth ::= INTEGER (0..32767)
+    // -- units of 1 cm
+    // -- Width of this link
+
+    repeated Position3D points                  = 5;    // OPTIONAL
+    // -- Define road points along the center of this link
+
+    repeated Movement movements                 = 6;    // OPTIONAL
+    // MovementList ::= SEQUENCE (SIZE(1..32)) OF Movement
+    // -- Define movements at intersection
+
+    repeated Lane lanes                         = 7;
+    // LaneList ::= SEQUENCE (SIZE(1..32)) OF Lane
+    // -- Lanes belong to this link
+}
+
+message ProhibitedZone {
+    repeated Position3D centralCircleProhibitedZone     = 1;    // OPTIONAL
+    // Polygon ::= SEQUENCE(SIZE(4..32)) OF PositionOffsetLLV
+    repeated Position3D non_motorVehicleProhibitedZones = 2;    // OPTIONAL
+    // non-motorVehicleProhibitedZones SEQUENCE (SIZE(1..16)) OF Polygon OPTIONAL,
+    repeated Position3D gridLineMarkingProhibitedZones  = 3;    // OPTIONAL
+    // gridLineMarkingProhibitedZones SEQUENCE (SIZE(2..16)) OF Polygon OPTIONAL,
+    // -- Gird line marking prohibited zones 
+    // -- inside the node(intersection) or at the in-links of this node
+}
+
+
+message SignalWaitingLane {
+    uint32 laneWidth                = 1;
+    // LaneWidth ::= INTEGER (0..32767)
+    // -- units of 1 cm
+    repeated Position3D points      = 2;
+    repeated uint32 allowedPhaseIds = 3;
+    // allowedPhaseIds SEQUENCE (SIZE(1..7)) OF PhaseID OPTIONAL
+    // -- e.g. for a typiccal left turn waiting area, both left turn phase and go straight phase are allowed
+    // PhaseID ::= INTEGER (0..255)
+    // -- The value 0 shall be used when the ID is
+    // -- not available or not known
+}
+
+message ConnectingLaneEx {
+    uint32 target_section                           = 1;
+    // SectionId ::= INTEGER (1..63)
+    // -- Section id is distributed from upstream to downstream
+    // -- with 1, 2, 3, ..., sequentially
+
+    int32 target_lane                               = 2;
+    // LaneRefID ::= INTEGER (-31..31)
+    // -- Lane reference id related to reference line of this link
+    // -- Ref. line belongs to lane ref. id 0
+    // -- Lane ref. ids on the left side of ref. line should be 1, 2, 3... in sequence
+    // -- Ref. ids on the right side should be -1, -2, -3... in sequence
+    // -- Index of the connecting lane
+
+    google.protobuf.UInt32Value connectingLaneWidth = 3;    // OPTIONAL
+    // LaneWidth ::= INTEGER (0..32767)
+    // -- units of 1 cm
+    // -- Indicating the width of the real or virtual connecting lane
+    repeated Position3D connectingLanePoints        = 4;    // OPTIONAL
+    // -- Indicating the position of the real or virtual connecting lane
+    bool isolatedConnectingLane                     = 5;    // OPTIONAL
+    // -- A real isolated connecting lane is seperated from any other lanes
+    // -- Usually exists in right turning
+}
+
+message ConnectionEx {
+    NodeReferenceID remoteIntersection          = 1;
+    // -- This entry indicates the downstream intersection of the link this lane connects to. 
+    // -- This provides a means to create meshes of lanes
+
+    SignalWaitingLane swl                       = 2;    // OPTIONAL
+    // -- waiting area for certain signal phase
+    // -- usually set for left turn
+
+    repeated ConnectingLaneEx connectingLane    = 3;    // OPTIONAL
+    // connectingLane SEQUENCE (SIZE(1..16)) OF ConnectingLaneEx OPTIONAL,
+    // -- The index of the connecting lane and also
+    // -- the maneuver from the current lane to it
+    // -- When we want to list the allowed lanes of the next link
+    // -- this lane can lead to, we use this entry
+
+    google.protobuf.UInt32Value phaseId         = 4;    // OPTIONAL
+    // PhaseID ::= INTEGER (0..255)
+    // -- The value 0 shall be used when the ID is
+    // -- not available or not known
+    // -- The matching signal group send by
+    // -- the SPAT message for this lane/maneuver.
+    // -- Shall be present unless the connectingLane
+    // -- has no signal group (is un-signalized)
+
+    Maneuver turn_direction                     = 5;    // OPTIONAL
+    // -- Indicating the turn direction corresponding to this movement
+}
+
+message STPoint {
+    int32 s_axis    = 1;
+    // s-axis INTEGER (-1024..65535),
+    // -- Unit 0.1m
+    // -- Longitudinal length related to the ref. line
+    int32 t_axis    = 2;
+    // t-axis INTEGER (-32768..32767),
+    // -- Unit 0.01m
+    // -- Latitudinal distance in st coordinates
+    // -- Positive in the left of ref. line
+    // -- Negative in the right of ref. line
+}
+
+message LaneLineType {
+    DottedSolidMarkingLineType leftLaneLine     = 1;
+    DottedSolidMarkingLineType rightLaneLine    = 2;
+}
+
+message LaneEx {
+    int32 laneRefID                             = 1;
+    // LaneRefID ::= INTEGER (-31..31)
+    // -- Lane reference id related to reference line of this link
+    // -- Ref. line belongs to lane ref. id 0
+    // -- Lane ref. ids on the left side of ref. line should be 1, 2, 3... in sequence
+    // -- Ref. ids on the right side should be -1, -2, -3... in sequence
+    google.protobuf.UInt32Value laneWidth       = 2;    // OPTIONAL
+    // LaneWidth ::= INTEGER (0..32767)
+    // -- units of 1 cm
+    LaneAttributes laneAttributes               = 3;    // OPTIONAL
+    // -- Define basic attribute of lane
+    google.protobuf.UInt32Value maneuvers       = 4;    // OPTIONAL
+    // -- the permitted maneuvers for this lane
+    repeated ConnectionEx connectsTo_ex         = 5;    // OPTIONAL
+    // ConnectsToExList ::= SEQUENCE (SIZE(1..32)) OF ConnectionEx
+    // -- connection to downsteam lanes
+    repeated RegulatorySpeedLimit speedLimits   = 6;    // OPTIONAL
+    // SpeedLimitList ::= SEQUENCE (SIZE(1..9)) OF RegulatorySpeedLimit
+    // -- List all the speed limits
+    repeated STPoint st_points                  = 7;    // OPTIONAL
+    // STPointList ::= SEQUENCE (SIZE(2..63)) OF ST-Point
+    // -- Points list of the center of this lane
+    // -- using ST coordinates
+    LaneLineType laneLineType                   = 8;    // OPTIONAL
+}
+
+message Section {
+    uint32 secId            = 1;
+    // SectionId ::= INTEGER (1..63)
+    // -- Section id is distributed from upstream to downstream
+    // -- with 1, 2, 3, ..., sequentially
+    repeated LaneEx lanes   = 2;
+    // LaneExList ::= SEQUENCE (SIZE(1..32)) OF LaneEx
+    // -- Lanes belong to this link
+}
+
+message LinkEx {
+    google.protobuf.StringValue name            = 1;    // OPTIONAL
+    // DescriptiveName ::= IA5String (SIZE(1..63))
+    // -- Link name
+
+    NodeReferenceID upstreamNodeId              = 2;
+    // -- this link is from upstreamNode to the Node it belongs to
+
+    repeated RegulatorySpeedLimit speedLimits   = 3;    // OPTIONAL
+    // SpeedLimitList ::= SEQUENCE (SIZE(1..9)) OF RegulatorySpeedLimit
+    // -- List all the speed limits
+
+    google.protobuf.UInt32Value linkWidth       = 4;    // OPTIONAL
+    // LaneWidth ::= INTEGER (0..32767)
+    // -- units of 1 cm
+    // -- Width of this link
+
+    repeated Position3D refLine                 = 5;    // OPTIONAL
+    // -- Define reference line of this link
+    // -- Using the points list from upstream to downstream
+    // -- along the center of lane 0 of this link
+    // -- Ref. line must cover the whole link, from the link entrance to the stop line
+
+    repeated MovementEx movements_ex            = 6;    // OPTIONAL
+    // MovementExList ::= SEQUENCE (SIZE(1..32)) OF MovementEx
+    // -- Define movements at intersection
+
+    repeated Section sections                   = 7;
+    // SectionList ::= SEQUENCE (SIZE(1..16)) OF Section
+    // -- Link sections belong to this link
+    // -- listed from upstream to downstream
+    // -- Different sections are generally seperated according to lane increase or decrease
+}
+
+message Node {
+    // -- intersection or road endpoint
+    google.protobuf.StringValue name    = 1;    // OPTIONAL
+    // DescriptiveName ::= IA5String (SIZE(1..63))
+    // -- Node name
+    NodeReferenceID id                  = 2;
+    // -- A globally unique value set,
+    // -- consisting of a regionID and
+    // -- node ID assignment
+    Position3D refPos                   = 3;
+    // -- 3D position of the center of this Node.
+    // -- This position is also the reference position for the elements inside
+
+    // -- Link list using Day I format --------------------------------------
+    repeated Link inLinks               = 4;    // OPTIONAL
+    // LinkList ::= SEQUENCE (SIZE(1..32)) OF Link
+    // -- all the links enter this Node
+
+    // -- Day II Extension--------------------------------------
+    //inLinks-ex LinkExList OPTIONAL,
+    repeated LinkEx inLinks_ex          = 5;
+    // LinkExList ::= SEQUENCE (SIZE(1..32)) OF LinkEx
+    // -- all the links enter this Node
+    ProhibitedZone prohibitedzone       = 6;    // OPTIONAL
+}
+
+message Map {
+    int32 msgCnt        = 1;
+    uint32 timeStamp    = 2;
+    // MinuteOfTheYear ::= INTEGER (0..527040)
+    // -- the value 527040 shall be used for invalid
+    repeated Node nodes = 3;
+    // NodeList ::= SEQUENCE (SIZE(1..32)) OF Node
+    // -- intersections or road endpoints
+}
+
+

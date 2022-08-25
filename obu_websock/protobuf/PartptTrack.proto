@@ -1,0 +1,48 @@
+//
+// PartptTrack.proto
+// protoc -I=./protobuf --cpp_out=./src/ ./protobuf/*.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "VehBrake.proto";
+//import "EnumType.proto";
+import "DefPosition.proto";
+//import "VehicleClassification.proto";
+import "google/protobuf/wrappers.proto";
+
+
+enum eSafeMsgLev {
+    IGNORE_SAFE_MSG = 0;
+    INIT_SAFE_MSG = 1;
+    FAR_SAFE_MSG = 2;
+    GREEN_SAFE_MSG = 3;
+    YELLOW_SAFE_MSG = 4;
+    RED_SAFE_MSG = 5;
+}
+
+enum eSafeMsgSour {
+    BSM_SAFE_MSG = 0;
+    RSM_SAFE_MSG = 1;
+}
+
+
+message PartptTrack {
+    uint32 secMark                      = 1;
+    Position3D pos                      = 2;
+    uint32 speed                        = 3;
+    uint32 heading                      = 4;
+    BrakeSystemStatus brakes            = 11;
+    // VehicleEventFlags
+    uint32 events                       = 12;
+    //------
+    google.protobuf.Int32Value lights   = 13;
+    google.protobuf.Int32Value horiz    = 14; // horizontal
+    google.protobuf.Int32Value vert     = 15; // vertical
+}
+
+

@@ -1,0 +1,210 @@
+//
+// SignalPhaseAndTiming.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "DefTime.proto";
+import "VxCommonDef.proto";
+import "google/protobuf/wrappers.proto";
+
+
+enum IntersectionStatusObject {
+    manualControlIsEnabled_inter_obj                = 0;
+    // -- Timing reported is per programmed values, etc. but person
+    // -- at cabinet can manually request that certain intervals are
+    // -- terminated early (e.g. green).
+    stopTimeIsActivated_inter_obj                   = 1;
+    // -- And all counting/timing has stopped.
+    failureFlash_inter_obj                          = 2;
+    // -- Above to be used for any detected hardware failures,
+    // -- e.g. conflict monitor as well as for police flash
+    preemptIsActive_inter_obj                       = 3;
+    signalPriorityIsActive_inter_obj                = 4;
+    // -- Additional states
+    fixedTimeOperation_inter_obj                    = 5;
+    // -- Schedule of signals is based on time only
+    // -- (i.e. the state can be calculated)
+    trafficDependentOperation_inter_obj             = 6;
+    // -- Operation is based on different levels of traffic parameters
+    // -- (requests, duration of gaps or more complex parameters)
+    standbyOperation_inter_obj                      = 7;
+    // -- Controller: partially switched off or partially amber flashing
+    failureMode_inter_obj                           = 8;
+    // -- Controller has a problem or failure in operation
+    off_inter_obj                                   = 9;
+    // -- Controller is switched off
+    // -- Related to MAP and SPAT bindings
+    recentMAPmessageUpdate_inter_obj                = 10;
+    // -- Map revision with content changes
+    recentChangeInMAPassignedLanesIDsUsed_inter_obj = 11;
+    // -- Change in MAP's assigned lanes used (lane changes)
+    // -- Changes in the active lane list description
+    noValidMAPisAvailableAtThisTime_inter_obj       = 12;
+    // -- MAP (and various lanes indexes) not available
+    noValidSPATisAvailableAtThisTime_inter_obj      = 13;
+    // -- SPAT system is not working at this time
+    // -- Bits 14,15 reserved at this time and shall be zero
+}   // (SIZE(16))
+
+enum LightState {
+    unavailable_light_state         = 0;
+    // -- This state is used for unknown or error
+    dark_light_state                = 1;
+    // -- The signal is dark (unlit)
+
+    // -- Reds
+    flashing_red_light_state        = 2;
+    // -- Reserved for special scenarios
+    red_red_light_state             = 3;
+    // -- Driver Action:
+    // -- Stop vehicle at stop line.
+    // -- Do not proceed.
+
+    // -- Greens
+    flashing_green_light_state      = 4;
+    // -- Reserved for special scenarios		
+    permissive_green_light_state    = 5;
+    // -- Driver Action:
+    // -- Proceed with caution,
+    // -- must yield to all conflicting traffic
+    // -- Conflicting traffic may be present
+    // -- in the intersection conflict area
+    protected_green_light_state     = 6;
+    // -- Driver Action:
+    // -- Proceed, tossing caution to the wind,
+    // -- in indicated (allowed) direction.
+
+    // -- Yellows / Ambers 
+    // -- The vehicle is not allowed to cross the stop bar if it is possible 
+    // -- to stop without danger.
+    yellow_green_light_state        = 7;
+    // -- Driver Action:
+    // -- Prepare to stop.
+    // -- Proceed if unable to stop,
+    // -- in indicated direction (to connected lane)
+    // -- Clear Intersection.
+
+    flashing_yellow_light_state     = 8;
+    // -- Driver Action:
+    // -- Proceed with caution,
+    // -- Conflicting traffic may be present
+    // -- in the intersection conflict area
+}
+
+message TimeChangeDetails {
+    uint32 startTime                            = 1;
+    // startTime TimeMark,
+    // TimeMark ::= INTEGER (0..36001)
+    // -- When this phase state started,
+    // -- if already started, the value is 0
+    google.protobuf.UInt32Value minEndTime      = 2;    // OPTIONAL
+    // minEndTime TimeMark OPTIONAL,
+    // TimeMark ::= INTEGER (0..36001)
+    // -- Expected shortest end time
+    // -- the value is the min left time from now
+    google.protobuf.UInt32Value maxEndTime      = 3;    // OPTIONAL
+    // maxEndTime TimeMark OPTIONAL,
+    // TimeMark ::= INTEGER (0..36001)
+    // -- Expected longest end time
+    // -- the value is the max left time from now
+    uint32 likelyEndTime                        = 4;
+    // likelyEndTime TimeMark,
+    // TimeMark ::= INTEGER (0..36001)
+    // -- Best predicted value based on other data
+    // -- the value is the likely left time from now
+    google.protobuf.UInt32Value timeConfidence  = 5;    // OPTIONAL
+    // timeConfidence Confidence OPTIONAL,
+    // Confidence ::= INTEGER (0..200)
+    // -- Confidence of likelyTime
+    google.protobuf.UInt32Value nextStartTime    = 6;    // OPTIONAL
+    // nextStartTime TimeMark OPTIONAL,
+    // TimeMark ::= INTEGER (0..36001)
+    // -- A rough estimate of time from now when this phase state may next occur again
+    // -- used to support various ECO driving power management needs.
+    // -- If already started, this value is recommended to be delivered.
+    google.protobuf.UInt32Value nextDuration     = 7;    // OPTIONAL
+    // nextDuration TimeMark OPTIONAL
+    // TimeMark ::= INTEGER (0..36001)
+    // -- A rough estimate of the time length of this phase state
+    // -- when it may next occur again.
+    // -- used to support various ECO driving power management needs.
+    // -- If already started, this value is recommended to be delivered.
+}
+
+message PhaseState {
+    LightState light            = 1;
+    // -- Consisting of:
+    // -- Phase state (the basic 11 states)
+    // -- Directional, protected, or permissive state
+    TimeChangeDetails timing    = 2;
+    // -- Timing Data in UTC time stamps for event
+    // -- includes start and min/max end times of phase
+    // -- confidence and estimated next occurrence
+}
+
+message Phase {
+    uint32 id                       = 1;
+    // PhaseID ::= INTEGER (0..255)
+    // -- the group id is used to map to lists
+    // -- of lanes (and their descriptions)
+    // -- which this MovementState data applies to
+    // -- see comments in the Remarks for usage details
+    // -- The value 0 shall be used when the ID is
+    // -- not available or not known
+    // -- the value 255 is reserved to indicate a
+    // -- permanent green movement state
+    // -- therefore a simple 8 phase signal controller
+    // -- device might use 1..9 as its groupIDs
+    repeated PhaseState phaseStates = 2;    // SIZE(1..16)
+    // -- Consisting of sets of movement data with:
+    // -- a) SignalPhaseState
+    // -- b) TimeChangeDetails, and
+    // -- c) AdvisorySpeeds (optional )
+    // -- Note one or more of the movement events may be for
+    // -- a future time and that this allows conveying multiple
+    // -- predictive phase and movement timing for various uses
+    // -- for the current signal group
+}
+
+message IntersectionState {
+    NodeReferenceID intersectionId          = 1;
+    // -- A globally unique value set, consisting of a
+    // -- regionID and intersection ID assignment
+    // -- provides a unique mapping to the MAP Node
+    uint32 status                           = 2;
+    // BIT STRING of enum IntersectionStatusObject
+    // -- general status of the controller(s)
+    google.protobuf.UInt32Value moy         = 3;    // OPTIONAL, MinuteOfTheYear
+    // -- Minute of current UTC year
+    // -- used only with messages to be archived
+    google.protobuf.UInt32Value timeStamp   = 4;    // OPTIONAL, DSecond
+    // -- the mSec point in the current UTC minute that
+    // -- this message was constructed
+    TimeConfidence timeConfidence           = 5;    // OPTIONAL,
+    // -- indicate the time confidence of the above UTC time
+    repeated Phase phases                   = 6;    // SIZE(1..16)
+    // -- Each Movement is given in turn
+    // -- and contains its signal phase state,
+    // -- mapping to the lanes it applies to, and
+    // -- point in time it will end, and it
+    // -- may contain both active and future states
+}
+
+message SPAT {
+    uint32 msgCnt                               = 1;
+    google.protobuf.UInt32Value moy             = 2;    // OPTIONAL, MinuteOfTheYear
+    google.protobuf.UInt32Value timeStamp       = 3;    // OPTIONAL, DSecond
+    // -- Time stamp when this message is formed
+    google.protobuf.StringValue name            = 4;    // OPTIONAL, SIZE(1..63)
+    // -- human readable name for this collection
+    // -- to be used only in debug mode
+    repeated IntersectionState intersections    = 5;    // SIZE(1..32)
+    // -- sets of SPAT data (one per intersection)
+}
+
+

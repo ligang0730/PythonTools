@@ -1,0 +1,44 @@
+//
+// MapMatch.proto
+// protoc -I=./protobuf --cpp_out=./src/ ./protobuf/*.proto
+//
+//
+syntax = "proto3";
+
+package vxII;
+
+
+import "Map.proto";
+import "DefPosition.proto";
+import "VxCommonDef.proto";
+import "google/protobuf/wrappers.proto";
+
+
+message MmNodeReferenceID {
+    NodeReferenceID currNode        = 1;
+    NodeReferenceID upstreamNode    = 2;
+    NodeReferenceID downstreamNode  = 3;
+}
+
+
+message MmLaneInfo {
+    int32 curLaneId     = 1;
+    int32 leftLaneId    = 2;
+    int32 rightLaneId   = 3;
+    bool rampFlag       = 4;
+}
+
+
+message MapMatch {
+    uint32 mint1_of_ms                          = 1;
+    MmNodeReferenceID refId                     = 2;
+    Position3D refPos                           = 3;
+    repeated RegulatorySpeedLimit speedLimit    = 4;
+    repeated Connection connection              = 5;
+    repeated Movement movements                 = 6;
+    //AllowedManeuvers maneuvers                  = 7;
+    google.protobuf.UInt32Value maneuvers       = 7;
+    MmLaneInfo laneInfo                         = 8;
+}
+
+

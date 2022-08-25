@@ -1,0 +1,52 @@
+//
+// BSM.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "DefTime.proto";
+import "VehSize.proto";
+import "VehClass.proto";
+import "VehBrake.proto";
+import "VehStatus.proto";
+import "DefMotion.proto";
+import "VehEmgExt.proto";
+import "DefPosition.proto";
+import "VehSafetyExt.proto";
+import "DefAcceleration.proto";
+import "google/protobuf/wrappers.proto";
+
+
+message BSM {
+    uint32 msgCnt                           = 1;
+    string id                               = 2;    // SIZE(8)
+    // -- temperary vehicle ID
+    uint32 secMark                          = 3;    // micro second of one minute
+    TimeConfidence timeConfidence           = 4;    // OPTIONAL
+    Position3D pos                          = 5;
+    PositionalAccuracy posAccuracy          = 6;    // OPTIONAL
+    // -- Accuracy for GNSS system
+    PositionConfidenceSet posConfidence     = 7;    // OPTIONAL
+    // -- Realtime position confidence
+    TransmissionState transmission          = 8;
+    uint32 speed                            = 9;    // 0.02m/s
+    // Speed: Speed ::= INTEGER (0..8191)
+    uint32 heading                          = 10;   // 0.0125
+    // Heading ::= INTEGER (0..28800)
+    google.protobuf.Int32Value angle        = 11;   // OPTIONAL
+    // SteeringWheelAngle INTEGER (-126..127)
+    MotionConfidenceSet motionCfd           = 12;   // OPTIONAL
+    AccelerationSet4Way accelSet            = 13;
+    BrakeSystemStatus brakes                = 14;
+    VehSize size                            = 15;
+    VehicleClassification vehicleClass      = 16;
+    // -- VehicleClassification includes BasicVehicleClass and other extendible type
+    VehicleSafetyExtensions safetyExt       = 17;   // OPTIONAL
+    VehicleEmergencyExtensions emergencyExt = 18;   // OPTIONAL
+}
+
+

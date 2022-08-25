@@ -1,0 +1,87 @@
+//
+// Platooning.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+enum RoleInPlatooning {
+    leader_role_platooning          = 0;
+    follower_role_platooning        = 1;
+    tail_role_platooning            = 2;
+    free_vehicle_role_platooning    = 3;
+}
+
+enum StatusInPlatooning {
+    // -- possible states of platooning members
+    // -- a complete platooning process can include all or part of them
+    navigating_status_platooning        = 0;
+    beginToDissmiss_status_platooning   = 1;
+    askForJoining_status_platooning     = 2;
+    joining_status_platooning           = 3;
+    following_status_platooning         = 4;
+    askForLeaving_status_platooning     = 5;
+    leaving_status_platooning           = 6;
+}
+
+
+message MemberNode {
+    string vid          = 1;    // SIZE:8
+    // -- vehicle ID
+    uint32 speed        = 2;
+    // Speed ::= INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    uint32 distance     = 3;
+    // -- Unit is 0.1m
+    // distance from front car
+}
+
+message MemberManagement {
+    repeated MemberNode memberList      = 1;
+    // -- member list of platooning
+    repeated MemberNode joiningList     = 2;
+    // -- list of vehicle that is allowed to join the platoon
+    // -- and is operating the joining procedure
+    repeated MemberNode leavingList     = 3;
+    // -- list of vehicle that is allowed to leaving the platoon
+    // -- and is operating the leaving procedure
+    uint32 capacity                     = 4;    // (1..32)
+    // -- the capacity of platooning
+    bool openToJoin                     = 5;
+}
+
+
+message Platooning {
+    string pid                  = 1;    // SIZE:17
+    // -- Platooning ID
+    RoleInPlatooning role       = 2;
+    // vehicle role
+    StatusInPlatooning status   = 3;
+    // -- vehicle status
+    MemberManagement leadingExt = 4;
+    // -- Platooning management information
+    // -- sent by the leading vehicle
+}
+
+
+message CLPMM {
+    uint32 msgCnt               = 1;    // 0~127
+    string id                   = 2;    // SIZE:8
+    // -- temperary vehicle ID
+    uint32 secMark              = 3;    // micro second of one minute
+    string pid                  = 4;    // SIZE:17
+    // -- Platooning ID
+    RoleInPlatooning role       = 5;
+    // vehicle role
+    StatusInPlatooning status   = 6;
+    // -- vehicle status
+    MemberManagement leadingExt = 7;
+    // -- Platooning management information
+    // -- sent by the leading vehicle
+}
+
+

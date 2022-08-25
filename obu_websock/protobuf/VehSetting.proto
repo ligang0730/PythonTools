@@ -1,0 +1,26 @@
+//
+// VehSetting.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "VehSize.proto";
+import "VehClass.proto";
+import "VehBrake.proto";
+import "VehStatus.proto";
+//import "google/protobuf/wrappers.proto";
+
+
+message VehSetting {
+    uint32 msgCnt                   = 1;    // 0~127
+    VehSize size                    = 2;
+    VehicleClassification vehClass  = 3;
+    BrakeSystemStatus brakeStatus   = 4;
+    uint32 lights                   = 5;    // BIT STRING of enum ExteriorLights
+}
+
+

@@ -1,0 +1,12 @@
+<routes>
+	<vType id="car" vClass='passenger' color='red' accel="2.6" decel="4.5" sigma="0.5" length="5" maxSpeed="20"/>
+	<vType id="bus" vClass='bus' accel="2.6" decel="4.5" sigma="0.5" length="5" maxSpeed="15"/>
+	<vType id="bicycle" vClass='bicycle' accel="0.6" decel="0.5" sigma="0.5" length="5" maxSpeed="10"/>
+	<vType id="person" vClass='pedestrian' accel="2.6" decel="4.5" sigma="0.5" length="5" maxSpeed="2"/>
+<!--
+	<flow id="0" type="car" color='red' depart="25" departSpeed='5' departLane='0' arrivalLane='0' from="618012187#1" via="317913845#5" to="618012187#0" number="1"/>
+-->
+	<flow id="1" type="car" color='blue' depart="25" departSpeed='10' departLane='0' arrivalLane='0' from="618012187#1" to="618012187#3" number="1000"/>
+	<flow id="2" type="car" color='orange' depart="25" departSpeed='10' departLane='1' arrivalLane='1' from="618012187#1" to="618012187#3" number="1000"/>
+	<flow id="3" type="car" color='yellow' depart="25" departSpeed='15' departLane='0' arrivalLane='1' from="317889652#8" to="-317889652#8" number="1000"/>
+</routes>

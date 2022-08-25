@@ -1,0 +1,91 @@
+//
+// VxCommonDef.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "google/protobuf/wrappers.proto";
+
+
+enum SpeedLimitType {
+    unknown_speed_limit_type                    = 0;    // -- Speed limit type not available
+    maxSpeedInSchoolZone                        = 1;    // -- Only sent when the limit is active
+    maxSpeedInSchoolZoneWhenChildrenArePresent  = 2;    // -- Sent at any time
+    maxSpeedInConstructionZone                  = 3;    // -- Used for work zones, incident zones, etc.
+    // -- where a reduced speed is present
+    vehicleMinSpeed                             = 4;
+    vehicleMaxSpeed                             = 5;    // -- Regulatory speed limit for general traffic
+    vehicleNightMaxSpeed                        = 6;
+    truckMinSpeed                               = 7;
+    truckMaxSpeed                               = 8;
+    truckNightMaxSpeed                          = 9;
+    vehiclesWithTrailersMinSpeed                = 10;
+    vehiclesWithTrailersMaxSpeed                = 11;
+    vehiclesWithTrailersNightMaxSpeed           = 12;
+}
+
+enum Maneuver {
+    maneuverStraight_maneuver   = 0;
+    maneuverLeftTurn_maneuver   = 1;
+    maneuverRightTurn_maneuver  = 2;
+    maneuverUTurn_maneuver      = 3;
+}
+
+
+
+message NodeReferenceID {
+    uint32 region   = 1;    // RoadRegulatorID
+    // -- a globally unique regional assignment value
+    // -- typical assigned to a regional DOT authority
+    // -- the value zero shall be used for testing needs
+    uint32 id       = 2;    // NodeID
+    // -- a unique mapping to the node
+    // -- in question within the above region of use		
+}
+
+// RoadRegulatorID ::= INTEGER (0..65535)
+//  -- The value zero shall be used for testing only
+
+// NodeID ::= INTEGER (0..65535)
+//  -- The values zero through 255 are allocated for testing purposes 
+//  -- Note that the value assigned to a node will be 
+//  -- unique within a given regional ID only
+
+
+message RegulatorySpeedLimit {
+    SpeedLimitType type = 1;    // vehicleMinSpeed or vehicleMaxSpeed
+    // -- The type of regulatory speed which follows
+    uint32 speed        = 2;
+    // -- The speed in units of 0.02 m/s
+    // -- See Section 11 for converting and translating
+    // -- speed expressed in mph into units of m/s
+}
+
+
+message MovementEx {
+    NodeReferenceID remoteIntersection  = 1;
+    // -- This entry indicates the downstream intersection of the link this lane connects to. 
+    // -- This provides a means to create meshes of lanes
+
+    google.protobuf.UInt32Value phaseId = 2;    // OPTIONAL
+    // PhaseID: INTEGER (0..255)
+    // -- The value 0 shall be used when the ID is
+    // -- not available or not known
+    // -- The matching signal group send by
+    // -- the SPAT message for this lane/maneuver.
+    // -- Shall be present unless the connectingLane
+    // -- has no signal group (is un-signalized)
+
+    Maneuver turn_direction             = 3;    // OPTIONAL,
+    // -- Indicating the turn direction corresponding to this movement
+}
+
+
+
+
+
+

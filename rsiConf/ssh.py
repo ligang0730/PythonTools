@@ -19,7 +19,6 @@ from PyQt5 import QtWidgets, QtWebEngineWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 from icon import *
-from PyQt5.Qt import (QMutex, QThread)
 from pathlib2 import Path
 
 # 在地图上绘制无边框圆形，填充颜色
@@ -190,7 +189,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         td_rtes['eventRadius'] = self.getNumValue(self.lineEdit_rtesRadius)
         #td_rtes['eventType'] = self.getNumValue(self.lineEdit_rtesType)
         td_rtes['eventType'] = int(self.rtesTypeNumList[self.comboBox_rtesType.currentIndex()])
-        td_rtes['priority'] = self.getNumValue(self.lineEdit_rtesPriority)
+        td_rtes['priority'] = self.getNumValue(self.lineEdit_rtesPriority) * 32
 
         cur_rtes = self.dictRsi['RSI']['rtes']
         cur_rtes.append(td_rtes)
@@ -212,7 +211,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         cur_rtes['eventRadius'] = self.getNumValue(self.lineEdit_rtesRadius)
         #cur_rtes['eventType'] = self.getNumValue(self.lineEdit_rtesType)
         cur_rtes['eventType'] = int(self.rtesTypeNumList[self.comboBox_rtesType.currentIndex()])
-        cur_rtes['priority'] = self.getNumValue(self.lineEdit_rtesPriority)
+        cur_rtes['priority'] = self.getNumValue(self.lineEdit_rtesPriority) * 32
         self.comboBox_rtes.setItemText(self.comboBox_rtes.currentIndex(), str(cur_rtes['rteId']))
 
     def push_loadRtes(self):
@@ -225,8 +224,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.lineEdit_rtesRadius.setText(str(cur_rtes['eventRadius']))
             #self.lineEdit_rtesType.setText(str(cur_rtes['eventType']))
             self.comboBox_rtesType.setCurrentIndex(self.rtesTypeNumList.index(str(cur_rtes['eventType'])))
-            self.lineEdit_rtesPriority.setText(str(cur_rtes['priority']))
-
+            self.lineEdit_rtesPriority.setText(str(cur_rtes['priority'] / 32))
             if len(cur_rtes['referencePaths']) > 0:
                 self.comboBox_rtesPaths.clear()
                 for i in range(len(cur_rtes['referencePaths'])):
@@ -263,20 +261,22 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                     self.comboBox_rtesPathPos.addItem(str(pos['offset'][0]) + ', ' + str(pos['offset'][1]))
 
     def push_addRtesPos(self):
-        td_pos = copy.deepcopy(self.dictPoint)
-        td_pos['offset'][0] = self.getFloatValue(self.lineEdit_rtesPathLat)
-        td_pos['offset'][1] = self.getFloatValue(self.lineEdit_rtesPathLon)
-        cur_paths = self.dictRsi['RSI']['rtes'][self.comboBox_rtes.currentIndex()]['referencePaths'][
-            self.comboBox_rtesPaths.currentIndex()]
-        cur_paths['points'].append(td_pos)
-        self.comboBox_rtesPathPos.addItem(str(td_pos['offset'][0]) + ', ' + str(td_pos['offset'][1]))
+        referencePaths = self.dictRsi['RSI']['rtes'][self.comboBox_rtes.currentIndex()]['referencePaths']
+        if len(referencePaths) > 0:
+            td_pos = copy.deepcopy(self.dictPoint)
+            td_pos['offset'][0] = self.getFloatValue(self.lineEdit_rtesPathLat)
+            td_pos['offset'][1] = self.getFloatValue(self.lineEdit_rtesPathLon)
+            cur_paths = referencePaths[self.comboBox_rtesPaths.currentIndex()]
+            cur_paths['points'].append(td_pos)
+            self.comboBox_rtesPathPos.addItem(str(td_pos['offset'][0]) + ', ' + str(td_pos['offset'][1]))
 
     def push_delRtesPos(self):
-        cur_paths = self.dictRsi['RSI']['rtes'][self.comboBox_rtes.currentIndex()]['referencePaths'][
-            self.comboBox_rtesPaths.currentIndex()]
-        if len(cur_paths['points']) > 0:
-            cur_paths['points'].pop(self.comboBox_rtesPathPos.currentIndex())
-            self.comboBox_rtesPathPos.removeItem(self.comboBox_rtesPathPos.currentIndex())
+        referencePaths = self.dictRsi['RSI']['rtes'][self.comboBox_rtes.currentIndex()]['referencePaths']
+        if len(referencePaths) > 0:
+            cur_paths = referencePaths[self.comboBox_rtesPaths.currentIndex()]
+            if len(cur_paths['points']) > 0:
+                cur_paths['points'].pop(self.comboBox_rtesPathPos.currentIndex())
+                self.comboBox_rtesPathPos.removeItem(self.comboBox_rtesPathPos.currentIndex())
 
     def push_addRtss(self):
         self.comboBox_rtssPaths.clear()
@@ -290,7 +290,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         #td_rtss['signType'] = self.getNumValue(self.lineEdit_rtssType)
         print(self.rtssTypeNumList[self.comboBox_rtssType.currentIndex()])
         td_rtss['signType'] = int(self.rtssTypeNumList[self.comboBox_rtssType.currentIndex()])
-        td_rtss['priority'] = self.getNumValue(self.lineEdit_rtssPriority)
+        td_rtss['priority'] = self.getNumValue(self.lineEdit_rtssPriority) * 32
 
         cur_rtss = self.dictRsi['RSI']['rtss']
         cur_rtss.append(td_rtss)
@@ -311,7 +311,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         cur_rtss['signPos']['offset'][1] = self.getFloatValue(self.lineEdit_rtssLon)
         #cur_rtss['signType'] = self.getNumValue(self.lineEdit_rtssType)
         cur_rtss['signType'] = int(self.rtssTypeNumList[self.comboBox_rtssType.currentIndex()])
-        cur_rtss['priority'] = self.getNumValue(self.lineEdit_rtssPriority)
+        cur_rtss['priority'] = self.getNumValue(self.lineEdit_rtssPriority) * 32
         self.comboBox_rtes.setItemText(self.comboBox_rtss.currentIndex(), str(cur_rtss['rtsId']))
 
     def push_loadRtss(self):
@@ -323,7 +323,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.lineEdit_rtssLon.setText(str(cur_rtss['signPos']['offset'][1]/10000000))
             #self.lineEdit_rtssType.setText(str(cur_rtss['signType']))
             self.comboBox_rtssType.setCurrentIndex(self.rtssTypeNumList.index(str(cur_rtss['signType'])))
-            self.lineEdit_rtssPriority.setText(str(cur_rtss['priority']))
+            self.lineEdit_rtssPriority.setText(str(cur_rtss['priority'] / 32))
 
             if len(cur_rtss['referencePaths']) > 0:
                 self.comboBox_rtssPaths.clear()
@@ -361,21 +361,23 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                     self.comboBox_rtssPathPos.addItem(str(pos['offset'][0]) + ', ' + str(pos['offset'][1]))
 
     def push_addRtssPos(self):
-        td_pos = copy.deepcopy(self.dictPoint)
-        td_pos['offset'][0] = self.getFloatValue(self.lineEdit_rtssPathLat)
-        td_pos['offset'][1] = self.getFloatValue(self.lineEdit_rtssPathLon)
+        referencePaths = self.dictRsi['RSI']['rtss'][self.comboBox_rtss.currentIndex()]['referencePaths']
+        if len(referencePaths) > 0:
+            td_pos = copy.deepcopy(self.dictPoint)
+            td_pos['offset'][0] = self.getFloatValue(self.lineEdit_rtssPathLat)
+            td_pos['offset'][1] = self.getFloatValue(self.lineEdit_rtssPathLon)
 
-        cur_paths = self.dictRsi['RSI']['rtss'][self.comboBox_rtss.currentIndex()]['referencePaths'][
-            self.comboBox_rtssPaths.currentIndex()]
-        cur_paths['points'].append(td_pos)
-        self.comboBox_rtssPathPos.addItem(str(td_pos['offset'][0]) + ', ' + str(td_pos['offset'][1]))
+            cur_paths = referencePaths[self.comboBox_rtssPaths.currentIndex()]
+            cur_paths['points'].append(td_pos)
+            self.comboBox_rtssPathPos.addItem(str(td_pos['offset'][0]) + ', ' + str(td_pos['offset'][1]))
 
     def push_delRtssPos(self):
-        cur_paths = self.dictRsi['RSI']['rtss'][self.comboBox_rtss.currentIndex()]['referencePaths'][
-            self.comboBox_rtssPaths.currentIndex()]
-        if len(cur_paths['points']) > 0:
-            cur_paths['points'].pop(self.comboBox_rtssPathPos.currentIndex())
-            self.comboBox_rtssPathPos.removeItem(self.comboBox_rtssPathPos.currentIndex())
+        referencePaths = self.dictRsi['RSI']['rtss'][self.comboBox_rtss.currentIndex()]['referencePaths']
+        if len(referencePaths) > 0:
+            cur_paths = referencePaths[self.comboBox_rtssPaths.currentIndex()]
+            if len(cur_paths['points']) > 0:
+                cur_paths['points'].pop(self.comboBox_rtssPathPos.currentIndex())
+                self.comboBox_rtssPathPos.removeItem(self.comboBox_rtssPathPos.currentIndex())
 
     def push_save(self):
         if os.path.exists('v2xRsuGbRsi.cfg.tmp'):

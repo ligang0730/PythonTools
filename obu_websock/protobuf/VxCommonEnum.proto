@@ -1,0 +1,12 @@
+//
+// VxCommonEnum.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+
+

@@ -2976,7 +2976,7 @@
           </widget>
          </item>
          <item row="3" column="2">
-          <widget class="QLabel" name="label_OpertionConf_2">
+          <widget class="QLabel" name="label_OperationConf_2">
            <property name="font">
             <font>
              <family>Arial</family>
@@ -3015,7 +3015,7 @@
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLabel" name="label_OpertionConf">
+          <widget class="QLabel" name="label_OperationConf">
            <property name="font">
             <font>
              <family>Arial</family>
@@ -3410,7 +3410,7 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>631</width>
+         <width>671</width>
          <height>341</height>
         </rect>
        </property>

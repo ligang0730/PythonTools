@@ -1,0 +1,73 @@
+//
+// RSM.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "VehSize.proto";
+import "VehClass.proto";
+import "DefMotion.proto";
+import "VehStatus.proto";
+import "DefPosition.proto";
+import "DefAcceleration.proto";
+
+
+enum ParticipantType {
+    unknown_participant_type        = 0;    // -- Unknown
+    motor_participant_type          = 1;    // -- motor
+    non_motor_participant_type      = 2;    // -- non-motor
+    pedestrian_participant_type     = 3;    // -- pedestrian
+    rsu_participant_type            = 4;    // -- rsu
+}
+
+enum SourceType {
+    unknown_source_type         = 0;
+    selfinfo_source_type        = 1;
+    v2x_source_type             = 2;
+    video_source_type           = 3;
+    microwaveRadar_source_type  = 4;
+    loop_source_type            = 5;
+    lidar_source_type           = 6;
+    integrated_source_type      = 7;
+}
+
+
+message ParticipantData {
+    ParticipantType ptc_type            = 1;
+    uint32 ptcId                        = 2;    // (0..65535)
+    // -- temporary ID set by RSU
+    // -- 0 is RSU itself
+    // -- 1..255 represent participants detected by RSU
+    // -- ptcId of different participant needs to be unique in RSU
+    SourceType source                   = 3;
+    string id                           = 4;    // SIZE(8)
+    // -- temperary vehicle ID from BSM
+    uint32 secMark                      = 5;    // microsecond of one minute
+    Position3D pos                      = 6;
+    PositionConfidenceSet posConfidence = 7;
+    TransmissionState transmission      = 8;
+    uint32 speed                        = 9;    // 0.02m/s
+    uint32 heading                      = 10;   // 0.0125
+    int32 angle                         = 11;   // (-126..127)
+    MotionConfidenceSet motionCfd       = 12;
+    AccelerationSet4Way accelSet        = 13;
+    VehSize size                        = 14;
+    VehicleClassification vehicleClass  = 15;
+}
+
+
+message RoadsideSafetyMessage {
+    uint32 msgCnt                           = 1;
+    string id                               = 2;
+    // -- RSU ID
+    Position3D refPos                       = 3;
+    repeated ParticipantData participants   = 4;
+    // -- All or part of the participants
+    // -- detected by RSU
+}
+
+

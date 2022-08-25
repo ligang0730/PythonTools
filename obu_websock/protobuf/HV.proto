@@ -1,0 +1,111 @@
+//
+// HV.proto
+// protoc -I=./protobuf --cpp_out=./src/ ./protobuf/*.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "VehSize.proto";
+import "VehBrake.proto";
+import "VehStatus.proto";
+import "DefMotion.proto";
+import "DefPosition.proto";
+import "DefAcceleration.proto";
+import "google/protobuf/wrappers.proto";
+
+
+message VehCanData {
+    // 0..100, 加速踏板开度，单位： %， 255 表示缺省
+    google.protobuf.Int32Value accelPos          = 1;
+    // -20000..20000, 发动机输出转速，单位： rpm， 65535 表示缺省
+    google.protobuf.Int32Value engineSpeed       = 2;
+    // -500000， 500000, 发动机输出扭矩，单位： 0.01Nm， 0xFFFFFFFF 表示缺省
+    google.protobuf.Int32Value engineTorque      = 3;
+    // 0..1, 制动踏板是否踩下， 0：未踩下， 1：踩下， 255 表示缺省
+    google.protobuf.Int32Value brakeFlag         = 4;
+    // 0..100, 制动踏板开度，单位： %， 255 表示缺省
+    google.protobuf.Int32Value brakePos          = 5;
+    // 0..50000, 主缸制动压力，单位 0.01MPa,， 65535 表示缺省
+    google.protobuf.Int32Value brakePressure     = 6;
+    // 0..20000, 横摆角速度，单位： 0.01deg/s， offset = -100， 表示实际值【-100..100】， 65535 表示缺省
+    google.protobuf.Int32Value yawRate           = 7;
+    // 【0..20000】表示左前轮角速度，单位： 0.01 mps， offset = -100， 表示实际值【-100..100】， 65535 表示缺省
+    google.protobuf.Int32Value wheelVelocityFL   = 8;
+    // 【0..20000】 表示右前轮角速度，单位： 0.01 mps， offset = -100， 表示实际值【-100..100】， 65535 表示缺省
+    google.protobuf.Int32Value wheelVelocityFR   = 9;
+    // 【0..20000】 表示左后轮角速度，单位： 0.01 mps， offset = -100， 表示实际值【-100..100】， 65535 表示缺省
+    google.protobuf.Int32Value wheelVelocityRL   = 10;
+    // 【0..20000】 表示右后轮角速度，单位： 0.01 mps， offset = -100， 表示实际值【-100..100】， 65535 表示缺省
+    google.protobuf.Int32Value wheelVelocityRR   = 11;
+    // 【0..1】 ABS 触发状态， 0： ABS 未激活， 1： ABS 激活， 255： 缺省
+    google.protobuf.Int32Value absFlag           = 12;
+    // 【0..1】 TCS 触发状态， 0： TCS 未激活， 1： TCS 激活， 255： 缺省
+    google.protobuf.Int32Value tcsFlag           = 13;
+    // 【0..1】 ESP 触发状态， 0： ESP 未激活， 1： ESP 激活， 255： 缺省
+    google.protobuf.Int32Value espFlag           = 14;
+    // 【0..1】 LKA 触发状态， 0： Off， 1： Stand-By mode， 2: Active mode 255：缺省
+    google.protobuf.Int32Value lkaFlag           = 15;
+    // 【0..7】 0：关闭， 1： Passive mode， 2： Stand-By mode， 3： Active-Control mode， 4： Brake-Only mode， 5： Override， 6： Standstill， 7： Failure mode ， 255： 缺省
+    google.protobuf.Int32Value accMode           = 16;
+    // 【0..1】 FCW 触发状态， 0： FCW 未激活， 1： FCW 激活， 255：缺省
+    google.protobuf.Int32Value fcwFlag           = 17;
+    // 【0..1】 LDW 触发状态， 0： LDW 未激活， 1： LDW 激活， 255：缺省
+    google.protobuf.Int32Value ldwFlag           = 18;
+    // 【0..1】 AEb 触发状态， 0： AEB 未激活， 1： AEB 激活， 255：缺省
+    google.protobuf.Int32Value aebFlag           = 19;
+    // 【0..1】 LCA 触发状态， 0： LCA 未激活， 1： LCA 激活， 255：缺省
+    google.protobuf.Int32Value lcaFlag           = 20;
+    // 【0..1】 DMS 触发状态， 0： DMS 未激活， 1： DMS 激活， 255：缺省
+    google.protobuf.Int32Value dmsFlag           = 21;
+    // 【0..100】单位： %， 255 表示缺省
+    google.protobuf.Int32Value soc               = 22;   // 电池剩余电量
+    // 枚举类型：【0..255】 1：人工接管， 2：单车自控， 3： gps 点迹控车， 4：曲线方程控车， 0 表示缺省
+    google.protobuf.Int32Value driveMode         = 23;
+    // 枚举类型【0..864000】当前执行的云端控制指令标识(1~864000)，对应 CLOUD2VEH_CTRL 中 ctrlId 字段。0 表示缺省
+    google.protobuf.UInt32Value ctrlId           = 24;
+}
+
+message VehStatus {
+    uint32 speed                            = 1; // 0.02m/s, 0~8191, 8191: unvariable
+    uint32 heading                          = 2; // 0.0125, 0~28800, 28800: unvariable
+    TransmissionState transmission          = 3;
+    // SteeringWheelAngle INTEGER (-126..127)
+    //      -- LSB units of 1.5 degrees, a range of -189 to +189 degrees
+    //      -- +001 = +1.5 deg
+    //      -- -126 = -189 deg and beyond
+    //      -- +126 = +189 deg and beyond
+    //      -- +127 to be used for unavailable
+    google.protobuf.Int32Value sterAngle    = 4;
+    AccelerationSet4Way accelSet            = 5;
+    MotionConfidenceSet motionCfd           = 6;
+    BrakeSystemStatus brakes                = 13;
+    google.protobuf.Int32Value events       = 14; // VehicleEventFlags, in VehStatus.proto
+    google.protobuf.Int32Value lights       = 15; // ExteriorLights, in VehStatus.proto
+    VehCanData can                          = 16;
+}
+
+message HvPos {
+    uint32 sateCnt                          = 1; // satellite cnt, 0: not pos
+    uint32 lone7                            = 2; // *1e7, 0: unvariable
+    uint32 late7                            = 3; // *1e7, 0: unvariable
+    google.protobuf.Int32Value elevation    = 4; // unit:10cm, -4096~61439，-4096:unavailable
+    PositionConfidenceSet accuracy          = 5;
+    uint64 gnssTime                         = 6;
+}
+
+message HvInfo {
+    uint32 timeStamp    = 1; // 2021年以来的分钟数
+    uint32 secMark      = 2; // 1 minute of ms
+    string id           = 3; // SIZE(8)
+    string plateNo      = 4; // SIZE(4..16)
+    uint32 vehClass     = 5;
+    HvPos pos           = 6;
+    VehSize size        = 7;
+    VehStatus status    = 8;
+}
+
+

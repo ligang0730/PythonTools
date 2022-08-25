@@ -1,0 +1,73 @@
+//
+// Cooperative.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "DefPosition.proto";
+import "Participant.proto";
+import "SensorSharing.proto";
+//import "google/protobuf/wrappers.proto";
+
+
+enum DriveSuggestion {
+    DriveBehavior_goStraightForward             = 0;
+    DriveBehavior_laneChangingToLeft            = 1;
+    DriveBehavior_laneChangingToRight           = 2;
+    DriveBehavior_rampIn                        = 3;
+    DriveBehavior_rampOut                       = 4;
+    DriveBehavior_intersectionStraightThrough   = 5;
+    DriveBehavior_intersectionTurnLeft          = 6;
+    DriveBehavior_intersectionTurnRight         = 7;
+    DriveBehavior_intersectionUTurn             = 8;
+    DriveBehavior_stop_and_go                   = 9;
+    DriveBehavior_stop                          = 10;
+    DriveBehavior_slow_down                     = 11;
+    DriveBehavior_speed_up                      = 12;
+    DriveBehavior_parking                       = 13;
+}
+
+
+message CooperativeLaneChange {
+    DriveSuggestion suggestion      = 1;
+}
+
+
+message CooperativeVehMerge {
+    DriveSuggestion suggestion      = 1;
+    uint32 merge_end_dist           = 2;    // unit:1cm
+}
+
+
+message CooperativeHighPriorityPassing {
+    bool current_lane_status        = 1;    // 0:closed, 1:open
+    DriveSuggestion suggestion      = 2;    // optional
+    Participant rv                  = 3;
+    uint32 rv_dist                  = 4;
+}
+
+
+message CooperativeSharingSensorMsg {
+    oneof type {
+        DetectedPTCType detectedPTCType     = 1;
+        ObstacleType obsType                = 2;
+    }
+    uint32 obsId                            = 3;
+    uint32 secMark                          = 4;
+    Position3D pos                          = 5;
+    uint32 speed                            = 6;
+    // Speed: Speed ::= INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    uint32 heading                          = 7;
+    // Heading ::= INTEGER (0..28800)
+    // -- Units of 0.0125 degrees
+    // -- A range of 0 to 359.9875 degrees
+    ObjectSize size                         = 8;
+}
+
+

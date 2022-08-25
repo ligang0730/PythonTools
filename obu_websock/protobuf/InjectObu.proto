@@ -1,0 +1,25 @@
+//
+// InjectObu.proto
+// protoc -I=./protobuf --cpp_out=./src/ ./protobuf/*.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "HV.proto";
+import "VIR.proto";
+import "Platooning.proto";
+import "SensorSharing.proto";
+
+
+message InjectObu {
+    HvInfo hv               = 1;
+    IARData iarData         = 2;
+    Platooning platooning   = 3;
+    SensorSharingMsg ssm    = 4;
+}
+
+

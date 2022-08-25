@@ -12,6 +12,7 @@ import json
 import paho.mqtt.client as mqtt
 import datetime
 import configparser
+import logging
 
 from PyQt5 import QtCore, QtGui
 from PyQt5 import QtWidgets
@@ -27,7 +28,7 @@ from icon import *
 
 global child_conn_Register, parent_conn_Register
 global child_conn_BaseInfo, parent_conn_BaseInfo
-global child_conn_OpertionConf, parent_conn_OpertionConf
+global child_conn_OperationConf, parent_conn_OperationConf
 global child_conn_DeviceState, parent_conn_DeviceState
 global child_conn_ServiceState, parent_conn_ServiceState
 global child_conn_ServiceConf, parent_conn_ServiceConf
@@ -153,7 +154,7 @@ class QJsonModel(QAbstractItemModel):
                 self.mRootItem = self.mRootItem.load(self.mDocument.object())
             self.endResetModel()
             return True
-        print("QJsonModel: error loading Json")
+        logging.info("QJsonModel: error loading Json")
         return False
 
     def data(self, index: QModelIndex, role: int = ...):
@@ -231,17 +232,17 @@ class MQTTClient(object):
 
     def disconnect(self):
         self._client.loop_stop()
-        print("Client disconnect called.")
+        logging.info("Client disconnect called.")
         pass
 
     def _on_connect(self, client, userdata, flags, rc):
-        print("Client on_connect called.")
+        logging.info("Client on_connect called.")
 
     def is_connected(self):
         return self._connected
 
     def _on_message(self, client, userdata, msg):
-        global child_conn_Register, child_conn_BaseInfo, child_conn_OpertionConf, child_conn_ServiceConf,\
+        global child_conn_Register, child_conn_BaseInfo, child_conn_OperationConf, child_conn_ServiceConf,\
             child_conn_DeviceState, child_conn_ServiceState, child_conn_Alarm, child_conn_HeartBeat,\
             child_conn_Bsm, child_conn_MsgStatus, child_conn_MsgConf, child_conn_LastWill
         global autorecvflag
@@ -261,21 +262,18 @@ class MQTTClient(object):
                 dict_Type = ""
         except:
             dict_tag = 0
-            #print(msgTopic, jsonstring)
 
         if dict_Type == "LastWill":
-            #print(jsonstring)
             child_conn_LastWill.send(jsonstring)
 
         if dict_tag == 10001:
             child_conn_BaseInfo.send(jsonstring)
             child_conn_BaseInfo.send(dict_json)
         elif dict_tag == 10002:
-            child_conn_OpertionConf.send(dict_json)
+            child_conn_OperationConf.send(dict_json)
         elif dict_tag == 10003:
             child_conn_ServiceConf.send(dict_json)
         elif dict_tag == 10007:
-            #print(msgTopic, jsonstring)
             child_conn_Register.send(jsonstring)
 
         if autorecvflag == 1:
@@ -298,7 +296,7 @@ class MQTTClient(object):
                 child_conn_BaseInfo.send(jsonstring)
                 child_conn_BaseInfo.send(dict_json)
             if dict_tag == 30002:
-                child_conn_OpertionConf.send(dict_json)
+                child_conn_OperationConf.send(dict_json)
             if dict_tag == 30003:
                 child_conn_ServiceConf.send(dict_json)
             if dict_tag == 30004:
@@ -343,7 +341,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         self.treeView_Register.setStyleSheet("background:#ffffff")
         self.treeView_BaseInfo.setStyleSheet("background:#ffffff")
-        #self.treeView_OpertionConf.setStyleSheet("background:#ffffff")
+        #self.treeView_OperationConf.setStyleSheet("background:#ffffff")
         self.treeView_DeviceState.setStyleSheet("background:#ffffff")
         self.treeView_ServiceState.setStyleSheet("background:#ffffff")
         #self.treeView_ServiceConf.setStyleSheet("background:#ffffff")
@@ -362,7 +360,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         self.model_Register = QJsonModel()
         self.model_BaseInfo = QJsonModel()
-        self.model_OpertionConf = QJsonModel()
+        self.model_OperationConf = QJsonModel()
         self.model_DeviceState = QJsonModel()
         self.model_ServiceState = QJsonModel()
         self.model_ServiceConf = QJsonModel()
@@ -388,6 +386,10 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.lineEdit_stopic.setText(str(iniconf.get('config', 'stopic')))
             self.lineEdit_ptopic.setText(str(iniconf.get('config', 'ptopic')))
 
+        LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s \0"
+        logging.basicConfig(filename='test.log', level=logging.INFO, format=LOG_FORMAT)
+        #logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
+
     def creatinifile(self, brokerip, brokerport, user, pswd, stopic, ptopic):
         inifp = open("mqtt_config.ini", "w")
         inidata = "[config]" + "\rbrokerip=" + str(brokerip) + "\rbrokerport=" + str(brokerport) + \
@@ -398,7 +400,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         finally:
             inifp.close()
 
-    def push_broker(self):
+    def connect(self):
         brokerip = self.lineEdit_serverip.text()
         user = self.lineEdit_user.text()
         pswd = self.lineEdit_pswd.text()
@@ -407,15 +409,19 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         ptopic = self.lineEdit_ptopic.text()
 
         self.creatinifile(brokerip, brokerport, user, pswd, stopic, ptopic)
-        #stopic2 = self.lineEdit_stopic_2.text()
+        # stopic2 = self.lineEdit_stopic_2.text()
         try:
             self.client = MQTTClient(brokerip, brokerport)
             self.client.connect(user, pswd)
             self.client.on_subscribe(stopic)
-            #self.client.on_subscribe(stopic2)
+            # self.client.on_subscribe(stopic2)
             self.client.on_loopstart()
         except:
             return
+
+    def push_broker(self):
+        self.connect()
+
         self.pushBroker.setEnabled(False)
         self.pushBrokerDis.setEnabled(True)
         self.pushPublish.setEnabled(True)
@@ -430,7 +436,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         self.t2.setDaemon(True)
         self.t2.start()
 
-        self.t3 = threading.Thread(target=self.startShowJsontreeView_OpertionConf, args=())
+        self.t3 = threading.Thread(target=self.startShowJsontreeView_OperationConf, args=())
         self.t3.setDaemon(True)
         self.t3.start()
 
@@ -481,6 +487,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.treeView_Register.setModel(self.model_Register)
             starttime = datetime.datetime.now()
             msg = parent_conn_Register.recv()
+            logging.info(msg)
             cnt += 1
             endtime = datetime.datetime.now()
             duringtime = endtime - starttime
@@ -488,13 +495,19 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.label_DeviceRegister.setText(str(cnt))
             self.label_DeviceRegister_2.setText(str(duringtime.seconds))
 
+            self.publish('DeviceRegisterResponse')
+
     def startShowJsontreeView_BaseInfo(self):
         global parent_conn_BaseInfo
         cnt = 0
         while True:
             self.treeView_BaseInfo.setModel(self.model_BaseInfo)
             starttime = datetime.datetime.now()
-            msg = parent_conn_BaseInfo.recv()
+            try:
+                msg = parent_conn_BaseInfo.recv()
+            except:
+                pass
+            #logging.info(msg)
             try:
                 msg_dist = msg['msgData']
                 self.lineEdit_deviceId.setText(str(msg_dist['deviceID']))
@@ -512,7 +525,6 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
                 self.lineEdit_locationType.setText(str(msg_dist['locationType']))
                 self.lineEdit_owner.setText(str(msg_dist['owner']))
                 self.lineEdit_transEncryption.setText(str(msg_dist['transEncryption']))
-                #print(msg)
                 self.lineEdit_snNum.setText(str(msg['deviceSN']))
             except:
                 self.model_BaseInfo.loadJson(msg)
@@ -522,20 +534,21 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.label_DeviceBaseInfo.setText(str(cnt))
             self.label_DeviceBaseInfo_2.setText(str(duringtime.seconds))
 
-    def startShowJsontreeView_OpertionConf(self):
-        global parent_conn_OpertionConf
+    def startShowJsontreeView_OperationConf(self):
+        global parent_conn_OperationConf
         cnt = 0
         while True:
-            #self.treeView_OpertionConf.setModel(self.model_OpertionConf)
+            #self.treeView_OperationConf.setModel(self.model_OperationConf)
             starttime = datetime.datetime.now()
-            msg = parent_conn_OpertionConf.recv()
+            msg = parent_conn_OperationConf.recv()
+            #logging.info(msg)
             msg_dist = msg['msgData']
             cnt += 1
             endtime = datetime.datetime.now()
             duringtime = endtime - starttime
-            # self.model_OpertionConf.loadJson(msg)
-            self.label_OpertionConf.setText(str(cnt))
-            self.label_OpertionConf_2.setText(str(duringtime.seconds))
+            # self.model_OperationConf.loadJson(msg)
+            self.label_OperationConf.setText(str(cnt))
+            self.label_OperationConf_2.setText(str(duringtime.seconds))
 
             self.lineEdit_deviceId2.setText(msg_dist['deviceID'])
             self.lineEdit_heartbeatRate.setText(str(msg_dist['heartbeatRate']))
@@ -556,6 +569,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.treeView_DeviceState.setModel(self.model_DeviceState)
             starttime = datetime.datetime.now()
             msg = parent_conn_DeviceState.recv()
+            #logging.info(msg)
             cnt += 1
             endtime = datetime.datetime.now()
             duringtime = endtime - starttime
@@ -570,6 +584,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             self.treeView_ServiceState.setModel(self.model_ServiceState)
             starttime = datetime.datetime.now()
             msg = parent_conn_ServiceState.recv()
+            #logging.info(msg)
             cnt += 1
             endtime = datetime.datetime.now()
             duringtime = endtime - starttime
@@ -584,54 +599,55 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
             #self.treeView_ServiceConf.setModel(self.model_ServiceConf)
             starttime = datetime.datetime.now()
             msg = parent_conn_ServiceConf.recv()
-            msg_dist = msg['msgData']
-            cnt += 1
-            endtime = datetime.datetime.now()
-            duringtime = endtime - starttime
-            #self.model_ServiceConf.loadJson(msg)
-            self.label_ServiceConf.setText(str(cnt))
-            self.label_ServiceConf_2.setText(str(duringtime.seconds))
 
-            self.lineEdit_upLimit.setText(str(msg_dist['mapConfig']['upLimit']))
-            self.lineEdit_downLimit.setText(str(msg_dist['mapConfig']['downLimit']))
-            self.lineEdit_upFilterskey1.setText(str(msg_dist['mapConfig']['upFilters'][0]))
-            self.lineEdit_upFiltersval1.setText(str(msg_dist['mapConfig']['upFilters'][1]))
-            self.lineEdit_upFilterskey2.setText(str(msg_dist['mapConfig']['upFilters'][2]))
-            self.lineEdit_upFiltersval2.setText(str(msg_dist['mapConfig']['upFilters'][3]))
-
-            self.lineEdit_upLimit_3.setText(str(msg_dist['rsiConfig']['upLimit']))
-            self.lineEdit_downLimit_3.setText(str(msg_dist['rsiConfig']['downLimit']))
-            self.lineEdit_upFilterskey5.setText(str(msg_dist['rsiConfig']['upFilters'][0]))
-            self.lineEdit_upFiltersval5.setText(str(msg_dist['rsiConfig']['upFilters'][1]))
-            self.lineEdit_upFilterskey6.setText(str(msg_dist['rsiConfig']['upFilters'][2]))
-            self.lineEdit_upFiltersval6.setText(str(msg_dist['rsiConfig']['upFilters'][3]))
-
-            self.lineEdit_upLimit_4.setText(str(msg_dist['rsmConfig']['upLimit']))
-            self.lineEdit_downLimit_4.setText(str(msg_dist['rsmConfig']['downLimit']))
-            self.lineEdit_upFilterskey7.setText(str(msg_dist['rsmConfig']['upFilters'][0]))
-            self.lineEdit_upFiltersval7.setText(str(msg_dist['rsmConfig']['upFilters'][1]))
-            self.lineEdit_upFilterskey8.setText(str(msg_dist['rsmConfig']['upFilters'][2]))
-            self.lineEdit_upFiltersval8.setText(str(msg_dist['rsmConfig']['upFilters'][3]))
-
-            self.lineEdit_upLimit_5.setText(str(msg_dist['spatConfig']['upLimit']))
-            self.lineEdit_downLimit_5.setText(str(msg_dist['spatConfig']['downLimit']))
-            self.lineEdit_upFilterskey9.setText(str(msg_dist['spatConfig']['upFilters'][0]))
-            self.lineEdit_upFiltersval9.setText(str(msg_dist['spatConfig']['upFilters'][1]))
-            self.lineEdit_upFilterskey10.setText(str(msg_dist['spatConfig']['upFilters'][2]))
-            self.lineEdit_upFiltersval10.setText(str(msg_dist['spatConfig']['upFilters'][3]))
-
-            self.lineEdit_sampleMode.setText(str(msg_dist['bsmConfig']['sampleMode']))
-            self.lineEdit_sampleRate.setText(str(msg_dist['bsmConfig']['sampleRate']))
-            self.lineEdit_upLimit_2.setText(str(msg_dist['bsmConfig']['upLimit']))
-            self.lineEdit_downLimit_2.setText(str(msg_dist['bsmConfig']['downLimit']))
-            self.lineEdit_upFilterskey3.setText(str(msg_dist['bsmConfig']['upFilters'][0]))
-            self.lineEdit_upFiltersval3.setText(str(msg_dist['bsmConfig']['upFilters'][1]))
-            self.lineEdit_upFilterskey4.setText(str(msg_dist['bsmConfig']['upFilters'][2]))
-            self.lineEdit_upFiltersval4.setText(str(msg_dist['bsmConfig']['upFilters'][3]))
-
-            self.lineEdit_sstag.setText(str(msg['tag']))
-            self.lineEdit_sstimeStamp.setText(str(msg['timeStamp']))
-            self.lineEdit_ssseqNum.setText(str(msg['seqNum']))
+            # msg_dist = msg['msgData']
+            # cnt += 1
+            # endtime = datetime.datetime.now()
+            # duringtime = endtime - starttime
+            # #self.model_ServiceConf.loadJson(msg)
+            # self.label_ServiceConf.setText(str(cnt))
+            # self.label_ServiceConf_2.setText(str(duringtime.seconds))
+            #
+            # self.lineEdit_upLimit.setText(str(msg_dist['mapConfig']['upLimit']))
+            # self.lineEdit_downLimit.setText(str(msg_dist['mapConfig']['downLimit']))
+            # self.lineEdit_upFilterskey1.setText(str(msg_dist['mapConfig']['upFilters'][0]))
+            # self.lineEdit_upFiltersval1.setText(str(msg_dist['mapConfig']['upFilters'][1]))
+            # self.lineEdit_upFilterskey2.setText(str(msg_dist['mapConfig']['upFilters'][2]))
+            # self.lineEdit_upFiltersval2.setText(str(msg_dist['mapConfig']['upFilters'][3]))
+            #
+            # self.lineEdit_upLimit_3.setText(str(msg_dist['rsiConfig']['upLimit']))
+            # self.lineEdit_downLimit_3.setText(str(msg_dist['rsiConfig']['downLimit']))
+            # self.lineEdit_upFilterskey5.setText(str(msg_dist['rsiConfig']['upFilters'][0]))
+            # self.lineEdit_upFiltersval5.setText(str(msg_dist['rsiConfig']['upFilters'][1]))
+            # self.lineEdit_upFilterskey6.setText(str(msg_dist['rsiConfig']['upFilters'][2]))
+            # self.lineEdit_upFiltersval6.setText(str(msg_dist['rsiConfig']['upFilters'][3]))
+            #
+            # self.lineEdit_upLimit_4.setText(str(msg_dist['rsmConfig']['upLimit']))
+            # self.lineEdit_downLimit_4.setText(str(msg_dist['rsmConfig']['downLimit']))
+            # self.lineEdit_upFilterskey7.setText(str(msg_dist['rsmConfig']['upFilters'][0]))
+            # self.lineEdit_upFiltersval7.setText(str(msg_dist['rsmConfig']['upFilters'][1]))
+            # self.lineEdit_upFilterskey8.setText(str(msg_dist['rsmConfig']['upFilters'][2]))
+            # self.lineEdit_upFiltersval8.setText(str(msg_dist['rsmConfig']['upFilters'][3]))
+            #
+            # self.lineEdit_upLimit_5.setText(str(msg_dist['spatConfig']['upLimit']))
+            # self.lineEdit_downLimit_5.setText(str(msg_dist['spatConfig']['downLimit']))
+            # self.lineEdit_upFilterskey9.setText(str(msg_dist['spatConfig']['upFilters'][0]))
+            # self.lineEdit_upFiltersval9.setText(str(msg_dist['spatConfig']['upFilters'][1]))
+            # self.lineEdit_upFilterskey10.setText(str(msg_dist['spatConfig']['upFilters'][2]))
+            # self.lineEdit_upFiltersval10.setText(str(msg_dist['spatConfig']['upFilters'][3]))
+            #
+            # self.lineEdit_sampleMode.setText(str(msg_dist['bsmConfig']['sampleMode']))
+            # self.lineEdit_sampleRate.setText(str(msg_dist['bsmConfig']['sampleRate']))
+            # self.lineEdit_upLimit_2.setText(str(msg_dist['bsmConfig']['upLimit']))
+            # self.lineEdit_downLimit_2.setText(str(msg_dist['bsmConfig']['downLimit']))
+            # self.lineEdit_upFilterskey3.setText(str(msg_dist['bsmConfig']['upFilters'][0]))
+            # self.lineEdit_upFiltersval3.setText(str(msg_dist['bsmConfig']['upFilters'][1]))
+            # self.lineEdit_upFilterskey4.setText(str(msg_dist['bsmConfig']['upFilters'][2]))
+            # self.lineEdit_upFiltersval4.setText(str(msg_dist['bsmConfig']['upFilters'][3]))
+            #
+            # self.lineEdit_sstag.setText(str(msg['tag']))
+            # self.lineEdit_sstimeStamp.setText(str(msg['timeStamp']))
+            # self.lineEdit_ssseqNum.setText(str(msg['seqNum']))
 
     def startShowJsontreeView_Alarm(self):
         global parent_conn_Alarm
@@ -653,12 +669,34 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         while True:
             self.treeView_LastWill.setModel(self.model_LastWill)
             msg = parent_conn_LastWill.recv()
+            #logging.info(msg)
             self.model_LastWill.loadJson(msg)
 
     def startShowJsontreeView_HeartBeat(self):
         global parent_conn_HeartBeat
         cnt = 0
+        ulinkcnt = 0
+        timeout = 0
         while True:
+            while True:
+                #logging.info(parent_conn_HeartBeat.poll())
+                if parent_conn_HeartBeat.poll():
+                    if ulinkcnt > 0:
+                        ulinkcnt = 0
+                        logging.info("link resume :" + str(cnt))
+                    timeout = 0
+                    break
+                if timeout > 5:
+                    ulinkcnt += 1
+                    logging.info("unLink cnt :" + str(ulinkcnt))
+                    timeout = 0
+                    self.client.disconnect()
+                    time.sleep(1)
+                    self.connect()
+                    continue
+                time.sleep(1)
+                timeout += 1
+
             starttime = datetime.datetime.now()
             msg = parent_conn_HeartBeat.recv()
             cnt += 1
@@ -935,6 +973,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
     def push_publish(self):
         sendmsgjson = ""
         dict = {"timeStamp":"","deviceSN":"","seqNum":"","ack":True,"msgType":"","tag":0,"msgData":{}}
+
         dict_OperationSet = {"deviceID":"","heartbeatRate":0,"deviceRunningInfoRate":0,"appRunningInfoRate":0,
                              "logInfoRate":0,"logFTP":"","alarmInfoRate":0}
         dict_DeviceSet = {"deviceID": "", "deviceName": "", "regionCode": 0, "curCommType": "", "ip":"", "port":0,
@@ -1117,23 +1156,18 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
 
         sendmsgjson = json.dumps(dict)
         ptopic = self.lineEdit_ptopic.text()
-        # print(ptopic, sendmsgjson)
         self.client.on_publish(ptopic, sendmsgjson, 1)
-        #("send request:")
-        #print(ptopic, sendmsgjson)
 
     def publish(self, msgType):
         self.seqNum += 1
         curtime = time.strftime("%Y%m%d%H%M%S", time.localtime())
-        dict = {'timeStamp': curtime, 'deviceSN': '', 'seqNum': str(self.seqNum), 'ack': True, 'msgType': '', 'tag': 0,
-                'msgData': {'deviceID': '', 'deviceName': ''}}
+        dict = {'timeStamp': curtime, 'deviceSN': '', 'seqNum': str(self.seqNum), 'ack': True,
+                'msgType': '', 'tag': 0, 'msgData': {'deviceID': '', 'deviceName': ''}}
         dict['msgType'] = msgType
         dict['tag'] = codeType2Tag(dict['msgType'])
         sendmsgjson = json.dumps(dict)
         ptopic = self.lineEdit_ptopic.text()
         self.client.on_publish(ptopic, sendmsgjson, 1)
-        #print("send query:")
-        #print(ptopic, sendmsgjson)
 
     def push_query(self):
         tab_index_show = self.tabWidget_show.currentIndex()
@@ -1145,7 +1179,7 @@ class MyPyQT_Form(QtWidgets.QWidget, Ui_Form):
         if tab_index_show == 4:
             self.publish('ServiceStateQuery')
         if tab_index_set == 1:
-            self.publish('OpertionConfQuery')
+            self.publish('OperationConfQuery')
         if tab_index_set == 2:
             self.publish('ServiceConfQuery')
         if tab_index_set == 10:
@@ -1166,7 +1200,7 @@ def codeType2Tag(type):
     enumtypedict = {'AlarmReport':10006,'DeviceRegisterRequest':10007,'DeviceHeartBeat':10008,
                     'DeviceSetRequest':20003,'OperationSetRequest':20004,'ServiceSetRequest':20005,
                     'RestartRequest':20006,'UpdateRequest':20007,'EventNotifyReport':20008,
-                    'DeviceBaseInfoQuery':30001,'OpertionConfQuery':30002,'ServiceConfQuery':30003,
+                    'DeviceBaseInfoQuery':30001,'OperationConfQuery':30002,'ServiceConfQuery':30003,
                     'DeviceStateQuery':30004,'ServiceStateQuery':30005,'DeviceBaseInfoResponse':10001,
                     'OperationConfResponse':10002,'ServiceConfResponse':10003,'DeviceRegisterResponse':10007,
                     'DeviceSetResponse':20003,'OperationSetResponse':20004,'ServiceSetResponse':20005,
@@ -1184,13 +1218,13 @@ def codeType2Tag(type):
             return item[1]
 
 def codeTag2Type(tag):
-    enumtagdict = {'10001':'DeviceBaseInfo','10002':'OpertionConf','10003':'ServiceConf',
+    enumtagdict = {'10001':'DeviceBaseInfo','10002':'OperationConf','10003':'ServiceConf',
                    '10004':'DeviceStateReport','10005':'ServiceStateReport','10006':'AlarmReport',
                    '10007':'DeviceRegister','10008':'DeviceHeartBeat','10011':'MsgStatus',
                    '10012':'MsgRxTxConfResponse',
                    '20003':'DeviceSet','20004':'OperationSet','20005':'ServiceSet',
                    '20006':'Restart','20007':'Update','20008':'EventNotifyReport','20011':'MsgRxTxConf',
-                   '30001':'DeviceBaseInfo','30002':'OpertionConf','30003':'ServiceConf',
+                   '30001':'DeviceBaseInfo','30002':'OperationConf','30003':'ServiceConf',
                    '30004':'DeviceState','30005':'ServiceState','30011':'MsgStatus',
                    '30012':'MsgRxTxConf'}
     for item in enumtagdict.items():
@@ -1200,7 +1234,7 @@ def codeTag2Type(tag):
 if __name__ == '__main__':
     global child_conn_Register, parent_conn_Register
     global child_conn_BaseInfo, parent_conn_BaseInfo
-    global child_conn_OpertionConf, parent_conn_OpertionConf
+    global child_conn_OperationConf, parent_conn_OperationConf
     global child_conn_DeviceState, parent_conn_DeviceState
     global child_conn_ServiceState, parent_conn_ServiceState
     global child_conn_ServiceConf, parent_conn_ServiceConf
@@ -1214,7 +1248,7 @@ if __name__ == '__main__':
 
     parent_conn_Register, child_conn_Register = Pipe()
     parent_conn_BaseInfo, child_conn_BaseInfo = Pipe()
-    parent_conn_OpertionConf, child_conn_OpertionConf = Pipe()
+    parent_conn_OperationConf, child_conn_OperationConf = Pipe()
     parent_conn_DeviceState, child_conn_DeviceState = Pipe()
     parent_conn_ServiceState, child_conn_ServiceState = Pipe()
     parent_conn_ServiceConf, child_conn_ServiceConf = Pipe()

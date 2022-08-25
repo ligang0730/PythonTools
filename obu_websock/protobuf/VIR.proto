@@ -1,0 +1,219 @@
+//
+// VIR.proto
+//
+//
+syntax = "proto3";
+
+
+package vxII;
+
+
+import "RSI.proto";
+import "DefTime.proto";
+import "VehClass.proto";
+import "DefMotion.proto";
+import "Confidence.proto";
+import "VxCommonDef.proto";
+import "DefPosition.proto";
+import "DefAcceleration.proto";
+import "google/protobuf/wrappers.proto";
+
+
+enum DriveBehavior {
+    goStraightForward_driv_behav            = 0;
+    laneChangingToLeft_driv_behav           = 1;
+    laneChangingToRight_driv_behav          = 2;
+    rampIn_driv_behav                       = 3;
+    rampOut_driv_behav                      = 4;
+    intersectionStraightThrough_driv_behav  = 5;
+    intersectionTurnLeft_driv_behav         = 6;
+    intersectionTurnRight_driv_behav        = 7;
+    intersectionUTurn_driv_behav            = 8;
+    stop_and_go_driv_behav                  = 9;
+    stop_driv_behav                         = 10;
+    slow_down_driv_behav                    = 11;
+    speed_up_driv_behav                     = 12;
+    parking_driv_behav                      = 13;
+}   // (SIZE(14,...))
+
+
+message PathPlanningPoint {
+    ReferenceLink posInMap                      = 1;    // OPTIONAL
+    // -- Lane and Link location related to MAP
+    Position3D pos                              = 2;
+    // -- Target location in the path
+    PositionConfidenceSet posAccuracy           = 3;    // OPTIONAL
+    google.protobuf.UInt32Value speed           = 4;    // OPTIONAL
+    // -- Target speed or recommended speed when passing the target position
+    // INTEGER (0..8191)
+    // -- Units of 0.02 m/s
+    // -- The value 8191 indicates that
+    SpeedConfidence speedCfd                    = 5;    // OPTIONAL
+    // -- Considering the acceptable range of the above target speed
+    google.protobuf.UInt32Value heading         = 6;    // OPTIONAL
+    // INTEGER (0..28800)
+    // -- Units of 0.0125 degrees
+    // -- A range of 0 to 359.9875 degrees
+    HeadingConfidence headingCfd                = 7;    // OPTIONAL
+    AccelerationSet4Way accelSet                = 8;    // OPTIONAL
+    AccSet4WayConfidence acc4WayConfidence      = 9;    // OPTIONAL
+    google.protobuf.UInt32Value estimatedTime   = 10;   // OPTIONAL
+    // -- Estimated time when vehicle reaches the target position
+    // -- Time offset is calculated from secMark of this message
+    // INTEGER (1..65535)
+    // -- Units of of 10 mSec,
+    // -- with a range of 0.01 seconds to 10 minutes and 55.34 seconds
+    google.protobuf.UInt32Value timeConfidence  = 11;   // OPTIONAL
+    // -- Considering the acceptable range of the above estimated time
+    // INTEGER (0..200)
+    // -- Units of 0.5 percent
+}
+
+
+enum ReqStatus {
+    unknown_req_status      = 0;
+    request_req_status      = 1;
+    // -- raise the request and not comfirmed by the target devices yet
+    comfirmed_req_status    = 2;
+    // -- this request is already comfirmed through some methods
+    cancel_req_status       = 3;
+    //-- vehicle claims to cancel this request
+    complete_req_status     = 4;
+    // -- vehicle has just completed this driving behavior
+}
+
+
+enum ParkingRequest {
+    enter_parking_req               = 0;
+    exit_parking_req                = 1;
+    park_parking_req                = 2;
+    pay_parking_req                 = 3;
+    unloadPassenger_parking_req     = 4;
+    pickupPassenger_parking_req     = 5;
+    unloadCargo_parking_req         = 6;
+    loadCargo_parking_req           = 7;
+    reserved1_parking_req           = 8;
+    reverved2_parking_req           = 9;
+    reserved3_parking_req           = 10;
+    reverved4_parking_req           = 11;
+}   // (SIZE(12,...))
+
+message ReqLaneChange {
+    NodeReferenceID upstreamNode    = 1;
+    // -- Upstream node of the target link
+    NodeReferenceID downstreamNode  = 2;
+    // -- Downstream node of the target link
+    uint32 targetLane               = 3;
+    // LaneID: INTEGER (0..255)
+    // -- the value 0 shall be used when the lane ID is
+    // -- not available or not known
+    // -- Target lane to change to
+}
+
+message ReqClearTheWay {
+    NodeReferenceID upstreamNode    = 1;
+    NodeReferenceID downstreamNode  = 2;
+    uint32 targetLane               = 3;
+    // LaneID: INTEGER (0..255)
+    // -- the value 0 shall be used when the lane ID is
+    // -- not available or not known
+    // -- Target lane to clear the way
+    ReferencePath relatedPath       = 4;    // OPTIONAL,
+    // -- Describe the detailed road area to clear
+    DDateTime tBegin                = 5;    // OPTIONAL,
+    // -- The beginning time required to clearing the way
+    DDateTime tEnd                  = 6;    // OPTIONAL,
+    // -- The time to end clearing the way
+}
+
+message ReqSignalPriority {
+    NodeReferenceID intersectionId                      = 1;
+    // -- Intersection id indicating the target traffic signal
+    MovementEx requiredMov                              = 2;
+    // -- Movement info. required including remote intersection id, target phase id and turning direction
+    google.protobuf.UInt32Value estimatedArrivalTime    = 3;    // OPTIONAL
+    // TimeOffset: INTEGER (1..65535)
+    // -- Units of of 10 mSec,
+    // -- with a range of 0.01 seconds to 10 minutes and 55.34 seconds
+    //-- Estimated arrival time to the intersection
+    google.protobuf.UInt32Value distance2Intersection   = 4;
+    // distance2Intersection INTEGER (0..10000) OPTIONAL,
+    //-- Unit 0.1m
+}
+
+message ReqSensorSharing {
+    repeated ReferencePath detectAreas  = 1;
+    // SEQUENCE (SIZE(1..8)) OF ReferencePath
+}
+
+message ReqParkingArea {
+    VehicleClassification vehicleClass      = 1;
+    ParkingRequest req                      = 2;
+    // -- request from this vehicle for the parking area
+    // -- or traffic station 
+    google.protobuf.UInt32Value parkingType = 3;    // OPTIONAL,
+    // BIT STRING of enum ParkingType
+    // -- if the vehicle needs a parking slot of certain type
+    uint32 expectedParkingSlotID            = 4;
+    // expectedParkingSlotID INTEGER (0..65535) OPTIONAL,
+    // -- if the vehicle already has a target parking slot
+}
+
+message ReqInfo {
+    ReqLaneChange laneChange            = 1;
+    ReqClearTheWay clearTheWay          = 2;
+    ReqSignalPriority signalPriority    = 3;
+    ReqSensorSharing sensorSharing      = 4;
+    ReqParkingArea parking              = 5;
+}
+
+message DriveRequest {
+    uint32 reqID                            = 1;
+    // reqID INTEGER (0..255),
+    // -- local ID of this request
+    // -- same request in serial VIR messages should keep the same reqID
+    ReqStatus status                        = 2;
+    google.protobuf.StringValue reqPriority = 3;    // OPTIONAL
+    // OCTET STRING (SIZE(1))
+    // -- The lower five bits are reserved and shall be set to zero
+    // -- Value from B00000000 to B11100000 represents the lowest to the highest level
+    google.protobuf.StringValue targetVeh   = 4;    // OPTIONAL
+    // OCTET STRING (SIZE(8))
+    // -- the temporary ID of target vehicle
+    google.protobuf.StringValue targetRSU   = 5;    // OPTIONAL
+    // OCTET STRING (SIZE(8))
+    //-- the temporary ID of target RSU
+    ReqInfo info        = 6;    // OPTIONAL,
+    google.protobuf.UInt32Value lifeTime    = 7;    // OPTIONAL,
+    // INTEGER (1..65535)
+    // -- Units of of 10 mSec,
+    // -- with a range of 0.01 seconds to 10 minutes and 55.34 seconds
+    // -- Lifetime of this request
+    // -- Time offset is calculated from secMark of this message
+}
+
+message IARData {
+    PathPlanningPoint currentPos                = 1;    // OPTIONAL
+    // -- current position in MAP
+    repeated PathPlanningPoint path_planning    = 2;    // OPTIONAL
+    // SEQUENCE (SIZE(1..100)) OF PathPlanningPoint
+    // -- 考虑8s规划，1s用10个点表示，共需80个点。预留到100个
+    // -- real time path planning that is shared with neighbors
+    // -- list in chronological order
+    DriveBehavior currentBehavior               = 3;    // OPTIONAL
+    // -- drive behavior related to the path planning
+    repeated DriveRequest reqs                  = 4;    // OPTIONAL
+    // (SIZE(1..8))
+}
+
+message VehIntentionAndRequest {
+    uint32 msgCnt       = 1;    // 0~127
+    string id           = 2;    // SIZE(8)
+    // -- temperary vehicle ID
+    // -- same as id in BSM
+    uint32 secMark      = 3;    // micro second of one minute
+    Position3D refPos   = 4;
+    IARData intAndReq   = 5;
+}
+
+
